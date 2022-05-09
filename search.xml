@@ -869,9 +869,9 @@
             
             <tag> 01背包 </tag>
             
-            <tag> 多重背包 </tag>
-            
             <tag> 完全背包 </tag>
+            
+            <tag> 多重背包 </tag>
             
         </tags>
       
@@ -3642,15 +3642,15 @@
     
     <entry>
       <title></title>
-      <link href="/2021/12/14/templates/cf/"/>
-      <url>/2021/12/14/templates/cf/</url>
+      <link href="/2021/12/14/templates/ac/"/>
+      <url>/2021/12/14/templates/ac/</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
       <categories>
           
-          <category> codeforces </category>
+          <category> acwing </category>
           
       </categories>
       
@@ -3661,15 +3661,15 @@
     
     <entry>
       <title></title>
-      <link href="/2021/12/14/templates/ac/"/>
-      <url>/2021/12/14/templates/ac/</url>
+      <link href="/2021/12/14/templates/cf/"/>
+      <url>/2021/12/14/templates/cf/</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
       <categories>
           
-          <category> acwing </category>
+          <category> codeforces </category>
           
       </categories>
       
