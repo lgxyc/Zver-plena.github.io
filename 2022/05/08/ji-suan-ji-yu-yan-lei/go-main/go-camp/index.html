@@ -732,14 +732,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-05-13
+                    2022-05-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    6.3k
+                    7.3k
                 </div>
                 
 
@@ -2253,6 +2253,175 @@ BenchmarkFastSelectParallel<span class="token operator">-</span><span class="tok
 <li>保证正确性</li>
 <li>定位主要瓶颈</li>
 </ul>
+</li>
+</ul>
+<h2 id="go语言优化"><a href="#go语言优化" class="headerlink" title="go语言优化"></a>go语言优化</h2><h3 id="自动内存管理"><a href="#自动内存管理" class="headerlink" title="自动内存管理"></a>自动内存管理</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>需要完成的三个任务<ul>
+<li>为新对象分配空间</li>
+<li>找到存活对象</li>
+<li>回收死亡对象存储空间</li>
+</ul>
+</li>
+</ul>
+<h4 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h4><ul>
+<li>Mutator：业务线程，分配新对象，修改对象指向关系</li>
+<li>Collector：GC线程，找到存活对象，并且回收死亡对象的空间</li>
+</ul>
+<blockquote>
+<p>工作方式</p>
+</blockquote>
+<ul>
+<li><p>Serial Gc:只有一个Collector	</p>
+</li>
+<li><p>Parallel Gc：支持多个collectors同时回收的GC算法</p>
+</li>
+<li><p>前两者存在暂停来执行Collector回收</p>
+</li>
+<li><p>Concurrent Gc：mutator和collector可以同时执行</p>
+<ul>
+<li>涉及到的就是Collector必须感知对象指向关系的改变</li>
+</ul>
+</li>
+</ul>
+<h4 id="策略-追踪垃圾回收"><a href="#策略-追踪垃圾回收" class="headerlink" title="策略-追踪垃圾回收"></a>策略-追踪垃圾回收</h4><ul>
+<li>对象被回收的条件：指针指向关系不可达的对象</li>
+</ul>
+<blockquote>
+<p>工作流程</p>
+</blockquote>
+<ul>
+<li><p>标记根对象</p>
+<ul>
+<li>静态变量，全局变量，线程栈等</li>
+</ul>
+</li>
+<li><p>标记：找到可达对象</p>
+<ul>
+<li>从根对象开始，找到所有可达对象</li>
+</ul>
+</li>
+<li><p>清理：清理掉所有的不可达对象</p>
+<ul>
+<li>将存活对象复制到另外的内存空间（Copying GC）：</li>
+<li>将死亡对象的内存标记为可分配（mark-sweep GC）</li>
+<li>移动整理存活对象（Mark-compact Gc）</li>
+</ul>
+</li>
+<li><p>根据对象的生命周期，使用不同的标记和清理策略</p>
+</li>
+</ul>
+<blockquote>
+<p>清理策略</p>
+</blockquote>
+<ul>
+<li><code>Copying Gc</code>： 将存活对象，copying存活对象到另一个分配合适大小的内存块。</li>
+<li><code>Mark-sweep Gc</code>：通过free-list管理空闲的内存</li>
+<li><code>Mark-compact Gc</code>：在存活对象所在的内存块原地整理存活对象</li>
+</ul>
+<h4 id="策略-分代GC-garbage-collection"><a href="#策略-分代GC-garbage-collection" class="headerlink" title="策略-分代GC(garbage collection)"></a>策略-分代GC(garbage collection)</h4><p>根据GC次数分配不同区域</p>
+<ul>
+<li><p>根据对象的GC次数来分配清理策略</p>
+</li>
+<li><p>目的：针对young和old对象，制定不同的GC策略，降低整体内存管理开销</p>
+</li>
+</ul>
+<blockquote>
+<p> young generation</p>
+</blockquote>
+<ul>
+<li>存活对象少，采用copying gc</li>
+<li>gc吞吐量高</li>
+</ul>
+<blockquote>
+<p>old generation</p>
+</blockquote>
+<ul>
+<li>对象趋向于一直活着，反复复制开销大</li>
+<li>可以采用mark-sweep GC</li>
+</ul>
+<h4 id="策略-引用计数"><a href="#策略-引用计数" class="headerlink" title="策略-引用计数"></a>策略-引用计数</h4><ul>
+<li><p>每个对象有一个与之关联的引用数目</p>
+</li>
+<li><p>对象存活的条件：引用数目大于0</p>
+</li>
+<li><p>优点</p>
+<ul>
+<li>内存管理操作被平摊到程序执行过程中</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>无法回收环形数据结构 - weak reference</li>
+<li>内存开销，每个对象需要引入额外空间记录引用数目</li>
+<li>回收内存时可能引发暂停</li>
+<li>维护开销大，通过原子操作？</li>
+</ul>
+</li>
+</ul>
+<h3 id="go内存管理及优化"><a href="#go内存管理及优化" class="headerlink" title="go内存管理及优化"></a>go内存管理及优化</h3><ul>
+<li>noscan的mspan：分配不包含指针的对象<br>  GC不需要扫描</li>
+<li>scan的mspan：分配包含指针的对象<br>  GC需要扫描</li>
+</ul>
+<h4 id="go内存分配-分块机制"><a href="#go内存分配-分块机制" class="headerlink" title="go内存分配-分块机制"></a>go内存分配-分块机制</h4><ul>
+<li><p>目的：为对象在heap分配内存</p>
+</li>
+<li><p>提前分块</p>
+</li>
+<li><h2 id="提前将内存分块"><a href="#提前将内存分块" class="headerlink" title="提前将内存分块"></a>提前将内存分块</h2></li>
+<li><p>根据对象大小分配合适的块返回</p>
+</li>
+</ul>
+<h4 id="内存分配-缓存"><a href="#内存分配-缓存" class="headerlink" title="内存分配-缓存"></a>内存分配-缓存</h4><h4 id="优化方案-Balanced-GC"><a href="#优化方案-Balanced-GC" class="headerlink" title="优化方案-Balanced GC"></a>优化方案-Balanced GC</h4><blockquote>
+<p>优化对象</p>
+</blockquote>
+<ul>
+<li>GAB：goroutine allocation buffer</li>
+<li>GAB 用于分配 noscan 类型的小对象 ： &lt; 128b</li>
+</ul>
+<blockquote>
+<p>优化流程</p>
+</blockquote>
+<ul>
+<li>使用三个指针维护 GAB：base，end，top</li>
+<li>bump pointer 风格对象分配<ul>
+<li>不需要和其他分配请求互斥</li>
+<li>分配动作简单</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">if</span> top <span class="token operator">+</span> size <span class="token operator">&lt;=</span> end<span class="token punctuation">{</span>
+    addr <span class="token operator">:=</span> top
+    top <span class="token operator">+=</span> size
+    <span class="token keyword">return</span> addr
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>技术细节</p>
+</blockquote>
+<ul>
+<li>GAB对于GO内存管理是一个大对象</li>
+<li>问题：如果说在GAB中大部分都是空闲的，而只有一小部分存在有对象，可能导致整个GAB都是存活的，这样会导致内存被延迟释放</li>
+<li>方案：移动GAB中存活的对象<ul>
+<li>当GAB的总大小大于存活对象的大小超过一定的阀值的时候，将GAB中存活的对象通过copying的方式复制到另外分配的GAB中</li>
+<li>原先的GAB就可以整个释放，</li>
+</ul>
+</li>
+</ul>
+<h3 id="编译器和静态分析"><a href="#编译器和静态分析" class="headerlink" title="编译器和静态分析"></a>编译器和静态分析</h3><h4 id="编译器的结构"><a href="#编译器的结构" class="headerlink" title="编译器的结构"></a>编译器的结构</h4><h4 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h4><h4 id="过程内分析和过程间分析"><a href="#过程内分析和过程间分析" class="headerlink" title="过程内分析和过程间分析"></a>过程内分析和过程间分析</h4><h3 id="go编译器优化"><a href="#go编译器优化" class="headerlink" title="go编译器优化"></a>go编译器优化</h3><h4 id="函数内联（Inlining"><a href="#函数内联（Inlining" class="headerlink" title="函数内联（Inlining)"></a>函数内联（Inlining)</h4><h4 id="Beast-Mode"><a href="#Beast-Mode" class="headerlink" title="Beast Mode"></a>Beast Mode</h4><ul>
+<li>Beast Mode :调整函数内敛的策略<ul>
+<li>降低函数调用开销</li>
+<li>增加其他优化：逃逸分析</li>
+</ul>
+</li>
+</ul>
+<h4 id="逃逸分析"><a href="#逃逸分析" class="headerlink" title="逃逸分析"></a>逃逸分析</h4><ul>
+<li><p>逃逸分析：分析代码中指针的动态作用域：指针在何处可以被访问</p>
+</li>
+<li><p>大致思路</p>
+</li>
+<li><p>Beast Mode ：函数扩展了函数边界，更多对象不逃逸</p>
+</li>
+<li><p>优化：未逃逸的对象可以在栈上进行优化</p>
 </li>
 </ul>
 
