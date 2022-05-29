@@ -732,14 +732,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-05-17
+                    2022-05-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    7.3k
+                    9k
                 </div>
                 
 
@@ -2359,8 +2359,8 @@ BenchmarkFastSelectParallel<span class="token operator">-</span><span class="tok
 </li>
 </ul>
 <h3 id="go内存管理及优化"><a href="#go内存管理及优化" class="headerlink" title="go内存管理及优化"></a>go内存管理及优化</h3><ul>
-<li>noscan的mspan：分配不包含指针的对象<br>  GC不需要扫描</li>
-<li>scan的mspan：分配包含指针的对象<br>  GC需要扫描</li>
+<li>noscan 的 mspan：分配不包含指针的对象<br>  GC不需要扫描</li>
+<li>scan 的 mspan：分配包含指针的对象<br>  GC需要扫描</li>
 </ul>
 <h4 id="go内存分配-分块机制"><a href="#go内存分配-分块机制" class="headerlink" title="go内存分配-分块机制"></a>go内存分配-分块机制</h4><ul>
 <li><p>目的：为对象在heap分配内存</p>
@@ -2424,7 +2424,315 @@ BenchmarkFastSelectParallel<span class="token operator">-</span><span class="tok
 <li><p>优化：未逃逸的对象可以在栈上进行优化</p>
 </li>
 </ul>
+<h2 id="笔记项目实战"><a href="#笔记项目实战" class="headerlink" title="笔记项目实战"></a>笔记项目实战</h2><h3 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h3><p><code>docker-compose up</code>会读取<code>docker-compose.yml</code>配置文件来创建容器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker-compose</span> up<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
+<ul>
+<li>如果服务容器已经存在，会重新创建容器</li>
+<li>如果容器创建后更改配置文件，会全部关掉，重新创建容器</li>
+</ul>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7097126973163454494#heading-21">计算机网络</a></p>
+<h3 id="工具-1"><a href="#工具-1" class="headerlink" title="工具"></a>工具</h3><p>Linux环境下</p>
+<ul>
+<li>抓包工具：tcpdump、wireshark</li>
+</ul>
+<h4 id="tcpdump使用"><a href="#tcpdump使用" class="headerlink" title="tcpdump使用"></a>tcpdump使用</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d9162722f189">教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74812069">教程2</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a57a5b0e58f0">教程3</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>额外知识</p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 通过 sudo tcpdump -D 可以获取所有监听网卡</span>
+<span class="token comment"># 在mac 可以通过 ifconfig 命令来查看对应网卡</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>ent1之类的是物理网卡的设备名，</p>
+</li>
+<li><p>en0或是et0是网络接口名(逻辑上的)</p>
+</li>
+<li><p>enx(x是一个数字，代表第几块网卡)是标准以太网接口，</p>
+</li>
+<li><p>et0是IEEE 802.3以太网接口。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>tcpdump是Unix/Linux 下的抓包工具，在 macOS 上也有实现。这个命令可以针对指定网卡、端口、协议进行抓包</li>
+<li></li>
+</ul>
+<h4 id="wireshark使用"><a href="#wireshark使用" class="headerlink" title="wireshark使用"></a>wireshark使用</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.wireshark.org/#learnWS">官网教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/anjisi/article/details/118651906">教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1355945">教程02</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/92993778">教程03</a></li>
+</ul>
+<hr>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>MAC ：Media Access Control（媒体访问控制地址）<ul>
+<li>物理地址</li>
+</ul>
+</li>
+<li><h2 id="SDN：Software-Defined-Network（软件定义网络）"><a href="#SDN：Software-Defined-Network（软件定义网络）" class="headerlink" title="SDN：Software Defined Network（软件定义网络）"></a>SDN：Software Defined Network（软件定义网络）</h2></li>
+</ul>
+<h3 id="路由（routing）"><a href="#路由（routing）" class="headerlink" title="路由（routing）"></a>路由（routing）</h3><ul>
+<li><p>路由（routing）：分组从源到目的地时，决定端到端路径的网络范围的进程</p>
+</li>
+<li><p>路由在发送数据包的时候，源和目的IP地址不会发生改变，只会改变MAC地址，找到发包</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>动态路由<ul>
+<li>BGP/OSPF</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>路由发包原理</p>
+</blockquote>
+<ul>
+<li><p>同网段：配置网段默认添加静态路由，获取对端MAC直接发包</p>
+</li>
+<li><p>跨网段：配置网关路由，获取网管MAC地址发包</p>
+</li>
+<li><p>路由是网状的，不一定是对称的</p>
+</li>
+</ul>
+<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><h4 id="ARP（Address-Resolution-Protocol）"><a href="#ARP（Address-Resolution-Protocol）" class="headerlink" title="ARP（Address Resolution Protocol）"></a>ARP（Address Resolution Protocol）</h4><ul>
+<li>ARP（Address Resolution Protocol）<ul>
+<li>地址解析协议：根据IP地址获取物理地址（MAC）</li>
+</ul>
+</li>
+<li>ARP广播不会跨网段，且ARP应答单播</li>
+</ul>
+<hr>
+<ul>
+<li>免费ARP</li>
+<li>ARP代理</li>
+</ul>
+<h4 id="IP（Internet-Protocol-Address）"><a href="#IP（Internet-Protocol-Address）" class="headerlink" title="IP（Internet Protocol Address）"></a>IP（Internet Protocol Address）</h4><ul>
+<li>IP（Internet Protocol Address<ul>
+<li>互联网协议地址</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>IP唯一表示，互联网通用</li>
+<li>IPv4：</li>
+</ul>
+<h4 id="NAT（Network-Address-Translation）"><a href="#NAT（Network-Address-Translation）" class="headerlink" title="NAT（Network Address Translation）"></a>NAT（Network Address Translation）</h4><ul>
+<li>NAT：（Network Address Translation）网络地址转换</li>
+<li>NAT-改变IP和端口号</li>
+</ul>
+<h4 id="数据包-模型"><a href="#数据包-模型" class="headerlink" title="数据包-模型"></a>数据包-模型</h4><p><img src="/go_camp/image-20220519210802862.png" alt="image-20220519210802862"></p>
+<h4 id="DNS（Domain-Name-System）"><a href="#DNS（Domain-Name-System）" class="headerlink" title="DNS（Domain Name System）"></a>DNS（Domain Name System）</h4><ul>
+<li>递归请求</li>
+</ul>
+<h4 id="UDP（User-Datagram-Protocol）"><a href="#UDP（User-Datagram-Protocol）" class="headerlink" title="UDP（User Datagram Protocol）"></a>UDP（User Datagram Protocol）</h4><p><img src="/go_camp/image-20220519222009145.png" alt="image-20220519222009145"></p>
+<ul>
+<li><p>传输层协议</p>
+</li>
+<li><p>配一个UDP的头，把payload里面塞数据就可以发送</p>
+</li>
+<li><p>不需要建立连接就能直接进行数据发送和接收。</p>
+</li>
+<li><p>属于不可靠的、没有时序的通信，但是UDP协议的实时性比较好。</p>
+</li>
+<li><p>通常用于视频直播相关领域。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>不保证协议可靠</li>
+<li>存在丢包</li>
+</ul>
+<h4 id="TCP（Transmission-Control-Protocol）"><a href="#TCP（Transmission-Control-Protocol）" class="headerlink" title="TCP（Transmission Control Protocol）"></a>TCP（Transmission Control Protocol）</h4><ul>
+<li>TCP是传输层的协议</li>
+</ul>
+<blockquote>
+<p> 三次握手</p>
+</blockquote>
+<blockquote>
+<p>TCP-传输</p>
+</blockquote>
+<ul>
+<li>什么是消息确认 ACK。<ul>
+<li>答：如果在处理消息的过程中，消费者的服务器在处理消息的时候出现异常，那么可能这条正在处理的消息就没有完成消息消费，数据就会丢失。为了确保数据不会丢失，RabbitMQ 支持消息确定 - ACK。</li>
+</ul>
+</li>
+<li>ACK 的消息确认机制<ul>
+<li>ACK 机制是消费者从 RabbitMQ 收到消息并处理完成后，反馈给 RabbitMQ，RabbitMQ 收到反馈后才将此消息从队列中删除</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>sequence number：发送方</li>
+<li>acknowledge number（ack）：（确认字符）期望的接收方的下一次sequence number是多少</li>
+</ul>
+<blockquote>
+<p>TCP-传输-有限状态机</p>
+</blockquote>
+<blockquote>
+<p>Timewait</p>
+</blockquote>
+<blockquote>
+<p>丢包</p>
+</blockquote>
+<blockquote>
+<p>滑动窗口</p>
+</blockquote>
+<blockquote>
+<p>流量控制/拥塞控制</p>
+</blockquote>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><h4 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h4><ul>
+<li>HTTPS解密出来仍然是HTTP</li>
+</ul>
+<blockquote>
+<p>SSL/TLS握手</p>
+</blockquote>
+<ul>
+<li>对称加密和非对称加密</li>
+</ul>
+<blockquote>
+<p>CA（Certificate Authority）</p>
+</blockquote>
+<ul>
+<li>证书颁发机构：Certificate Authority</li>
+<li>非对称加密的基础</li>
+<li></li>
+</ul>
+<h4 id="HTTP2-0"><a href="#HTTP2-0" class="headerlink" title="HTTP2.0"></a>HTTP2.0</h4><ul>
+<li>2.0协议是在1.x基础上的升级而不是重写，1.x协议的方法，状态及api在2.0协议里是一样的。</li>
+<li>2.0协议重点是对终端用户的感知延迟、网络及服务器资源的使用等性能的优化</li>
+</ul>
+<blockquote>
+<p>优化内容</p>
+</blockquote>
+<ul>
+<li>二进制分帧（Binary Format)</li>
+</ul>
+<blockquote>
+<p>多路复用</p>
+</blockquote>
+<ul>
+<li>核心思想：多路复用</li>
+</ul>
+<hr>
+<ul>
+<li>如果多路复用的时候发生丢包的会发生对头阻塞</li>
+</ul>
+<h4 id="HTTP3-0-QUIC"><a href="#HTTP3-0-QUIC" class="headerlink" title="HTTP3.0-QUIC"></a>HTTP3.0-QUIC</h4><ul>
+<li>QUIC（Quick UDP Internet Connection）<ul>
+<li>快速</li>
+<li>HTTP3.0就是QUIC发展</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>kernel or userSapce</li>
+<li>解决TCP对头阻塞问题</li>
+<li>弱网传输的优势</li>
+</ul>
+<h3 id="网路路径"><a href="#网路路径" class="headerlink" title="网路路径"></a>网路路径</h3><h4 id="数据中心分布"><a href="#数据中心分布" class="headerlink" title="数据中心分布"></a>数据中心分布</h4><h4 id="同运营商访问"><a href="#同运营商访问" class="headerlink" title="同运营商访问"></a>同运营商访问</h4><h4 id="CDN（Content-Delivery-Network）"><a href="#CDN（Content-Delivery-Network）" class="headerlink" title="CDN（Content Delivery Network）"></a>CDN（Content Delivery Network）</h4><ul>
+<li>CDN：（Content Delivery Network）内容分发网络</li>
+<li>静态资源缓存系统</li>
+</ul>
+<h4 id="DSA"><a href="#DSA" class="headerlink" title="DSA"></a>DSA</h4><ul>
+<li>DSA 使用一个<strong>放置在源服务器上的较小“探测路径”文件来优化 CDN 的网络路由配置</strong></li>
+</ul>
+<h3 id="网络稳定"><a href="#网络稳定" class="headerlink" title="网络稳定"></a>网络稳定</h3><h4 id="容灾概念"><a href="#容灾概念" class="headerlink" title="容灾概念"></a>容灾概念</h4><ul>
+<li>容灾是为了在遭遇灾害时能保证信息系统能正常运行</li>
+</ul>
+<hr>
+<ul>
+<li>故障发生</li>
+<li>故障感知</li>
+<li>自动切换</li>
+<li>服务恢复</li>
+</ul>
+<h4 id="容灾具体案例"><a href="#容灾具体案例" class="headerlink" title="容灾具体案例"></a>容灾具体案例</h4><h4 id="网络-故障明确"><a href="#网络-故障明确" class="headerlink" title="网络-故障明确"></a>网络-故障明确</h4><h4 id="故障止损"><a href="#故障止损" class="headerlink" title="故障止损"></a>故障止损</h4><ul>
+<li>先止损在排查</li>
+</ul>
+<h4 id="分段排查"><a href="#分段排查" class="headerlink" title="分段排查"></a>分段排查</h4><blockquote>
+<p>客户端排查</p>
+</blockquote>
+<ul>
+<li>访问其他服务</li>
+<li>其他客户端访问服务</li>
+</ul>
+<blockquote>
+<p>服务端排查</p>
+</blockquote>
+<ul>
+<li>服务端监控指标</li>
+<li>分组件排查</li>
+</ul>
+<blockquote>
+<p>中间链路排查</p>
+</blockquote>
+<ul>
+<li>中间网络设备</li>
+<li>DNS</li>
+</ul>
+<h4 id="常见网络故障排查命令"><a href="#常见网络故障排查命令" class="headerlink" title="常见网络故障排查命令"></a>常见网络故障排查命令</h4><ul>
+<li>dig：查询DNS问题</li>
+<li>ping、telnet、nmap查询三层、四层连通性</li>
+<li>Traceroute：排查中间链路</li>
+<li>iptabels</li>
+<li>tcpdump</li>
+</ul>
+<h4 id="故障排查案例"><a href="#故障排查案例" class="headerlink" title="故障排查案例"></a>故障排查案例</h4><ul>
+<li><p>客户端异常-》服务端自测正常-》网关转发异常-》健康检查异常</p>
+</li>
+<li><p>安徽电信报障某APP无法使用-》检测后端服务正常，安徽电信流量突降-》安徽电信客<br>  户端ping不通目标服务-》电缆被挖断</p>
+</li>
+<li><p>个别用户报故障，生产环境大多是客户端的问题</p>
+</li>
+<li><p>某APP故障-》后端服务器反馈服务正常-》网络转发设备异常-》抓包-》路由不对称</p>
+</li>
+</ul>
+<h4 id="故障预防"><a href="#故障预防" class="headerlink" title="故障预防"></a>故障预防</h4><ul>
+<li>监控报警</li>
+<li>故障演练</li>
+<li>故障止损</li>
+</ul>
+<h3 id="课后作业"><a href="#课后作业" class="headerlink" title="课后作业"></a>课后作业</h3><h4 id="UDP-socket实现ack，感知丢包重传"><a href="#UDP-socket实现ack，感知丢包重传" class="headerlink" title="UDP socket实现ack，感知丢包重传"></a>UDP socket实现ack，感知丢包重传</h4><blockquote>
+<p>提示</p>
+</blockquote>
+<ul>
+<li>学会UDP socket编程</li>
+<li>先从简单的ack学习，客户端等待ack再发包</li>
+<li>什么时候客户端认为是丢包？</li>
+<li>重传怎么考虑效率？</li>
+<li>能不能不阻塞只穿丢掉的中间的段？</li>
+</ul>
+<h4 id="三台同网段内的服务器，模拟实现一个路由器"><a href="#三台同网段内的服务器，模拟实现一个路由器" class="headerlink" title="三台同网段内的服务器，模拟实现一个路由器"></a>三台同网段内的服务器，模拟实现一个路由器</h4><blockquote>
+<p>方法一：Linux操作系统配置法提示：</p>
+</blockquote>
+<ol>
+<li>了解Linux的路由配置方式</li>
+<li>确保是同网段直连可达的环境。在三台机<br>  器上另外配置P网段和路由</li>
+<li>一台机器做客户端，一台机器做路由器，一台机器做服务端</li>
+<li>客户端配置到达服务器的下一跳指向路由器，路由器上配置到达服务端的路由</li>
+</ol>
+<blockquote>
+<p>方法二：用户态socket编程实现简易route软件提示：</p>
+</blockquote>
+<ol>
+<li>收到指定的包后做转发</li>
+<li>注意是修改报文的MAC。不是修改IP</li>
+<li>实现一个对称路由。这样可以实现TCP交互</li>
+<li>可以通过ping来验证</li>
+<li>可以支持traceroute吗？</li>
+</ol>
+<h3 id="TCP拥塞算法"><a href="#TCP拥塞算法" class="headerlink" title="TCP拥塞算法"></a>TCP拥塞算法</h3><h3 id="socket编程"><a href="#socket编程" class="headerlink" title="socket编程"></a>socket编程</h3>
                 
             </div>
             <hr/>
@@ -2834,12 +3142,12 @@ BenchmarkFastSelectParallel<span class="token operator">-</span><span class="tok
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/summary/%E8%B4%AA%E5%BF%83/">
-                        <span class="chip bg-color">贪心</span>
-                    </a>
-                    
                     <a href="/summary/%E6%80%9D%E7%BB%B4%E9%A2%98/">
                         <span class="chip bg-color">思维题</span>
+                    </a>
+                    
+                    <a href="/summary/%E8%B4%AA%E5%BF%83/">
+                        <span class="chip bg-color">贪心</span>
                     </a>
                     
                 </div>
