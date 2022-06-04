@@ -1071,7 +1071,7 @@
 <p>因此必须在部件之间构筑信息传输的公共通路，即<strong>总线</strong></p>
 <h3 id="总线的基本概念"><a href="#总线的基本概念" class="headerlink" title="总线的基本概念"></a>总线的基本概念</h3><p><strong>总线</strong>是连接各个部件的信息传输线是各个部件共享的传输介质</p>
 <h4 id="总线的传输方式"><a href="#总线的传输方式" class="headerlink" title="总线的传输方式"></a>总线的传输方式</h4><p><strong>总线的传输方式</strong>有串行和并行</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220319140926922.png" alt="image-20220319140926922"></p>
+<p><img src="/.io//image-20220319140926922.png" alt="image-20220319140926922"></p>
 <h5 id="串行传输"><a href="#串行传输" class="headerlink" title="串行传输"></a>串行传输</h5><p><strong>串行传输</strong>指一个单元信息从低位到高位的的顺序逐位以脉冲方式传送</p>
 <ul>
 <li>串行传输的特点<ul>
@@ -1206,7 +1206,7 @@
 <li>如突发传送事务则由一个地址阶段和多个数据阶段完成</li>
 <li></li>
 </ul>
-<h3 id="总线结构"><a href="#总线结构" class="headerlink" title="总线结构"></a>总线结构</h3><h4 id="单总线结构"><a href="#单总线结构" class="headerlink" title="单总线结构"></a>单总线结构</h4><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318101637169.png" alt="image-20220318101637169"></p>
+<h3 id="总线结构"><a href="#总线结构" class="headerlink" title="总线结构"></a>总线结构</h3><h4 id="单总线结构"><a href="#单总线结构" class="headerlink" title="单总线结构"></a>单总线结构</h4><p><img src="/.io//image-20220318101637169.png" alt="image-20220318101637169"></p>
 <ol>
 <li>单总线<strong>优点</strong><ul>
 <li>主存和外设统一编址，省去一类IO指令，简化了指令系统</li>
@@ -1222,21 +1222,21 @@
 </li>
 </ol>
 <h4 id="双总线结构"><a href="#双总线结构" class="headerlink" title="双总线结构"></a>双总线结构</h4><p>以主存为中新，在cpu和主存之间连接着主存总线，cpu可以直接通过主存总线来访问主存，而访问外部IO，则需要通过与通道进行信息传递，IO设备之间的通信通过IO总线进行</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318101837236.png" alt="image-20220318101837236"></p>
+<p><img src="/.io//image-20220318101837236.png" alt="image-20220318101837236"></p>
 <h4 id="三总线结构"><a href="#三总线结构" class="headerlink" title="三总线结构"></a>三总线结构</h4><p>DMA（Direct Memory Access）总线负责高速设备和主存的信息传递</p>
 <p>通过DMA总线区分高速IO设备和低速设备</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318101930962.png" alt="image-20220318101930962"></p>
+<p><img src="/.io//image-20220318101930962.png" alt="image-20220318101930962"></p>
 <p>Cpu发展很快，但是主存发展的很慢，Cache作为一个高缓存的存储芯片通过系统总线和主存连接</p>
 <p>然后CPU通过局部总线连接Cache通过Cache读取主存的信息</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318101946543.png" alt="image-20220318101946543"></p>
+<p><img src="/.io//image-20220318101946543.png" alt="image-20220318101946543"></p>
 <h4 id="四总线结构"><a href="#四总线结构" class="headerlink" title="四总线结构"></a>四总线结构</h4><p>四总线结构就是多加了一条高速总线来提供给高速的IO设备，区分低速和高速设备</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318102103774.png" alt="image-20220318102103774"></p>
-<h4 id="传统微型机总线结构"><a href="#传统微型机总线结构" class="headerlink" title="传统微型机总线结构"></a>传统微型机总线结构</h4><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318102221075.png" alt="image-20220318102221075"></p>
+<p><img src="/.io//image-20220318102103774.png" alt="image-20220318102103774"></p>
+<h4 id="传统微型机总线结构"><a href="#传统微型机总线结构" class="headerlink" title="传统微型机总线结构"></a>传统微型机总线结构</h4><p><img src="/.io//image-20220318102221075.png" alt="image-20220318102221075"></p>
 <h4 id="VL-BUS（VESA（Video-Electronics-Standard-Association）-Local-BUS）局部总线结构"><a href="#VL-BUS（VESA（Video-Electronics-Standard-Association）-Local-BUS）局部总线结构" class="headerlink" title="VL-BUS（VESA（Video Electronics Standard Association） Local-BUS）局部总线结构"></a>VL-BUS（VESA（Video Electronics Standard Association） Local-BUS）局部总线结构</h4><p>通过VL-BUS连接高速IO设备，通过VL-BUS连接标准总线控制器连接低速IO设备</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318102247281.png" alt="image-20220318102247281"></p>
+<p><img src="/.io//image-20220318102247281.png" alt="image-20220318102247281"></p>
 <h4 id="PCI总线结构"><a href="#PCI总线结构" class="headerlink" title="PCI总线结构"></a>PCI总线结构</h4><p>PCI主要连接的高速设备，再通过连接一个标准总线控制器，来连接普通设备</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318102328322.png" alt="image-20220318102328322"></p>
-<h4 id="PCI（Peripheral-Component-Interconnect）多层总线结构"><a href="#PCI（Peripheral-Component-Interconnect）多层总线结构" class="headerlink" title="PCI（Peripheral Component Interconnect）多层总线结构"></a>PCI（Peripheral Component Interconnect）多层总线结构</h4><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318102424647.png" alt="image-20220318102424647"></p>
+<p><img src="/.io//image-20220318102328322.png" alt="image-20220318102328322"></p>
+<h4 id="PCI（Peripheral-Component-Interconnect）多层总线结构"><a href="#PCI（Peripheral-Component-Interconnect）多层总线结构" class="headerlink" title="PCI（Peripheral Component Interconnect）多层总线结构"></a>PCI（Peripheral Component Interconnect）多层总线结构</h4><p><img src="/.io//image-20220318102424647.png" alt="image-20220318102424647"></p>
 <h4 id="高性能总线"><a href="#高性能总线" class="headerlink" title="高性能总线"></a>高性能总线</h4><ul>
 <li><p>总线总体发展趋势</p>
 <ul>
@@ -1275,7 +1275,7 @@
 <li><strong>BS（bus state）</strong>：总线状态线，向总线控制器传递该设备已经占用总线</li>
 </ul>
 <h5 id="链式查询方式"><a href="#链式查询方式" class="headerlink" title="链式查询方式"></a>链式查询方式</h5><p>IO设备共用一条BR线，由此线将请求信号传到总线控制部件，如果总线控制部件无状态，那么就会通过BG线一个接一个的查找发出请求信号的IO设备，查找成功则该IO设备通过BS线向总线控制部件表示总线已经被占用，即总线当前存在状态</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318104447019.png" alt="image-20220318104447019"></p>
+<p><img src="/.io//image-20220318104447019.png" alt="image-20220318104447019"></p>
 <ul>
 <li><p>链式查询方式的<strong>优点</strong></p>
 <ul>
@@ -1296,7 +1296,7 @@
 <h5 id="计数器定时查询方式"><a href="#计数器定时查询方式" class="headerlink" title="计数器定时查询方式"></a>计数器定时查询方式</h5><p>计数器定时查询方式相比较于链式查询方式，就是用地址线代替了BG线。</p>
 <p>工作原理：当总线控制器部件接收到请求信号并且当前无状态，那么计数器开始计数，</p>
 <p>当地址线上的计数与请求使用设备的地址一致时，那么该设备获得总线控制权</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318105056738.png" alt="image-20220318105056738"></p>
+<p><img src="/.io//image-20220318105056738.png" alt="image-20220318105056738"></p>
 <ul>
 <li>计数器查询方式的优点<ol>
 <li>优先级改变灵活，通过<strong>设置计数的初始化就可以改变优先级</strong></li>
@@ -1311,7 +1311,7 @@
 </ul>
 <h5 id="独立请求方式"><a href="#独立请求方式" class="headerlink" title="独立请求方式"></a>独立请求方式</h5><p>独立请求方式就是每个IO部件都有独立的BR和BG线，工作原理：</p>
 <p>每个部件通过BR线发送请求，在总线控制器内部按照一定的优先级进行排序，发送BG给对应的部件，该部件获得总线控制权。</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318105537915.png" alt="image-20220318105537915"></p>
+<p><img src="/.io//image-20220318105537915.png" alt="image-20220318105537915"></p>
 <ul>
 <li>独立请求方式的优点<ol>
 <li>响应速度快</li>
@@ -1350,9 +1350,9 @@
 <p>在第二个时钟上升沿，主设备向从设备给出输入命令</p>
 <p>在第三个时钟上升沿，从设备向主设备发送数据</p>
 <p>在第四个时钟上升沿，主设备撤销总线占用信息，结束通信</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318203937163.png" alt="image-20220318203937163"></p>
+<p><img src="/.io//image-20220318203937163.png" alt="image-20220318203937163"></p>
 <hr>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318203949726.png" alt="image-20220318203949726"></p>
+<p><img src="/.io//image-20220318203949726.png" alt="image-20220318203949726"></p>
 <ul>
 <li>同步通信的<strong>优点</strong><ul>
 <li>传送速度快，具有较高的传输速率</li>
@@ -1376,7 +1376,7 @@
 <li><strong>半互锁通信</strong>：指应答信号的建立和撤销存在一定的依赖关系，即请求信号的撤销依赖回答信号的建立，而回答信号的撤销和请求信号没有关系</li>
 <li><strong>全互锁通信</strong>：应答信号的建立与撤销存在完全的依赖关系，请求信号的撤销依赖回答信号的建立，回答信号的撤销依赖请求信号的撤销</li>
 </ul>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318204005161.png" alt="image-20220318204005161"></p>
+<p><img src="/.io//image-20220318204005161.png" alt="image-20220318204005161"></p>
 <h4 id="半同步通信"><a href="#半同步通信" class="headerlink" title="半同步通信"></a>半同步通信</h4><p>半同步通信结合了同步和异步</p>
 <p>保留了同步通信的特点，</p>
 <ul>
@@ -1384,32 +1384,32 @@
 <li>接收端在时钟的下降沿识别他们</li>
 </ul>
 <p>也有异步通信的特点，通过<code>wait</code>信号，保留了异步通信允许不同速率的设备能协同工作</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318204039139.png" alt="image-20220318204039139"></p>
+<p><img src="/.io//image-20220318204039139.png" alt="image-20220318204039139"></p>
 <hr>
 <p>如果从模块没有数据提供，那么会有<code>wait</code>信号来等待使得从模块准备好数据就开始主从通信</p>
 <p>每个时钟信号的上升沿发出存储器读信号设备采样<code>wait</code>信号，当从模块没有准备好，那么就插入等待周期$T_w$</p>
 <p><strong>因为存在等待周期，所以这样就会造成总线资源的浪费</strong></p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318205054879.png" alt="image-20220318205054879"></p>
+<p><img src="/.io//image-20220318205054879.png" alt="image-20220318205054879"></p>
 <hr>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318205426406.png" alt="image-20220318205426406"></p>
+<p><img src="/.io//image-20220318205426406.png" alt="image-20220318205426406"></p>
 <h4 id="分离式同步通信"><a href="#分离式同步通信" class="headerlink" title="分离式同步通信"></a>分离式同步通信</h4><p>通过上述三个通信的共同点，发现在一个总线传输周期的其中</p>
 <ul>
 <li>主模块发送地址和命令会占用总线资源</li>
 <li>从模块准备准备数据的时候不占用总线，此时总线资源没有被使用，但是被占用</li>
 <li>从模块向主模块发送数据会占用总线资源</li>
 </ul>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318205939957.png" alt="image-20220318205939957"></p>
+<p><img src="/.io//image-20220318205939957.png" alt="image-20220318205939957"></p>
 <hr>
 <p>分离式通信的潜力</p>
 <p>主模块申请占用总线资源给出地址和命名后，放弃总线的使用权，</p>
 <p>当从模块申请占用总线时就会将信息发送至总线上，然后就放弃总线的使用权</p>
 <p>这样就避免了半同步通信的存在等待信号导致总线资源的浪费</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318205951610.png" alt="image-20220318205951610"></p>
+<p><img src="/.io//image-20220318205951610.png" alt="image-20220318205951610"></p>
 <hr>
 <p>分离式通信的<strong>特点</strong></p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220318210016675.png" alt="image-20220318210016675"></p>
+<p><img src="/.io//image-20220318210016675.png" alt="image-20220318210016675"></p>
 <h3 id="总线的标准"><a href="#总线的标准" class="headerlink" title="总线的标准"></a>总线的标准</h3><p>为了按照各个部件之间能够正常传输数据，就需要对总线作出一个标准，其中USB就是Universal Serial BUS(通用串行总线)</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220319143026451.png" alt="image-20220319143026451"></p>
+<p><img src="/.io//image-20220319143026451.png" alt="image-20220319143026451"></p>
 <h2 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h2><h3 id="存储器分类"><a href="#存储器分类" class="headerlink" title="存储器分类"></a>存储器分类</h3><h4 id="按存储介质分类"><a href="#按存储介质分类" class="headerlink" title="按存储介质分类"></a>按存储介质分类</h4><ol>
 <li><strong>半导体存储器</strong>：<ul>
 <li>TTL，MOS</li>
@@ -1470,8 +1470,8 @@
 <ul>
 <li>磁盘，磁带，光盘等</li>
 </ul>
-<h3 id="存储器的层次结构"><a href="#存储器的层次结构" class="headerlink" title="存储器的层次结构"></a>存储器的层次结构</h3><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220316205858633.png" alt="image-20220316205858633"></p>
-<h4 id="缓存-主存层次和主存-辅存层次"><a href="#缓存-主存层次和主存-辅存层次" class="headerlink" title="缓存-主存层次和主存-辅存层次"></a>缓存-主存层次和主存-辅存层次</h4><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220316211438929.png" alt="image-20220316211438929"></p>
+<h3 id="存储器的层次结构"><a href="#存储器的层次结构" class="headerlink" title="存储器的层次结构"></a>存储器的层次结构</h3><p><img src="/.io//image-20220316205858633.png" alt="image-20220316205858633"></p>
+<h4 id="缓存-主存层次和主存-辅存层次"><a href="#缓存-主存层次和主存-辅存层次" class="headerlink" title="缓存-主存层次和主存-辅存层次"></a>缓存-主存层次和主存-辅存层次</h4><p><img src="/.io//image-20220316211438929.png" alt="image-20220316211438929"></p>
 <h5 id="缓存-主存（速度）"><a href="#缓存-主存（速度）" class="headerlink" title="缓存-主存（速度）"></a>缓存-主存（速度）</h5><h5 id="主存-辅存（容量）"><a href="#主存-辅存（容量）" class="headerlink" title="主存-辅存（容量）"></a>主存-辅存（容量）</h5><ul>
 <li>主存储器 -&gt; 虚拟存储器</li>
 <li>实地址 -&gt; 虚地址</li>
@@ -1479,8 +1479,8 @@
 </ul>
 <h3 id="主存储器"><a href="#主存储器" class="headerlink" title="主存储器"></a>主存储器</h3><h4 id="主存的组成"><a href="#主存的组成" class="headerlink" title="主存的组成"></a>主存的组成</h4><p><strong>MAR（Memory Address Register）</strong>：存储器地址寄存器</p>
 <p><strong>MDR（Memory Data Register ）</strong>：存储数据寄存器</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220328222318565.png" alt="image-20220328222318565"></p>
-<h4 id="主存和CPU之间的联系"><a href="#主存和CPU之间的联系" class="headerlink" title="主存和CPU之间的联系"></a>主存和CPU之间的联系</h4><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220316222056890.png" alt="image-20220316222056890"></p>
+<p><img src="/.io//image-20220328222318565.png" alt="image-20220328222318565"></p>
+<h4 id="主存和CPU之间的联系"><a href="#主存和CPU之间的联系" class="headerlink" title="主存和CPU之间的联系"></a>主存和CPU之间的联系</h4><p><img src="/.io//image-20220316222056890.png" alt="image-20220316222056890"></p>
 <h4 id="主存中存储单元地址的分配"><a href="#主存中存储单元地址的分配" class="headerlink" title="主存中存储单元地址的分配"></a>主存中存储单元地址的分配</h4><ul>
 <li><strong>大端数据存放方式</strong><ul>
 <li>存储器的低字节地址单元存放数据的最高字节</li>
@@ -1493,7 +1493,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220316222622360.png" alt="image-20220316222622360"></p>
+<p><img src="/.io//image-20220316222622360.png" alt="image-20220316222622360"></p>
 <h4 id="主存的技术指标"><a href="#主存的技术指标" class="headerlink" title="主存的技术指标"></a>主存的技术指标</h4><blockquote>
 <p> 存储容量</p>
 </blockquote>
@@ -1518,15 +1518,15 @@
 <p><strong>CE（chip energy）</strong>：芯片势能端</p>
 <p>如果仅为WE，那么低电平为写，高电平为读</p>
 <p>如果分为OE和WE，则OE（Output Enable）为输出使端 ，WE（Write Enable）为写使能</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220328223224687.png" alt="image-20220328223224687"></p>
-<h4 id="存储芯片的片选线的作用"><a href="#存储芯片的片选线的作用" class="headerlink" title="存储芯片的片选线的作用"></a>存储芯片的片选线的作用</h4><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220317192138233.png" alt="image-20220317192138233"></p>
+<p><img src="/.io//image-20220328223224687.png" alt="image-20220328223224687"></p>
+<h4 id="存储芯片的片选线的作用"><a href="#存储芯片的片选线的作用" class="headerlink" title="存储芯片的片选线的作用"></a>存储芯片的片选线的作用</h4><p><img src="/.io//image-20220317192138233.png" alt="image-20220317192138233"></p>
 <h4 id="半导体存储芯片的译码驱动方式"><a href="#半导体存储芯片的译码驱动方式" class="headerlink" title="半导体存储芯片的译码驱动方式"></a>半导体存储芯片的译码驱动方式</h4><h5 id="线选法"><a href="#线选法" class="headerlink" title="线选法"></a>线选法</h5><p>通过4个输入信号A0-A3在通过译码器，可以对一整行的基本存储单元进行访问</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220317192438304.png" alt="image-20220317192438304"></p>
+<p><img src="/.io//image-20220317192438304.png" alt="image-20220317192438304"></p>
 <p>进行IO操作</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220328223928658.png" alt="image-20220328223928658"></p>
+<p><img src="/.io//image-20220328223928658.png" alt="image-20220328223928658"></p>
 <h5 id="重合法"><a href="#重合法" class="headerlink" title="重合法"></a>重合法</h5><p>通过行地址和列地址译码后，可以访问二维矩阵</p>
 <p>如图为进行IO操作时</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220328223834295.png" alt="image-20220328223834295"></p>
+<p><img src="/.io//image-20220328223834295.png" alt="image-20220328223834295"></p>
 <h3 id="随机访问存储器RAM（random-access-memory）"><a href="#随机访问存储器RAM（random-access-memory）" class="headerlink" title="随机访问存储器RAM（random access memory）"></a>随机访问存储器RAM（random access memory）</h3><h4 id="SRAM（Static-RAM）"><a href="#SRAM（Static-RAM）" class="headerlink" title="SRAM（Static RAM）"></a>SRAM（Static RAM）</h4><blockquote>
 <p>保存0，1原理？</p>
 </blockquote>
@@ -1539,19 +1539,19 @@
 <blockquote>
 <p>基本单元电路的构成？</p>
 </blockquote>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220317193618978.png" alt="image-20220317193618978"></p>
+<p><img src="/.io//image-20220317193618978.png" alt="image-20220317193618978"></p>
 <blockquote>
 <p>对单元电路如何读出和读入？</p>
 </blockquote>
 <p>SRAM电路的读操作</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220317194122411.png" alt="image-20220317194122411"></p>
+<p><img src="/.io//image-20220317194122411.png" alt="image-20220317194122411"></p>
 <hr>
 <p>SRAM电路的写操作：</p>
 <p>首先行选开关T5，T6打开</p>
 <p>然后列选开关T7，T8打开</p>
 <p>Din开始输入数据，通过写放大器</p>
 <p>因为左边为A’ ，所以左边的放大器取反</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220328224238116.png" alt="image-20220328224238116">   </p>
+<p><img src="/.io//image-20220328224238116.png" alt="image-20220328224238116">   </p>
 <blockquote>
 <p>典型芯片的结构样子？</p>
 </blockquote>
@@ -1562,10 +1562,10 @@
 <p>对于6800H到6BFFH分配地址为用户使用区</p>
 <p>其中A11-A13为片选信号，100代表选择1片ROM芯片，101代表选择2片RAM芯片</p>
 <p>A11-A13连接138译码器，对于138译码器</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220327132754084.png" alt="image-20220327132754084"></p>
+<p><img src="/.io//image-20220327132754084.png" alt="image-20220327132754084"></p>
 <p>MREQ（Memory request )：存储器请求信号</p>
 <p>对于RAM不仅需要片选信号为101，还需要A10为低电平</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220327132731855.png" alt="image-20220327132731855"></p>
+<p><img src="/.io//image-20220327132731855.png" alt="image-20220327132731855"></p>
 <h3 id="提供访存速度的措施"><a href="#提供访存速度的措施" class="headerlink" title="提供访存速度的措施"></a>提供访存速度的措施</h3><ul>
 <li>采用高速器件</li>
 <li>采用层级结构 Cache-主存</li>
@@ -1577,7 +1577,7 @@
 <p>单体多字存储器的构造与存储器位扩展方式完全相同</p>
 <p>多个并行的存储模块共用一套地址寄存器，按同一地址并行访问不同存储模块的同一单元</p>
 <p>从而实现在一个存储周期可以访问多个存储字，提高主存带宽</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220331162012656.png" alt="image-20220331162012656"></p>
+<p><img src="/.io//image-20220331162012656.png" alt="image-20220331162012656"></p>
 <p><strong>单体多字系统存在的不足为</strong></p>
 <p>如果指令或者数据在主存中是连续存放的，那么单体多字系统可以充分提高带宽</p>
 <p>如果遇到不连续，那么加速效果不明显</p>
@@ -1586,7 +1586,7 @@
 </blockquote>
 <p>其实就是用高位段地址译码后产生片选信号，选择不同的存储体，而低位段地址直接选择一个存储体内的不同存储单元。</p>
 <p>其工作原理其实也就是前面的存储器的字扩展</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220401210219616.png" alt="image-20220401210219616"></p>
+<p><img src="/.io//image-20220401210219616.png" alt="image-20220401210219616"></p>
 <p><strong>高位交叉系统的不足为</strong></p>
 <p>由于程序具有局部性和连续性的特点，如果采用高位交叉存储器，那么一个存储体中的地址单元是连续的，会导致CPU频繁的对此存储体进行访问，而其他的存储体处于空闲状态，无法实现存储体并行工作。</p>
 <p>高位交叉系统的应用</p>
@@ -1600,13 +1600,13 @@
 <p>低位段地址：体号</p>
 <p>将顺序的M个地址依次分配给M个存储模块，</p>
 <p>横着来访问，</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220401210253819.png" alt="image-20220401210253819"></p>
+<p><img src="/.io//image-20220401210253819.png" alt="image-20220401210253819"></p>
 <p>低位交叉的<strong>应用</strong></p>
 <p>存储器带宽的提升</p>
 <p>低位交叉的<strong>特点</strong></p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220401210959359.png" alt="image-20220401210959359"></p>
+<p><img src="/.io//image-20220401210959359.png" alt="image-20220401210959359"></p>
 <p>这就是流水线方式的存储</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220401211054181.png" alt="image-20220401211054181"></p>
+<p><img src="/.io//image-20220401211054181.png" alt="image-20220401211054181"></p>
 <p>对于的低位交叉存储器，可以实现并行读取，读取K个字所需要的时间为 T+（k-1）t</p>
 <p>其中T为一个存储周期，t为总线传输周期</p>
 <h3 id="高速缓冲存储器-Cache"><a href="#高速缓冲存储器-Cache" class="headerlink" title="高速缓冲存储器(Cache)"></a>高速缓冲存储器(Cache)</h3><h4 id="程序访问的局部性原理"><a href="#程序访问的局部性原理" class="headerlink" title="程序访问的局部性原理"></a>程序访问的局部性原理</h4><p><strong>时间局部性</strong>：</p>
@@ -1616,7 +1616,7 @@
 <p>因为上述程序访问的局限性原理，所以可以把最近使用过的指令和正在使用的指令放到Cache中，使得可以直接从Cache中获取而不用从主存中重新获取</p>
 <h4 id="Cache的工作原理"><a href="#Cache的工作原理" class="headerlink" title="Cache的工作原理"></a>Cache的工作原理</h4><p><strong>Cache-主存层次</strong>之间的存储信息的交换是按照一个存储块来交换</p>
 <p>一个存储块的大小在主存和缓存中都是一样的</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220405190947378.png" alt="image-20220405190947378"></p>
+<p><img src="/.io//image-20220405190947378.png" alt="image-20220405190947378"></p>
 <h4 id="CPU访问Cache"><a href="#CPU访问Cache" class="headerlink" title="CPU访问Cache"></a>CPU访问Cache</h4><p>如果缓存中有 C块</p>
 <p>主存中有M块，其中M&gt;C</p>
 <p><strong>Cache命中</strong>：</p>
@@ -1627,7 +1627,7 @@
 <p>Cache的命中率：就是CPU要访问的存储块在Cache中的比率</p>
 <p>命中率和Cache的<strong>容量</strong>和<strong>块长</strong>有关</p>
 <p>一般每块取4～8个存储字，每个存储字里面为64位</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220405191908542.png" alt="image-20220405191908542"></p>
+<p><img src="/.io//image-20220405191908542.png" alt="image-20220405191908542"></p>
 <h4 id="Cache的基本结构"><a href="#Cache的基本结构" class="headerlink" title="Cache的基本结构"></a>Cache的基本结构</h4><p>cache的结构一般包括3个部分</p>
 <ul>
 <li>数据存储体：存在主存数据的副本</li>
@@ -1638,22 +1638,22 @@
 <p>直接映射</p>
 </blockquote>
 <p><strong>工作原理</strong></p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220507171058527.png" alt="image-20220507171058527"></p>
+<p><img src="/.io//image-20220507171058527.png" alt="image-20220507171058527"></p>
 <p><strong>工作流程</strong></p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220507171128024.png" alt="image-20220507171128024"></p>
+<p><img src="/.io//image-20220507171128024.png" alt="image-20220507171128024"></p>
 <p><strong>工程图</strong></p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220507171250808.png" alt="image-20220507171250808"></p>
+<p><img src="/.io//image-20220507171250808.png" alt="image-20220507171250808"></p>
 <blockquote>
 <p>全相联映射</p>
 </blockquote>
 <p><strong>工作原理</strong></p>
 <p>主存会被放到Cache的任意块之后给一个Tag</p>
 <p>之后如果主存要来访问就要迭代Cache</p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220507170528268.png" alt="image-20220507170528268"></p>
+<p><img src="/.io//image-20220507170528268.png" alt="image-20220507170528268"></p>
 <p><strong>工作流程</strong></p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220507170803912.png" alt="image-20220507170803912"></p>
+<p><img src="/.io//image-20220507170803912.png" alt="image-20220507170803912"></p>
 <p><strong>工程图</strong></p>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20220507170844613.png" alt="image-20220507170844613"></p>
+<p><img src="/.io//image-20220507170844613.png" alt="image-20220507170844613"></p>
 <p>tag:主存的Tag对应Cache的Tag</p>
 <p>offset:代表主存块在Cache块中的地址</p>
 <p><strong>特点</strong></p>

@@ -800,15 +800,15 @@
 <h3 id="IDEA设置config"><a href="#IDEA设置config" class="headerlink" title="IDEA设置config"></a>IDEA设置config</h3><h4 id="设置目录"><a href="#设置目录" class="headerlink" title="设置目录"></a>设置目录</h4><ul>
 <li>Application server:选择你的Tomcat的目录</li>
 </ul>
-<p><img src="/javaWeb/image-20220212151413314.png" alt="image-20220212151413314"></p>
+<p><img src="/.io//image-20220212151413314.png" alt="image-20220212151413314"></p>
 <h4 id="导入Servlet-jar包"><a href="#导入Servlet-jar包" class="headerlink" title="导入Servlet jar包"></a>导入Servlet jar包</h4><p>需要用到Servlet jar包，而Tomcat里面就已经有了这个包所以直接把下载的Tomcat里面的jar包导入进来就可以用Servlet</p>
-<p><img src="/JavaWeb/image-20220222141821840.png" alt="image-20220222141821840"></p>
+<p><img src="/.io//image-20220222141821840.png" alt="image-20220222141821840"></p>
 <h4 id="设置Deployment"><a href="#设置Deployment" class="headerlink" title="设置Deployment"></a>设置Deployment</h4><p>添加你的项目到Artifacts （注意如果要导入jar包，要在problems那里更新）</p>
-<p><img src="/JavaWeb/image-20220222141056511.png" alt="image-20220222141056511"></p>
+<p><img src="/.io//image-20220222141056511.png" alt="image-20220222141056511"></p>
 <p>然后再在Tomcat加入你当前的项目modules</p>
-<p><img src="/javaWeb/image-20220212152941711.png" alt="image-20220212152941711"></p>
+<p><img src="/.io//image-20220212152941711.png" alt="image-20220212152941711"></p>
 <p>配置路径</p>
-<p>​	<img src="/javaWeb/image-20220212152959492.png" alt="image-20220212152959492"></p>
+<p>​	<img src="/.io//image-20220212152959492.png" alt="image-20220212152959492"></p>
 <h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//tomcat8之前设置编码</span>
 <span class="token comment">//1.get方式</span>
 	string name <span class="token operator">=</span>request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -825,7 +825,7 @@ request<span class="token punctuation">.</span><span class="token function">setC
 
 
 
-<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="idea创建Web-Application"><a href="#idea创建Web-Application" class="headerlink" title="idea创建Web Application"></a>idea创建Web Application</h3><p><img src="/javaWeb/image-20220212151143049.png" alt="image-20220212151143049"></p>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="idea创建Web-Application"><a href="#idea创建Web-Application" class="headerlink" title="idea创建Web Application"></a>idea创建Web Application</h3><p><img src="/.io//image-20220212151143049.png" alt="image-20220212151143049"></p>
 <h3 id="web-xml工作"><a href="#web-xml工作" class="headerlink" title="web.xml工作"></a>web.xml工作</h3><ol>
 <li>用户发请求 action = add</li>
 <li>项目中 web.xml中 <code>&lt;servlet-mapping&gt;</code>找到<code>url-pattern</code> =/add</li>
@@ -852,7 +852,7 @@ request<span class="token punctuation">.</span><span class="token function">setC
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="Servlet从3-0版本开始支持注解方式的注册"><a href="#Servlet从3-0版本开始支持注解方式的注册" class="headerlink" title="Servlet从3.0版本开始支持注解方式的注册"></a>Servlet从3.0版本开始支持注解方式的注册</h3><p>可以用注解的方式替代在web.xml里面写</p>
-<p><img src="/JavaWeb/image-20220222140836069.png" alt="image-20220222140836069"></p>
+<p><img src="/.io//image-20220222140836069.png" alt="image-20220222140836069"></p>
 <h3 id="ServletConfig配置"><a href="#ServletConfig配置" class="headerlink" title="ServletConfig配置"></a>ServletConfig配置</h3><ul>
 <li><p>Servlet的配置文件都封装在一个ServletConfig对象里面</p>
 </li>
@@ -1157,7 +1157,7 @@ response<span class="token punctuation">.</span><span class="token function">set
 </ul>
 </li>
 </ul>
-<h3 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h3><p><img src="/JavaWeb/image-20220330202432900.png" alt="image-20220330202432900"></p>
+<h3 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h3><p><img src="/.io//image-20220330202432900.png" alt="image-20220330202432900"></p>
 <h3 id="（Server）业务对象和（DAO）数据访问对象"><a href="#（Server）业务对象和（DAO）数据访问对象" class="headerlink" title="（Server）业务对象和（DAO）数据访问对象"></a>（Server）业务对象和（DAO）数据访问对象</h3><p>:	DAO中的方法都是单精度方法或者称之为细粒度方法。什么叫单精度？一个方法只考虑一个操作，比如添加，那就是insert操作</p>
 <p>:	BO中的方法属于业务方法，也实际的业务是比较复杂的，因此业务方法的粒度是比较粗的</p>
 <p>例如注册这个功能属于业务功能，也就是说用来注册这个方法属于业务方法</p>
@@ -1217,9 +1217,9 @@ response<span class="token punctuation">.</span><span class="token function">set
 <li>执行事务的回滚操作</li>
 </ul>
 <h2 id="事务管理的前置知识"><a href="#事务管理的前置知识" class="headerlink" title="事务管理的前置知识"></a>事务管理的前置知识</h2><p>在Serice层开启事务管理，如果有一个DAO操作失败，那么就进行事务回滚</p>
-<p><img src="/JavaWeb/image-20220319101556570.png" alt="image-20220319101556570"></p>
+<p><img src="/.io//image-20220319101556570.png" alt="image-20220319101556570"></p>
 <p>过滤器的基本应用，将上图的在Service层开启事务管理，向上抽取，在Filter层开启事务管理之后所有的操作都包含在<code>放行</code>里面，一旦出错就会rollback（）</p>
-<p><img src="/JavaWeb/image-20220319102004854.png" alt="image-20220319102004854"></p>
+<p><img src="/.io//image-20220319102004854.png" alt="image-20220319102004854"></p>
 <h3 id="涉及的组件"><a href="#涉及的组件" class="headerlink" title="涉及的组件"></a>涉及的组件</h3><ul>
 <li><p>ThreadLocal：管理数据库的连接</p>
 </li>
@@ -1252,20 +1252,20 @@ response<span class="token punctuation">.</span><span class="token function">set
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><h4 id="ThreadLocal的set方法"><a href="#ThreadLocal的set方法" class="headerlink" title="ThreadLocal的set方法"></a>ThreadLocal的set方法</h4><p><img src="/JavaWeb/image-20220330171652239.png" alt="image-20220330171652239"></p>
-<h4 id="ThreadLocal的get方法"><a href="#ThreadLocal的get方法" class="headerlink" title="ThreadLocal的get方法"></a>ThreadLocal的get方法</h4><p><img src="/JavaWeb/image-20220330171800202.png" alt="image-20220330171800202"></p>
+<h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><h4 id="ThreadLocal的set方法"><a href="#ThreadLocal的set方法" class="headerlink" title="ThreadLocal的set方法"></a>ThreadLocal的set方法</h4><p><img src="/.io//image-20220330171652239.png" alt="image-20220330171652239"></p>
+<h4 id="ThreadLocal的get方法"><a href="#ThreadLocal的get方法" class="headerlink" title="ThreadLocal的get方法"></a>ThreadLocal的get方法</h4><p><img src="/.io//image-20220330171800202.png" alt="image-20220330171800202"></p>
 <h3 id="通过线程进行Server后项目框架"><a href="#通过线程进行Server后项目框架" class="headerlink" title="通过线程进行Server后项目框架"></a>通过线程进行Server后项目框架</h3><p>每一个Server对应一个线程，对同一个线程他的DAO对应的ID是同一个</p>
 <p>所以在同一个Server中可能会用到多个DAO操作</p>
 <p>可以在当前线程上存储数据，也可以在当前线程上获取数据</p>
 <p>当前DAO操作如果需要连接到数据库就从ThreadLocal中获取连接</p>
-<p><img src="/JavaWeb/image-20220331115337112.png" alt="image-20220331115337112"></p>
-<h2 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h2><h3 id="配置监听器（Listener）"><a href="#配置监听器（Listener）" class="headerlink" title="配置监听器（Listener）"></a>配置监听器（Listener）</h3><h3 id="监听器-1"><a href="#监听器-1" class="headerlink" title="监听器"></a>监听器</h3><p><img src="/JavaWeb/image-20220330172329072.png" alt="image-20220330172329072"></p>
+<p><img src="/.io//image-20220331115337112.png" alt="image-20220331115337112"></p>
+<h2 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h2><h3 id="配置监听器（Listener）"><a href="#配置监听器（Listener）" class="headerlink" title="配置监听器（Listener）"></a>配置监听器（Listener）</h3><h3 id="监听器-1"><a href="#监听器-1" class="headerlink" title="监听器"></a>监听器</h3><p><img src="/.io//image-20220330172329072.png" alt="image-20220330172329072"></p>
 <hr>
 <h4 id="监听器的作用"><a href="#监听器的作用" class="headerlink" title="监听器的作用"></a>监听器的作用</h4><p>对之前的项目通过监听器来优化</p>
 <p>可以通过ServletContextListener来舰艇ServletContext对象的创建</p>
 <p>在ServletContext对象创建之前就将BeanFactory创建完成并且保存到application作用域中</p>
 <p>这样有虽然会减慢系统的启动速度，但是会提高后续的响应速度</p>
-<p><img src="/JavaWeb/image-20220330184344808.png" alt="image-20220330184344808"></p>
+<p><img src="/.io//image-20220330184344808.png" alt="image-20220330184344808"></p>
 <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">请求网址<span class="token operator">:</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>baidu<span class="token punctuation">.</span>com<span class="token operator">/</span>
 请求方法<span class="token operator">:</span> GET
 状态代码<span class="token operator">:</span> <span class="token number">200</span> OK
@@ -1540,7 +1540,7 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 </ul>
 </li>
 </ul>
-<h4 id="Entity-Relationship图"><a href="#Entity-Relationship图" class="headerlink" title="Entity Relationship图"></a>Entity Relationship图</h4><p><img src="/JavaWeb/image-20220331125935148.png" alt="image-20220331125935148"></p>
+<h4 id="Entity-Relationship图"><a href="#Entity-Relationship图" class="headerlink" title="Entity Relationship图"></a>Entity Relationship图</h4><p><img src="/.io//image-20220331125935148.png" alt="image-20220331125935148"></p>
 <h3 id="数据库范式"><a href="#数据库范式" class="headerlink" title="数据库范式"></a>数据库范式</h3><h4 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h4><p>属性不可再分</p>
 <h4 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h4><p>每个非主属性完全函数依赖于任何一个候选码</p>
 <p>对于每个非主属性完全由任何一个候选码所确定</p>
@@ -1548,8 +1548,8 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 <h4 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h4><p>表中的每一列和主键都是直接依赖关系，而不是间接依赖</p>
 <p>也就是说每一列应该不能由主键通过和其他表连接得到</p>
 <h4 id="数据库规范和效率的决定"><a href="#数据库规范和效率的决定" class="headerlink" title="数据库规范和效率的决定"></a>数据库规范和效率的决定</h4><p>数据库设计得越规范，冗余数据就越少，但是效率会有所下降</p>
-<h3 id="XML约束"><a href="#XML约束" class="headerlink" title="XML约束"></a>XML约束</h3><p><img src="/JavaWeb/image-20220401192313134.png" alt="image-20220401192313134"></p>
-<h3 id="截止目前的项目工作框架"><a href="#截止目前的项目工作框架" class="headerlink" title="截止目前的项目工作框架"></a>截止目前的项目工作框架</h3><p><img src="/JavaWeb/image-20220402125506255.png" alt="image-20220402125506255"></p>
+<h3 id="XML约束"><a href="#XML约束" class="headerlink" title="XML约束"></a>XML约束</h3><p><img src="/.io//image-20220401192313134.png" alt="image-20220401192313134"></p>
+<h3 id="截止目前的项目工作框架"><a href="#截止目前的项目工作框架" class="headerlink" title="截止目前的项目工作框架"></a>截止目前的项目工作框架</h3><p><img src="/.io//image-20220402125506255.png" alt="image-20220402125506255"></p>
 <h3 id="截止目前为止的错误"><a href="#截止目前为止的错误" class="headerlink" title="截止目前为止的错误"></a>截止目前为止的错误</h3><ol>
 <li>数据库没有更换</li>
 <li>字段名跟类的属性名不相等可以用ColumeLable（）方法来用别名</li>
@@ -1559,7 +1559,7 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 <p>如果UserBasic = Friend 那么说明是自己的空间：进行额外的操作</p>
 <p>如果不相等那么说明不是自己的空间</p>
 <p>日志展示可以直接按照Friend 来展示，</p>
-<p><img src="/JavaWeb/image-20220403143501223.png" alt="image-20220403143501223"></p>
+<p><img src="/.io//image-20220403143501223.png" alt="image-20220403143501223"></p>
 <h3 id="日志详情页面实现"><a href="#日志详情页面实现" class="headerlink" title="日志详情页面实现"></a>日志详情页面实现</h3><h4 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h4><ol>
 <li><p>获取topic 内容</p>
 </li>
@@ -1573,7 +1573,7 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 </li>
 <li></li>
 </ol>
-<p><img src="/JavaWeb/image-20220403151258073.png" alt="image-20220403151258073"></p>
+<p><img src="/.io//image-20220403151258073.png" alt="image-20220403151258073"></p>
 <h3 id="删除回复的功能实现"><a href="#删除回复的功能实现" class="headerlink" title="删除回复的功能实现"></a>删除回复的功能实现</h3><h4 id="逻辑-1"><a href="#逻辑-1" class="headerlink" title="逻辑"></a>逻辑</h4><ul>
 <li><p>是你的空间，你可以删除任何回复</p>
 </li>
@@ -1610,11 +1610,11 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 答：如果是后者，那么属于直接访问静态页面。那么页面上的chymeleaf：表达式（标签）浏览器是不能识别的
 我们访问前者的目的其实就是要执行viewBaseServlet中的processTemplete（）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="项目整个流程"><a href="#项目整个流程" class="headerlink" title="项目整个流程"></a>项目整个流程</h4><p><img src="/JavaWeb/image-20220407180734265.png" alt="image-20220407180734265"></p>
+<h4 id="项目整个流程"><a href="#项目整个流程" class="headerlink" title="项目整个流程"></a>项目整个流程</h4><p><img src="/.io//image-20220407180734265.png" alt="image-20220407180734265"></p>
 <hr>
-<p><img src="/JavaWeb/image-20220407180757854.png" alt="image-20220407180757854"></p>
+<p><img src="/.io//image-20220407180757854.png" alt="image-20220407180757854"></p>
 <hr>
-<p><img src="/JavaWeb/image-20220407181041224.png" alt="image-20220407181041224"></p>
+<p><img src="/.io//image-20220407181041224.png" alt="image-20220407181041224"></p>
 <h4 id="快速进行一个项目套路"><a href="#快速进行一个项目套路" class="headerlink" title="快速进行一个项目套路"></a>快速进行一个项目套路</h4><ul>
 <li><p>复制myssm包(通用)</p>
 </li>
@@ -1692,8 +1692,8 @@ public String login(String loginId,String pwd,HttpSession session)<span aria-hid
 <ul>
 <li>将通用的代码弄成jar包，在工程直接添加library可以直接使用</li>
 </ul>
-<h2 id="书城项目学习过程"><a href="#书城项目学习过程" class="headerlink" title="书城项目学习过程"></a>书城项目学习过程</h2><h3 id="需求分析-1"><a href="#需求分析-1" class="headerlink" title="需求分析"></a>需求分析</h3><h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><h4 id="实体-1"><a href="#实体-1" class="headerlink" title="实体"></a>实体</h4><p><img src="/JavaWeb/image-20220408113357175.png" alt="image-20220408113357175"></p>
-<h4 id="Entity-relationship-Diagram（ER图）"><a href="#Entity-relationship-Diagram（ER图）" class="headerlink" title="Entity-relationship Diagram（ER图）"></a>Entity-relationship Diagram（ER图）</h4><p><img src="/JavaWeb/image-20220408113251068.png" alt="image-20220408113251068"></p>
+<h2 id="书城项目学习过程"><a href="#书城项目学习过程" class="headerlink" title="书城项目学习过程"></a>书城项目学习过程</h2><h3 id="需求分析-1"><a href="#需求分析-1" class="headerlink" title="需求分析"></a>需求分析</h3><h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><h4 id="实体-1"><a href="#实体-1" class="headerlink" title="实体"></a>实体</h4><p><img src="/.io//image-20220408113357175.png" alt="image-20220408113357175"></p>
+<h4 id="Entity-relationship-Diagram（ER图）"><a href="#Entity-relationship-Diagram（ER图）" class="headerlink" title="Entity-relationship Diagram（ER图）"></a>Entity-relationship Diagram（ER图）</h4><p><img src="/.io//image-20220408113251068.png" alt="image-20220408113251068"></p>
 <h3 id="登陆功能实现"><a href="#登陆功能实现" class="headerlink" title="登陆功能实现"></a>登陆功能实现</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
 <li><p>提交表单包含用户名和密码</p>
 </li>
@@ -1734,7 +1734,7 @@ public String login(String loginId,String pwd,HttpSession session)<span aria-hid
 <li>添加逻辑逻辑判断，订单数量最少为1</li>
 </ul>
 <h4 id="Double数据运算过程中精度调整"><a href="#Double数据运算过程中精度调整" class="headerlink" title="Double数据运算过程中精度调整"></a>Double数据运算过程中精度调整</h4><p>在购物车中小计和总和是直接使用double进行计算，会出现显示问题</p>
-<p><img src="/JavaWeb/image-20220421173524625.png" alt="image-20220421173524625"></p>
+<p><img src="/.io//image-20220421173524625.png" alt="image-20220421173524625"></p>
 <p>解决方案</p>
 <ul>
 <li>使用BigDecimal类型来进行Double类型数据运算</li>
