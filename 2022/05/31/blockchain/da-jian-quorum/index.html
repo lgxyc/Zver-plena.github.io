@@ -1,0 +1,2143 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="搭建Quorum区块链, Lambda">
+    <meta name="description" content="Where there is a will , there is a way">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+    <style>
+        body{
+            background-image: url(/medias/images/4.jpg);
+            background-repeat:no-repeat;
+            background-size: 100% 100%;
+            background-attachment:fixed;
+        }
+    </style>
+
+
+    <title>搭建Quorum区块链 | Lambda</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+    <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+
+ 
+<body>
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/fireworks.js"></script>
+    
+        <div id="loading-container">
+             <p class="loading-text">祝你有个美好的一天 </p> 
+             <div class="loading-image">
+                 <div></div>
+                 <div></div>
+                 <div></div>
+                 <div></div> 
+                 <div></div>
+             </div>
+        </div>
+    
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Lambda</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/summary" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/navigate">
+          
+          <i class="fas fa-location-arrow" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Navigate</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Books</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/channel_four">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>通道四号</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Lambda</div>
+        <div class="logo-desc">
+            
+            欢迎来到我的博客
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/summary" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/navigate " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-location-arrow" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Navigate</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Books</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/channel_four " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>通道四号</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">搭建Quorum区块链</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.8);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 10px 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;  
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        font-size: 16px;
+        color: black;
+        font-weight: body;
+        margin-top: 10px;
+        padding-bottom: 50px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #850000;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #003ada;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/BlockChain/" class="post-category">
+                                BlockChain
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-05-31
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2022-06-26
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    3k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前置环境"><a href="#前置环境" class="headerlink" title="前置环境"></a>前置环境</h2><h3 id="apt-get命令"><a href="#apt-get命令" class="headerlink" title="apt-get命令"></a>apt-get命令</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/get_set/article/details/51276609">删除软件</a></li>
+</ul>
+<h3 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-exec-command.html">exec命令</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1848185">docker常用命令</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-compose.html">docker-compose</a></p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> <span class="token function">ps</span> // 查看所有正在运行容器
+<span class="token function">docker</span> stop containerId // containerId 是容器的ID
+
+<span class="token function">docker</span> <span class="token function">ps</span> -a // 查看所有容器
+<span class="token function">docker</span> <span class="token function">ps</span> -a -q // 查看所有容器ID
+
+<span class="token function">docker</span> stop <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> <span class="token function">ps</span> -a -q<span class="token variable">)</span></span> //  stop停止所有容器
+<span class="token function">docker</span>  <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> <span class="token function">ps</span> -a -q<span class="token variable">)</span></span> //   remove删除所有容器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/99134844256b">什么是geth</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e1292dcc72c1">geth的使用</a></li>
+</ul>
+<h3 id="npx、npm、nrml、node"><a href="#npx、npm、nrml、node" class="headerlink" title="npx、npm、nrml、node"></a>npx、npm、nrml、node</h3><blockquote>
+<p>node</p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#清除缓存</span>
+<span class="token function">sudo</span> <span class="token function">npm</span> cache clean -f
+<span class="token comment"># 安装node安装包</span>
+<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g n
+<span class="token comment"># 更新到最新版本</span>
+<span class="token function">sudo</span> n stable
+<span class="token comment"># 查看版本</span>
+<span class="token function">node</span> -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<blockquote>
+<p> nrm</p>
+</blockquote>
+<p>nrm是一个代理管理器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装</span>
+<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g nrm
+<span class="token comment"># 列出所有代理源</span>
+nrm <span class="token function">ls</span>
+<span class="token comment"># 切换淘宝源</span>
+nrm use taobao
+<span class="token comment"># 测试所有代理源的速度</span>
+nrm <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>npm</p>
+</blockquote>
+<p>npm 是 JavaScript 世界的包管理工具,并且是 Node.js 平台的默认包管理工具</p>
+<blockquote>
+<p>npx</p>
+</blockquote>
+<p>npx是一个工具，npm v5.2.0引入的一条命令（npx），一个npm包执行器，旨在提高从npm注册表使用软件包的体验 ，npm使得它非常容易地安装和管理托管在注册表上的依赖项，npx使得使用CLI工具和其他托管在注册表。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> nodejs 
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">npm</span>
+<span class="token function">npm</span> <span class="token function">install</span> -g npx
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 配置 copy公钥到云服务器</span>
+ssh-copy-id mrl@10.10.10.10  <span class="token comment"># 这里输入自己的用户和ip： 用户名@ip</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="区块链相关概念"><a href="#区块链相关概念" class="headerlink" title="区块链相关概念"></a>区块链相关概念</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://consensys.net/docs/goquorum/en/latest/concepts/blockchain-basics/blockchain-components/">blockchainBasic</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.qikegu.com/docs/4682">概念教程</a></li>
+</ul>
+<h4 id="区块链相关名词解释"><a href="#区块链相关名词解释" class="headerlink" title="区块链相关名词解释"></a>区块链相关名词解释</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1041b6b9b094">区块链相关名词解释</a></li>
+</ul>
+<h4 id="peers和validator"><a href="#peers和validator" class="headerlink" title="peers和validator"></a>peers和validator</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.qklw.com/top/20200802/107906.html">什么是validator</a></li>
+</ul>
+<h3 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h3><ul>
+<li>轻量型日志采集器</li>
+</ul>
+<h3 id="smart-contracts（智能合约）"><a href="#smart-contracts（智能合约）" class="headerlink" title="smart_contracts（智能合约）"></a>smart_contracts（智能合约）</h3><h3 id="Constellation协议"><a href="#Constellation协议" class="headerlink" title="Constellation协议"></a>Constellation协议</h3><ul>
+<li><p>Constellation协议实现了一个水平可伸缩的区块链架构，称为<strong>扩展信任链</strong>，带有一个点对点层，称为可以部署在移动设备上的Gossip协议</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://besu.hyperledger.org/en/stable/Tutorials/Developer-Quickstart/">https://besu.hyperledger.org/en/stable/Tutorials/Developer-Quickstart/</a>)</p>
+</li>
+</ul>
+<h3 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h3><ul>
+<li><p>JS 包管理工具同npm</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/254794d5e741">介绍yarm</a></p>
+</li>
+</ul>
+<h3 id="Hyperledger-Besu"><a href="#Hyperledger-Besu" class="headerlink" title="Hyperledger Besu"></a>Hyperledger Besu</h3><ul>
+<li><p>以太坊客户端</p>
+</li>
+<li><p>语言：java</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://besu.hyperledger.org/en/stable/#what-is-hyperledger-besu">介绍besu</a></li>
+<li>[快速搭建besu](</li>
+</ul>
+<h3 id="GoQuorum"><a href="#GoQuorum" class="headerlink" title="GoQuorum"></a>GoQuorum</h3><ul>
+<li><p>Quorum 是以太坊 Go 语言实现版本（Geth）的一个分支</p>
+</li>
+<li><p>以太坊客户端</p>
+</li>
+<li><p>语言：go</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://consensys.net/docs/goquorum/en/latest/">Goquorum官网</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yijiull/article/details/113768703?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165409192016782248567740%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=165409192016782248567740&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-4-113768703-null-null.142%5Ev11%5Epc_search_result_control_group,157%5Ev12%5Econtrol&amp;utm_term=GoQuorum&amp;spm=1018.2226.3001.4187">goquorum博客简介</a></p>
+</li>
+<li></li>
+</ul>
+<h3 id="Codefi-Orchestrate"><a href="#Codefi-Orchestrate" class="headerlink" title="Codefi Orchestrate"></a>Codefi Orchestrate</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.panewslab.com/zh/articledetails/1642584206099698.html">介绍</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.orchestrate.consensys.net/en/stable/">介绍2</a></p>
+</li>
+<li><p>Orchestrate是一个以太坊事务编排系统</p>
+</li>
+<li></li>
+</ul>
+<h3 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.guru99.com/elk-stack-tutorial.html">介绍ELK</a></p>
+</li>
+<li><p>ELK是三个开源软件的集合Elasticsearch, Logstash, and Kibana</p>
+</li>
+<li><p>日志便利。</p>
+</li>
+</ul>
+<h4 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h4><ul>
+<li>Elasticsearch是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java语言开发的,开源的</li>
+<li></li>
+</ul>
+<h4 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a>Logstash</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cjsblog/p/9459781.html">Logstash介绍</a></li>
+<li>Logstash是一个开源的服务器端数据处理管道，可以同时从多个数据源获取数据，并对其进行转换，然后将其发送到你最喜欢的“存储”</li>
+<li></li>
+</ul>
+<h4 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h4><ul>
+<li>Kibana 是一种数据可视化和挖掘工具，可以用于日志和时间序列分析、应用程序监控和运营智能使用案例。</li>
+<li></li>
+</ul>
+<h3 id="EVM（Ethereum-Virtual-Machine-）"><a href="#EVM（Ethereum-Virtual-Machine-）" class="headerlink" title="EVM（Ethereum Virtual Machine ）"></a>EVM（Ethereum Virtual Machine ）</h3><ul>
+<li>以太坊虚拟机（<strong>EVM</strong>）使用了256比特长度的机器码，<strong>是</strong>一种基于堆栈的虚拟机，用于执行以太坊智能合约</li>
+<li></li>
+</ul>
+<h3 id="Blockscout"><a href="#Blockscout" class="headerlink" title="Blockscout"></a>Blockscout</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://blockscout.com/xdai/mainnet/">官网</a></p>
+</li>
+<li><p>检查和分析基于EVM的工具</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://localhost:26000/">http://localhost:26000</a></p>
+</li>
+<li></li>
+</ul>
+<h3 id="Prometheus"><a href="#Prometheus" class="headerlink" title="Prometheus"></a>Prometheus</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:9090/">http://localhost:9090</a></li>
+<li>Prometheus是一套开源的系统监控报警框架</li>
+</ul>
+<h3 id="Grafana"><a href="#Grafana" class="headerlink" title="Grafana"></a>Grafana</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000</a></li>
+<li>Grafana 是一个开源的监控数据分析和可视化套件。最常用于对基础设施和应用数据分析的时间序列数据进行可视化分析</li>
+</ul>
+<h3 id="Splunk"><a href="#Splunk" class="headerlink" title="Splunk"></a>Splunk</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:8000/">http://localhost:8000</a></li>
+</ul>
+<h2 id="Geth-go-ethereum"><a href="#Geth-go-ethereum" class="headerlink" title="Geth(go-ethereum)"></a>Geth(go-ethereum)</h2><ul>
+<li><p>Official Go implementation of the Ethereum protocol</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum">Geth的Github地址</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e1292dcc72c1">ETH官方客户端Geth的使用(一)</a></p>
+</li>
+</ul>
+<h2 id="介绍quorum"><a href="#介绍quorum" class="headerlink" title="介绍quorum"></a>介绍quorum</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/kk3909/article/details/105051941#:~:text=Quorum%20Node%EF%BC%8C%E5%8F%88%E5%90%8DQuorum%20Client%EF%BC%8C%E6%98%AF%E4%B8%80%E4%B8%AA%E8%83%96%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%8C%E5%85%B6%E9%9A%90%E7%A7%81%E4%BA%A4%E6%98%93%E5%8A%9F%E8%83%BD%E6%93%8D%E4%BD%9C%E4%BE%9D%E8%B5%96%E7%94%A8%E4%BA%8E%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86%E7%A7%81%E6%9C%89%E4%BA%A4%E6%98%93%20playload%20%E7%9A%84Transaction%20Manager%E5%AE%A2%E6%88%B7%E7%AB%AF%E3%80%82,Quorum%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%8A%E5%85%B6%E4%BE%9D%E8%B5%96%E9%A1%B9%EF%BC%88Transaction%20Manager%2C%20Peers%2C%20and%20Enclave%EF%BC%89%E9%83%BD%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E7%9A%84TCP%20%2F%20UDP%E4%BC%A0%E8%BE%93%E5%B1%82%E8%BF%9B%E8%A1%8C%E9%80%9A%E4%BF%A1%E3%80%82">quorum工作原理</a></li>
+<li><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/277">Quorum简介</a></li>
+</ul>
+<h3 id="Quorum-是什么"><a href="#Quorum-是什么" class="headerlink" title="Quorum 是什么"></a>Quorum 是什么</h3><ul>
+<li><p>Quorum 是由 JPMorgan 推出的一种分布式账本协议</p>
+</li>
+<li><p>Quorum 主要提供了一下对以太坊进行扩展的特性：</p>
+<ul>
+<li>对隐私交易和隐私合约的支持</li>
+<li>基于投票的共识机制</li>
+<li>支持对区块链节点的接入权限管理</li>
+<li>更高的性能</li>
+</ul>
+</li>
+<li><p>Quorum 主要由下面几个部分组成：</p>
+<ul>
+<li>Quorum 节点（也就是 Geth 的一个修改版本）</li>
+<li>隐私管理器（Constellation/Tessera）<ul>
+<li>交易管理器</li>
+<li>Enclave</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>逻辑架构图</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220605213015488.png" alt="image-20220605213015488"></p>
+<h3 id="Quorum-的设计"><a href="#Quorum-的设计" class="headerlink" title="Quorum 的设计"></a>Quorum 的设计</h3><h3 id="quorum-node"><a href="#quorum-node" class="headerlink" title="quorum node"></a>quorum node</h3><h4 id="Tessera"><a href="#Tessera" class="headerlink" title="Tessera"></a>Tessera</h4><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/207235af9f40">Tessera博客介绍</a></p>
+</li>
+<li><p>GoQuorum node which has a corresponding <code>Tessera </code>node for privacy</p>
+</li>
+<li><p>Tessera是一个无状态的java系统，主要用来保证Quorum中的加密、解密和私有交易的分布式。</p>
+</li>
+</ul>
+<blockquote>
+<p>Tessera作用</p>
+</blockquote>
+<p>每个Tessera节点</p>
+<ul>
+<li><p>生成和保护许多公私钥对</p>
+</li>
+<li><p>自我管理，通过公钥尽可能少的和其他节点连接，从而可以通过连接的节点进而连接整个网络的所有节点。</p>
+</li>
+<li><p>提供了公开和私密的API通讯接口</p>
+<ul>
+<li>公开主要在Tessera节点之间进行通讯</li>
+<li>私密主要是在quorum内部进行通讯</li>
+</ul>
+</li>
+<li><p>基于多种可信任模型支持双向<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/56cff0b5dffb">SSL</a>通讯,支持TLS证等</p>
+</li>
+<li><p>支持IP白名单</p>
+</li>
+<li><p>可以连接支持JDBC的SQL数据库</p>
+</li>
+<li></li>
+</ul>
+<blockquote>
+<p>工作流程</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/14403164-1855e14683c3e7d1.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp" alt="img"></p>
+<ul>
+<li>txn(transaction)：交易</li>
+</ul>
+<p>上图展示的流程是Quorum一笔私密交易的流程，这笔交易只有参与者A与参与者B知道，C并不是这笔交易的成员。</p>
+<ol>
+<li><p>A 向Quorum节点发送一笔交易，注明具体的交易payload，并且设置<code>privateFor</code>字段的值为A(可选)和B的公钥</p>
+</li>
+<li><p>A的Quorum节点将这笔交易发送给自己配套的Tessera Node A的<code>交易管理器</code>，交易管理器存储交易的payload</p>
+</li>
+<li><p>Tessera Node A的<code>交易管理器</code>把这笔交易发给<code>Enclave</code>组件，<code>Enclave</code>组件进行交易发起者（A）的身份校验（私钥签名和公钥校验）并且加密payload</p>
+</li>
+<li><p><code>Enclave</code>的加密过程：</p>
+<ol>
+<li><p>随机生成一个主钥 RMK（random master key）和一个随机数</p>
+</li>
+<li><p>根据上一步生成的<code>RMK</code>和<code>随机数</code>加密交易payload- </p>
+<ul>
+<li>–（<em>加密payload</em>）</li>
+</ul>
+</li>
+<li><p>遍历交易参与方（在本例中是A和B）</p>
+<ul>
+<li><p>针对每个参与方：根据<code>Enclave</code>和每个参与方的公钥，会生成一个<code>共享密钥</code>，生成一个<code>随机数</code></p>
+<ul>
+<li>–(<em>生成共享秘钥和随机数</em>)</li>
+</ul>
+</li>
+<li><p>根据上述的<code>共享密钥</code>和<code>随机数</code>加密<code>RMK</code>。这样保证了每个加密RMK对每一个交易参与方是独一无二的，并且只能由该参与方读取</p>
+<ul>
+<li>–（<em>加密RMK</em>）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回第二小步生成的加密payload和第三小步生成的所有加密RMKs给<code>交易处理器</code></p>
+</li>
+</ol>
+</li>
+<li><p>A的<code>交易处理器</code>计算加密载荷的哈希值并且在数据库中存储(<code>加密payload</code>, <code>hash</code>,<code> 加密RMKs</code>)</p>
+</li>
+<li><p>A的<code>交易管理器</code>通过HTTPS向B的<code>交易管理器</code>发送<code>加密payload</code>，和专门给B的<code>共享密钥</code>+<code>随机数</code>。B接收到以后回复Ack/Nack。</p>
+</li>
+<li><p>A的<code>交易管理器</code>在收到B的接收回复后，将交易的hash值发送给A的Quorum节点，Quorum节点会用hash值替换原有的交易payload，并且将交易的V值改为37或38，向其他节点表明这是一笔私有交易</p>
+</li>
+<li><p>随后这笔交易会利用原有的Etherum P2P通信在节点之间同步</p>
+</li>
+<li><p>一个包含该交易的块被打包出来，并发送给网络中的所有节点</p>
+</li>
+<li><p>在处理块时，所有的节点都会处理这条交易，发现交易V值为37或38，Quorum节点会把交易的内容（Hash值）发给自己对应的Tessera节点的<code>交易处理器</code>，交易处理器根据hash值查找自己的数据库，看自己是否能够解密该笔交易</p>
+</li>
+<li><p>因为C不是这笔交易的参与者，所以C的Quorum节点会收到<code>交易处理器</code>的<code>NotARecipient</code>回复，然后C会跳过这笔交易，并且不会改变自己的Priviate stateDB。</p>
+</li>
+<li><p>A和B的<code>交易处理器</code>会发现自己能够处理这笔交易，因此会调用<code>Enclave</code>，向其传入加密payload，加密的秘钥和交易签名等。</p>
+</li>
+<li><p><code>Enclave</code>验证交易签名，然后用<code>Enclave</code>存储的<code>共享密钥</code>和<code>随机数</code>解密获得<code>RMK</code>，再用<code>RMK</code>和<code>随机数</code>解密<code>payload</code>获得交易明文。</p>
+</li>
+<li><p>A和B的<code>交易处理器</code>将解密后的交易内容发送给EVM执行执行智能合约。本次智能合约的执行只会更新Quorum节点的Private stateDB。（备注：一旦交易被执行以后，这条执行记录就被废弃了，如果想要读取交易内容必须重新按上述流程走一遍Quorum私有交易）</p>
+</li>
+</ol>
+<h4 id="Enclave"><a href="#Enclave" class="headerlink" title="Enclave"></a>Enclave</h4><h3 id="block结构"><a href="#block结构" class="headerlink" title="block结构"></a>block结构</h3><ul>
+<li><code>hash</code>：哈希值</li>
+<li><code>Tramsactions</code>: 事务</li>
+<li><code>uncles</code>: </li>
+<li><code>Size</code>: 区块大小</li>
+<li><code>Gas Used</code>: 手续费 </li>
+<li><code>Timestamp</code>: 时间戳</li>
+<li><code>State Root</code>:  </li>
+<li><code>Receipt Root</code>：接受方</li>
+<li><code>Txn Root</code>：</li>
+<li></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Hash	0x4e5f59c378480849ef51699144c869af5ef5ea5097a7d9fee709766e7dda2792
+Transactions	<span class="token number">1</span>
+Uncles	<span class="token number">0</span>
+Size	0x3b7
+Gas Used	0x5208
+Timestamp	0x62984692
+State Root	0x74f80244ecfab368ffa89fff4a59caaa4acae28c04d611354804812b74cf7803
+Receipt Root	0x056b23fbba480696b65fe5a59b8f2148a1299103c4f57df839233af2cf4ca2d2
+Txn Root	0xc02a13407aa1ab7f6bdf02743c7354890551558ed93e2916a37344b4678d1e63<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="transaction结构"><a href="#transaction结构" class="headerlink" title="transaction结构"></a>transaction结构</h3><ul>
+<li><code>TxnHash</code>:</li>
+<li><code>BlockHash</code>:</li>
+<li><code>BlockNumber</code>:</li>
+<li><code>From</code>:</li>
+<li><code>Gas</code>:</li>
+<li><code>GasPrice</code>:</li>
+<li><code>Input</code>:</li>
+<li><code>To</code>:</li>
+<li><code>Nonce</code>:</li>
+<li><code>TxnIndex</code>:</li>
+<li><code>Value</code>:</li>
+<li><code>R</code>:</li>
+<li><code>S</code>:</li>
+<li><code>V</code>:</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">TxnHash 	0xcafe30e308857212902abdfc0d6b2b8f974e5462884712717141a32230448065
+BlockHash 	0x4e5f59c378480849ef51699144c869af5ef5ea5097a7d9fee709766e7dda2792
+BlockNumber 	0xb46
+From 	0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5
+Gas 	0x5208
+GasPrice 	0x0
+Input 	0x
+To 	0x9f9a511ed364478aa91c0e99882e82d33a27d92f
+Nonce 	0x4
+TxnIndex 	0x0
+Value 	0x10f0cf064dd59200000
+R 	0x56ee17b4ffe893016aa6f63753821584d8f5ed0b675a5093d6ab7193ea5e4518
+S 	0x3cb03e04209d18987df1c05927b12e8059996066ba87d9dcccf255f0bc5cefe
+V 	0xa95<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="搭建quorum"><a href="#搭建quorum" class="headerlink" title="搭建quorum"></a>搭建quorum</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ConsenSys/quorum-examples">quorum-examples</a></li>
+<li><a target="_blank" rel="noopener" href="https://consensys.net/quorum/products/guides/getting-started-with-consensys-quorum/">搭建教程</a></li>
+</ul>
+<h3 id="搭建测试网络"><a href="#搭建测试网络" class="headerlink" title="搭建测试网络"></a>搭建测试网络</h3><p><a target="_blank" rel="noopener" href="https://consensys.net/quorum/products/guides/getting-started-with-consensys-quorum/">搭建测试网络教程</a></p>
+<hr>
+<ul>
+<li>搭建完成后就可以在浏览器通过<code>metamask</code>插件来查看以太坊</li>
+<li>同时切换到测试网络<code>localhost8595</code></li>
+</ul>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220602125954999.png" alt="image-20220602125954999"></p>
+<ul>
+<li>然后在<code>quorum-test-network/config/nodes</code>里面将三个已经创建的<code>member</code>的私钥到<code>metamask</code>中<code>import account</code></li>
+<li><a target="_blank" rel="noopener" href="http://localhost:25000/">http://localhost:25000/</a></li>
+</ul>
+<h3 id="quorum-key-manager"><a href="#quorum-key-manager" class="headerlink" title="quorum-key-manager"></a>quorum-key-manager</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.quorum-key-manager.consensys.net/en/latest/">官方文档</a></li>
+</ul>
+<h3 id="curl-命令通过HTTP交互"><a href="#curl-命令通过HTTP交互" class="headerlink" title="curl 命令通过HTTP交互"></a>curl 命令通过HTTP交互</h3><ul>
+<li><p>可以通过curl命令发送<code>JSON-RPC</code> 请求通过HTTP</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/07c4dddae43a">curl命令详解</a></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>HTTP with <code>http://localhost:8545</code>.</li>
+<li>WebSockets with <code>ws://localhost:8546</code>.</li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Request the node version</span>
+<span class="token function">curl</span> -X POST --data <span class="token string">'{
+"jsonrpc":"2.0",
+"method":"web3_clientVersion",
+"params":[],
+"id":1
+}'</span> -H <span class="token string">'Content-Type: application/json'</span> http://localhost:8545
+
+<span class="token comment">#Count the peers</span>
+<span class="token function">curl</span> -X POST --data <span class="token string">'{
+"jsonrpc":"2.0",
+"method":"net_peerCount",
+"params":[],
+"id":1
+}'</span>-H <span class="token string">'Content-Type: application/json'</span>  http://localhost:8545
+
+<span class="token comment"># Request the most recent block number</span>
+<span class="token function">curl</span> -X POST --data <span class="token string">'{
+"jsonrpc":"2.0",
+"method":"eth_blockNumber",
+"params":[],
+"id":1
+}'</span> -H <span class="token string">'Content-Type: application/json'</span> http://localhost:8545<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<ul>
+<li></li>
+</ul>
+<h3 id="member如何创建的？"><a href="#member如何创建的？" class="headerlink" title="member如何创建的？"></a>member如何创建的？</h3><ul>
+<li>运行<code>run.sh</code>的时候会自动根据<code>docker-compose.yml</code>来生成对应的docker容器</li>
+<li>最终会生成创世文件<code>cliqueGenesis.json</code>在<code> quorum-test-network/config/besu</code></li>
+</ul>
+<h3 id="web3-eth"><a href="#web3-eth" class="headerlink" title="web3.eth"></a>web3.eth</h3><ul>
+<li>提供了和区块链交流的API</li>
+</ul>
+<hr>
+<blockquote>
+<p>资料链接</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html">英文web3-eth-abi文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/web3js-0.2x/web3.eth.html">中文web3-eth-abi文档</a></li>
+</ul>
+<h2 id="搭建quorum详细教程"><a href="#搭建quorum详细教程" class="headerlink" title="搭建quorum详细教程"></a>搭建quorum详细教程</h2><h3 id="配置前置环境"><a href="#配置前置环境" class="headerlink" title="配置前置环境"></a>配置前置环境</h3><h4 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装docker </span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">docker</span>
+<span class="token comment"># 安装docker-compose</span>
+<span class="token function">curl</span> -L https://get.daocloud.io/docker/compose/releases/download/v2.4.1/docker-compose-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -s<span class="token variable">`</span></span>-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -m<span class="token variable">`</span></span> <span class="token operator">&gt;</span> /usr/local/bin/docker-compose
+<span class="token comment"># 将将可执行权限应用于二进制文件：</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
+<span class="token comment"># 创建软链</span>
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/bin/docker-compose /usr/bin/docker-compose<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行<code>docker version</code>查看docker是否安装成功</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220607234644473.png" alt="image-20220607234644473"></p>
+<p>启动docker服务</p>
+<p><code>sudo service docker restart</code></p>
+<p><code>systemctl status docker</code>查看docker的启动状态，如下图所示启动成功</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608002201098.png" alt="image-20220608002201098"></p>
+<p>运行<code>docker-compose version</code>查看docker-compose是否安装成功</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220607234700484.png" alt="image-20220607234700484"></p>
+<h4 id="安装node相关环境"><a href="#安装node相关环境" class="headerlink" title="安装node相关环境"></a>安装node相关环境</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装npm</span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">npm</span>
+<span class="token comment"># 安装nrm</span>
+<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g nrm
+<span class="token comment"># 切换淘宝源</span>
+nrm use taobao
+<span class="token comment"># 安装node </span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> nodejs
+<span class="token comment"># 安装n模块</span>
+<span class="token function">npm</span> <span class="token function">install</span> -g n
+<span class="token comment"># 升级nodejs到最新stable版本</span>
+n stable
+<span class="token comment"># 升级最新npm</span>
+<span class="token function">npm</span> <span class="token function">install</span> npm@latest -g
+<span class="token comment"># 安装npx</span>
+<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g  npx  
+<span class="token comment"># 运行</span>
+<span class="token function">sudo</span> <span class="token function">npm</span> i -g npx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行<code>node -v </code>查看nodejs是否安装成功</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220607234739441.png" alt="image-20220607234739441"></p>
+<p>运行<code>npm -v </code>查看npm是否安装成功</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220607235008882.png" alt="image-20220607235008882"></p>
+<p>运行<code>npx -v</code>查看npx是否安装成功</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220607235632873.png" alt="image-20220607235632873"></p>
+<h3 id="搭建quorum测试网络"><a href="#搭建quorum测试网络" class="headerlink" title="搭建quorum测试网络"></a>搭建quorum测试网络</h3><p><code>npx quorum-dev-quickstart</code>来启动搭建quorum</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220607235854081.png" alt="image-20220607235854081"></p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608000715385.png" alt="image-20220608000715385"></p>
+<p>2</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608000732690.png" alt="image-20220608000732690"></p>
+<p>n</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608000742209.png" alt="image-20220608000742209"></p>
+<p>Y		</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608000821727.png" alt="image-20220608000821727"></p>
+<p>Y</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608000840189.png" alt="image-20220608000840189"></p>
+<p>1</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608000901651.png" alt="image-20220608000901651"></p>
+<p>y</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608000913723.png" alt="image-20220608000913723"></p>
+<p>在这里你可以给你的目录起个名字，如果没有起那么就是默认的值<code>quorum-test-network</code></p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608000951364.png" alt="image-20220608000951364"></p>
+<p>到这里就已经完成了环境的搭建</p>
+<p>接下来就是启动quorum网络</p>
+<p>来到这个目录下<code>/home/mrl/quorum-test-network/network</code>启动<code>run.sh</code>，执行脚本命令<code>./run.sh</code></p>
+<p>启动成功后会有如下界面</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608001610241.png" alt="image-20220608001610241"></p>
+<p>然后就可以通过浏览器访问<code>localhost:25000	</code>，进入到可视化界面</p>
+<p>也可以通过运行脚本<code>./list.sh</code>来查看开放的可视化端口网站，如图所示</p>
+<p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220608002455719.png" alt="image-20220608002455719"></p>
+<p>其中开放的东西的多少取决你开始搭建quorum的时候选择的Y的组件</p>
+<p>其他命令作用如下</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 启动quorum</span>
+./run.sh
+<span class="token comment"># 重启quorum</span>
+./restart.sh
+<span class="token comment"># 停止quroum</span>
+./stop.sh
+<span class="token comment"># 用于停止后重新启动</span>
+./resume.sh
+<span class="token comment"># 关闭quorum</span>
+./remove.sh
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># TypeError: types.forEach is not a function</span>
+ at ABICoder.mapTypes <span class="token punctuation">(</span>/home/mrl/github/quorum-test-network/network/smart_contracts/privacy/node_modules/web3-eth-abi/lib/index.js:132:11<span class="token punctuation">)</span>
+ 
+ <span class="token comment">#解决</span>
+web3.eth.abi.encodeParameters<span class="token punctuation">(</span>type, parameter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+改为
+web3.eth.abi.encodeParameter<span class="token punctuation">(</span>type, parameter<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Zver</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://Zver-plena.github.io/2022/05/31/blockchain/da-jian-quorum/">https://Zver-plena.github.io/2022/05/31/blockchain/da-jian-quorum/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Zver</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'EgKQH2gWMlQC81fkD1FLJOdf-gzGzoHsz',
+        appKey: 'rkutKghPIOS2I2RrGf1XdGqC',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'en',
+        placeholder: 'just go go'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/06/02/blockchain/fen-bu-shi-shu-zi-zi-chan-jiao-yi-ping-tai-de-wen-ti-yu-ping-gu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lambda
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/09/summary/codeforces/20220505-787-d3/e-replace-with-the-previous-minimize/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Replace With the Previous, Minimize">
+                        
+                        <span class="card-title">Replace With the Previous, Minimize</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Where there is a will , there is a way
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/codeforces/" class="post-category">
+                                    codeforces
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/summary/%E6%80%9D%E7%BB%B4%E9%A2%98/">
+                        <span class="chip bg-color">思维题</span>
+                    </a>
+                    
+                    <a href="/summary/%E8%B4%AA%E5%BF%83/">
+                        <span class="chip bg-color">贪心</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card"  >
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content" ></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+           
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="xxx" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:xxx" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=xxx" class="tooltipped" target="_blank" data-tooltip="QQ联系我: xxx" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+        
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/sakura-small.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hk416_805.model.json"},"display":{"position":"right","width":300,"height":350},"mobile":{"show":true,"react":{"opacity":"0.7a"}}});</script></body>
+
+</html>

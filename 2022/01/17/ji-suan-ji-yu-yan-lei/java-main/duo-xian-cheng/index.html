@@ -785,9 +785,9 @@
 <li>若一个进程同一时间并行执行多个线程,就是支持多线程的</li>
 </ul>
 <ul>
-<li><p>线程作为调度和执行的单位,<em>每个线程具有独立的运行栈和程序计数器(pc)</em>,线程切换的开销小<br>  <img src="/.io//16387466173876.jpg"></p>
+<li><p>线程作为调度和执行的单位,<em>每个线程具有独立的运行栈和程序计数器(pc)</em>,线程切换的开销小<br>  <img src="/2022/01/17/ji-suan-ji-yu-yan-lei/java-main/duo-xian-cheng/16387466173876.jpg"></p>
 </li>
-<li><p>一个进程中的多个线程共享相同的内存单元/内存地址空间-&gt;他们从同一堆中分配对象,可以访问相同的变量和对象,这就使得线程间的通信变得更加简便和高效,但多个线程操作共享的系统资源可能带来安全隐患<br>  <img src="/.io//16387069631589.jpg"></p>
+<li><p>一个进程中的多个线程共享相同的内存单元/内存地址空间-&gt;他们从同一堆中分配对象,可以访问相同的变量和对象,这就使得线程间的通信变得更加简便和高效,但多个线程操作共享的系统资源可能带来安全隐患<br>  <img src="/2022/01/17/ji-suan-ji-yu-yan-lei/java-main/duo-xian-cheng/16387069631589.jpg"></p>
 </li>
 </ul>
 </li>
@@ -1390,7 +1390,7 @@
 <h4 id="阿里巴巴java代码规范中对线程池的强制要求"><a href="#阿里巴巴java代码规范中对线程池的强制要求" class="headerlink" title="阿里巴巴java代码规范中对线程池的强制要求"></a>阿里巴巴java代码规范中对线程池的强制要求</h4><p><strong>要求</strong></p>
 <p>项目中创建多线程时，使用常见的三种线程池创建方式，单一、可变、定长都有一定问题，原因是FixedThreadPool和SingleThreadExecutor底层都是用LinkedBlockingQueue实现的，这个队列最大长度为Integer.MAX_VALUE，容易导致OOM。所以实际生产一般自己通过ThreadPoolExecutor的7个参数，自定义线程池：</p>
 <hr>
-<p><img src="/.io//image-20211211112534846.png" alt="image-20211211112534846"></p>
+<p><img src="/2022/01/17/ji-suan-ji-yu-yan-lei/java-main/duo-xian-cheng/image-20211211112534846.png" alt="image-20211211112534846"></p>
 <p><strong>代码实现</strong></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>common<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">ThreadFactoryBuilder</span></span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">LinkedBlockingQueue</span></span><span class="token punctuation">;</span>
