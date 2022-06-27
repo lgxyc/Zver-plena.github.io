@@ -732,14 +732,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-06-27
+                    2022-06-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    229
+                    253
                 </div>
                 
 
@@ -782,16 +782,17 @@ wq<span class="token operator">!</span>
 <span class="token keyword">fi</span>
 <span class="token builtin class-name">cd</span> quorum<span class="token punctuation">;</span>
 
+<span class="token comment"># docker </span>
+
 <span class="token assign-left variable">MSG</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">type</span> <span class="token function">docker</span><span class="token variable">`</span></span><span class="token punctuation">;</span>
 <span class="token keyword">if</span> <span class="token punctuation">[</span>  <span class="token variable">${MSG<span class="token operator">:</span>0<span class="token operator">:</span>6}</span> <span class="token operator">!=</span> <span class="token string">"docker"</span>  <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
 	<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">docker</span><span class="token punctuation">;</span>
 <span class="token keyword">fi</span>
 
-
+<span class="token comment"># docker-compose</span>
 <span class="token function">sudo</span> <span class="token function">rm</span> -rf /usr/local/bin/docker-compose<span class="token punctuation">;</span>
 
-
-<span class="token function">sudo</span> <span class="token function">curl</span> -L https://get.daocloud.io/docker/compose/releases/download/v3.4.1/docker-compose-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -s<span class="token variable">`</span></span>-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -m<span class="token variable">`</span></span> -o /usr/local/bin/docker-compose<span class="token punctuation">;</span>
+<span class="token function">sudo</span> <span class="token function">curl</span> -L https://get.daocloud.io/docker/compose/releases/download/v2.4.1/docker-compose-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -s<span class="token variable">`</span></span>-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -m<span class="token variable">`</span></span> -o /usr/local/bin/docker-compose<span class="token punctuation">;</span>
 
 <span class="token function">wait</span> <span class="token variable">$!</span>
 
@@ -834,8 +835,14 @@ wq<span class="token operator">!</span>
 	<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> npx<span class="token punctuation">;</span>
 <span class="token keyword">fi</span>
 
+<span class="token comment"># add docker group</span>
+<span class="token function">sudo</span> <span class="token function">groupadd</span> <span class="token function">docker</span> 
+<span class="token comment"># add user into docker group</span>
+<span class="token function">sudo</span> gpasswd -a <span class="token environment constant">$USER</span> <span class="token function">docker</span>
+<span class="token comment"># update docker group</span>
+newgrp <span class="token function">docker</span>
 
-<span class="token function">sudo</span> npx quorum-dev-quickstart<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">sudo</span> npx quorum-dev-quickstart<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
