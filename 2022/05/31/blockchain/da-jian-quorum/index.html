@@ -732,7 +732,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-06-26
+                    2022-06-27
                 </div>
                 
 
@@ -1221,7 +1221,7 @@ V 	0xa95<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <h2 id="搭建quorum详细教程"><a href="#搭建quorum详细教程" class="headerlink" title="搭建quorum详细教程"></a>搭建quorum详细教程</h2><h3 id="配置前置环境"><a href="#配置前置环境" class="headerlink" title="配置前置环境"></a>配置前置环境</h3><h4 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装docker </span>
 <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">docker</span>
 <span class="token comment"># 安装docker-compose</span>
-<span class="token function">curl</span> -L https://get.daocloud.io/docker/compose/releases/download/v2.4.1/docker-compose-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -s<span class="token variable">`</span></span>-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -m<span class="token variable">`</span></span> <span class="token operator">&gt;</span> /usr/local/bin/docker-compose
+<span class="token function">curl</span> -L https://get.daocloud.io/docker/compose/releases/download/v2.4.1/docker-compose-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -s<span class="token variable">`</span></span>-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -m<span class="token variable">`</span></span> -o /usr/local/bin/docker-compose
 <span class="token comment"># 将将可执行权限应用于二进制文件：</span>
 <span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
 <span class="token comment"># 创建软链</span>
@@ -1241,9 +1241,7 @@ V 	0xa95<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g nrm
 <span class="token comment"># 切换淘宝源</span>
 nrm use taobao
-<span class="token comment"># 安装node </span>
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> nodejs
-<span class="token comment"># 安装n模块</span>
+<span class="token comment"># 安装nodejs模块</span>
 <span class="token function">npm</span> <span class="token function">install</span> -g n
 <span class="token comment"># 升级nodejs到最新stable版本</span>
 n stable
@@ -1252,7 +1250,7 @@ n stable
 <span class="token comment"># 安装npx</span>
 <span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g  npx  
 <span class="token comment"># 运行</span>
-<span class="token function">sudo</span> <span class="token function">npm</span> i -g npx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">sudo</span> <span class="token function">npm</span> i -g npx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>运行<code>node -v </code>查看nodejs是否安装成功</p>
 <p><img src="/2022/05/31/blockchain/da-jian-quorum/image-20220607234739441.png" alt="image-20220607234739441"></p>
