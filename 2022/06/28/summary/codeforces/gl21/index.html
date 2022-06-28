@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Lambda">
-    <meta name="description" content="">
+    <meta name="description" content="A. NIT orz!DescriptionNIT, the cleaver, is new in town! Thousands of people line up to orz him. To keep his orzers enter">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -716,21 +716,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-06-24
+                    2022-06-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-06-24
+                    2022-06-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    0
+                    1.8k
                 </div>
                 
 
@@ -755,7 +755,184 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="A-NIT-orz"><a href="#A-NIT-orz" class="headerlink" title="A. NIT orz!"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1696/problem/A">A. NIT orz!</a></h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>NIT, the cleaver, is new in town! Thousands of people line up to orz him. To keep his orzers entertained, NIT decided to let them solve the following problem related to $$\operatorname{or} z$$. Can you solve this problem too?<br>You are given a 1-indexed array of $$n$$ integers, $$a$$, and an integer $$z$$. You can do the following operation any number (possibly zero) of times:<br>  Select a positive integer $$i$$ such that $$1\le i\le n$$. Then, simutaneously set $$a_i$$ to $$(a_i\operatorname{or} z)$$ and set $$z$$ to $$(a_i\operatorname{and} z)$$. In other words, let $$x$$ and $$y$$ respectively be the current values of $$a_i$$ and $$z$$. Then set $$a_i$$ to $$(x\operatorname{or}y)$$ and set $$z$$ to $$(x\operatorname{and}y)$$. Here $$\operatorname{or}$$ and $$\operatorname{and}$$ denote the bitwise operations OR and AND respectively.<br>Find the maximum possible value of the maximum value in $$a$$ after any number (possibly zero) of operations.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input:"></a>Input:</h3><p>Each test contains multiple test cases. The first line contains the number of test cases $$t$$ ($$1 \le t \le 100$$). Description of the test cases follows.<br>The first line of each test case contains two integers $$n$$ and $$z$$ ($$1\le n\le 2000$$, $$0\le z&lt;2^{30}$$).<br>The second line of each test case contains $$n$$ integers $$a_1$$,$$a_2$$,$$\ldots$$,$$a_n$$ ($$0\le a_i&lt;2^{30}$$).<br>It is guaranteed that the sum of $$n$$ over all test cases does not exceed $$10^4$$.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, print one integer — the answer to the problem.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><p>5<br>2 3<br>3 4<br>5 5<br>0 2 4 6 8<br>1 9<br>10<br>5 7<br>7 15 30 29 27<br>3 39548743<br>10293834 10284344 13635445</p>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><p>7<br>13<br>11<br>31<br>48234367</p>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码:"></a>AC代码:</h3><pre class="line-numbers language-none"><code class="language-none">```
+
+## [B. NIT Destroys the Universe](https://codeforces.com/contest/1696/problem/B)
+
+### Description 
+For a collection of integers $$S$$, define $$\operatorname{mex}(S)$$ as the smallest non-negative integer that does not appear in $$S$$.
+NIT, the cleaver, decides to destroy the universe. He is not so powerful as Thanos, so he can only destroy the universe by snapping his fingers several times.
+The universe can be represented as a 1-indexed array $$a$$ of length $$n$$. When NIT snaps his fingers, he does the following operation on the array:
+  He selects positive integers $$l$$ and $$r$$ such that $$1\le l\le r\le n$$. Let $$w=\operatorname{mex}(\{a_l,a_{l+1},\dots,a_r\})$$. Then, for all $$l\le i\le r$$, set $$a_i$$ to $$w$$. We say the universe is destroyed if and only if for all $$1\le i\le n$$, $$a_i=0$$ holds.
+Find the minimum number of times NIT needs to snap his fingers to destroy the universe. That is, find the minimum number of operations NIT needs to perform to make all elements in the array equal to $$0$$.
+
+### Input:
+Each test contains multiple test cases. The first line contains the number of test cases $$t$$ ($$1 \le t \le 10^4$$). Description of the test cases follows.
+The first line of each test case contains one integer $$n$$ ($$1\le n\le 10^5$$).
+The second line of each test case contains $$n$$ integers $$a_1$$, $$a_2$$, $$\ldots$$, $$a_n$$ ($$0\le a_i\le 10^9$$).
+It is guaranteed that the sum of $$n$$ over all test cases does not exceed $$2\cdot 10^5$$.
+
+### Output
+For each test case, print one integer — the answer to the problem.
+
+### Sample Input:
+
+4
+4
+0 0 0 0
+5
+0 1 2 3 4
+7
+0 2 3 0 1 2 0
+1
+1000000000
+
+### Sample Output:
+
+0
+1
+2
+1
+
+### AC代码:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">
+## [C. Fishingprince Plays With Array](https://codeforces.com/contest/1696/problem/C)
+
+### Description 
+Fishingprince is playing with an array $$[a_1,a_2,\dots,a_n]$$. He also has a magic number $$m$$.
+He can do the following two operations on it:
+  Select $$1\le i\le n$$ such that $$a_i$$ is divisible by $$m$$ (that is, there exists an integer $$t$$ such that $$m \cdot t = a_i$$). Replace $$a_i$$ with $$m$$ copies of $$\frac{a_i}{m}$$. The order of the other elements doesn't change. For example, when $$m=2$$ and $$a=[2,3]$$ and $$i=1$$, $$a$$ changes into $$[1,1,3]$$.  Select $$1\le i\le n-m+1$$ such that $$a_i=a_{i+1}=\dots=a_{i+m-1}$$. Replace these $$m$$ elements with a single $$m \cdot a_i$$. The order of the other elements doesn't change. For example, when $$m=2$$ and $$a=[3,2,2,3]$$ and $$i=2$$, $$a$$ changes into $$[3,4,3]$$. Note that the array length might change during the process. The value of $$n$$ above is defined as the current length of the array (might differ from the $$n$$ in the input).
+Fishingprince has another array $$[b_1,b_2,\dots,b_k]$$. Please determine if he can turn $$a$$ into $$b$$ using any number (possibly zero) of operations.
+
+### Input:
+Each test contains multiple test cases. The first line contains the number of test cases $$t$$ ($$1 \le t \le 10^4$$). Description of the test cases follows.
+The first line of each test case contains two integers $$n$$ and $$m$$ ($$1\le n\le 5\cdot 10^4$$, $$2\le m\le 10^9$$).
+The second line of each test case contains $$n$$ integers $$a_1,a_2,\ldots,a_n$$ ($$1\le a_i\le 10^9$$).
+The third line of each test case contains one integer $$k$$ ($$1\le k\le 5\cdot 10^4$$).
+The fourth line of each test case contains $$k$$ integers $$b_1,b_2,\ldots,b_k$$ ($$1\le b_i\le 10^9$$).
+It is guaranteed that the sum of $$n+k$$ over all test cases does not exceed $$2\cdot 10^5$$.
+
+### Output
+For each testcase, print Yes if it is possible to turn $$a$$ into $$b$$, and No otherwise. You can print each letter in any case (upper or lower).
+
+### Sample Input:
+
+5
+5 2
+1 2 2 4 2
+4
+1 4 4 2
+6 2
+1 2 2 8 2 2
+2
+1 16
+8 3
+3 3 3 3 3 3 3 3
+4
+6 6 6 6
+8 3
+3 9 6 3 12 12 36 12
+16
+9 3 2 2 2 3 4 12 4 12 4 12 4 12 4 4
+8 3
+3 9 6 3 12 12 36 12
+7
+12 2 4 3 4 12 56
+
+### Sample Output:
+
+Yes
+Yes
+No
+Yes
+No
+
+### AC代码:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">
+## [D. Permutation Graph](https://codeforces.com/contest/1696/problem/D)
+
+### Description 
+A permutation is an array consisting of $$n$$ distinct integers from $$1$$ to $$n$$ in arbitrary order. For example, $$[2,3,1,5,4]$$ is a permutation, but $$[1,2,2]$$ is not a permutation ($$2$$ appears twice in the array) and $$[1,3,4]$$ is also not a permutation ($$n=3$$ but there is $$4$$ in the array).
+You are given a permutation of $$1,2,\dots,n$$, $$[a_1,a_2,\dots,a_n]$$. For integers $$i$$, $$j$$ such that $$1\le i&lt;j\le n$$, define $$\operatorname{mn}(i,j)$$ as $$\min\limits_{k=i}^j a_k$$, and define $$\operatorname{mx}(i,j)$$ as $$\max\limits_{k=i}^j a_k$$.
+Let us build an undirected graph of $$n$$ vertices, numbered $$1$$ to $$n$$. For every pair of integers $$1\le i&lt;j\le n$$, if $$\operatorname{mn}(i,j)=a_i$$ and $$\operatorname{mx}(i,j)=a_j$$ both holds, or $$\operatorname{mn}(i,j)=a_j$$ and $$\operatorname{mx}(i,j)=a_i$$ both holds, add an undirected edge of length $$1$$ between vertices $$i$$ and $$j$$.
+In this graph, find the length of the shortest path from vertex $$1$$ to vertex $$n$$. We can prove that $$1$$ and $$n$$ will always be connected via some path, so a shortest path always exists.
+
+### Input:
+Each test contains multiple test cases. The first line contains the number of test cases $$t$$ ($$1 \le t \le 5\cdot 10^4$$). Description of the test cases follows.
+The first line of each test case contains one integer $$n$$ ($$1\le n\le 2.5\cdot 10^5$$).
+The second line of each test case contains $$n$$ integers $$a_1$$, $$a_2$$, $$\ldots$$, $$a_n$$ ($$1\le a_i\le n$$). It's guaranteed that $$a$$ is a permutation of $$1$$, $$2$$, $$\dots$$, $$n$$.
+It is guaranteed that the sum of $$n$$ over all test cases does not exceed $$5\cdot 10^5$$.
+
+### Output
+For each test case, print a single line containing one integer — the length of the shortest path from $$1$$ to $$n$$.
+
+### Sample Input:
+
+5
+1
+1
+2
+1 2
+5
+1 4 2 3 5
+5
+2 1 5 3 4
+10
+7 4 8 1 6 10 3 5 2 9
+
+### Sample Output:
+
+0
+1
+1
+4
+6
+
+### AC代码:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">
+## [E. Placing Jinas](https://codeforces.com/contest/1696/problem/E)
+
+### Description 
+We say an infinite sequence $$a_{0}, a_{1}, a_2, \ldots$$ is non-increasing if and only if for all $$i\ge 0$$, $$a_i \ge a_{i+1}$$.
+There is an infinite right and down grid. The upper-left cell has coordinates $$(0,0)$$. Rows are numbered $$0$$ to infinity from top to bottom, columns are numbered from $$0$$ to infinity from left to right.
+There is also a non-increasing infinite sequence $$a_{0}, a_{1}, a_2, \ldots$$. You are given $$a_0$$, $$a_1$$, $$\ldots$$, $$a_n$$; for all $$i&gt;n$$, $$a_i=0$$. For every pair of $$x$$, $$y$$, the cell with coordinates $$(x,y)$$ (which is located at the intersection of $$x$$-th row and $$y$$-th column) is white if $$y&lt;a_x$$ and black otherwise.
+Initially there is one doll named Jina on $$(0,0)$$. You can do the following operation.
+  Select one doll on $$(x,y)$$. Remove it and place a doll on $$(x,y+1)$$ and place a doll on $$(x+1,y)$$. Note that multiple dolls can be present at a cell at the same time; in one operation, you remove only one. Your goal is to make all white cells contain $$0$$ dolls.
+What's the minimum number of operations needed to achieve the goal? Print the answer modulo $$10^9+7$$.
+
+### Input:
+The first line of input contains one integer $$n$$ ($$1\le n\le 2\cdot 10^5$$).
+The second line of input contains $$n+1$$ integers $$a_0,a_1,\ldots,a_n$$ ($$0\le a_i\le 2\cdot 10^5$$).
+It is guaranteed that the sequence $$a$$ is non-increasing.
+
+### Output
+Print one integer — the answer to the problem, modulo $$10^9+7$$.
+
+### Sample Input:
+
+2
+2 2 0
+
+### Sample Output:
+
+5
+### Sample Input:
+
+10
+12 11 8 8 6 6 6 5 3 2 1
+
+### Sample Output:
+
+2596
+### AC代码:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>
+</code></pre>
+
                 
             </div>
             <hr/>
@@ -781,7 +958,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Zver-plena.github.io/2022/06/24/java-pian/springcloud/">https://Zver-plena.github.io/2022/06/24/java-pian/springcloud/</a>
+                    <a href="https://Zver-plena.github.io/2022/06/28/summary/codeforces/gl21/">https://Zver-plena.github.io/2022/06/28/summary/codeforces/gl21/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1127,9 +1304,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2022/06/28/summary/codeforces/gl21/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lambda
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/06/27/blockchain/jiao-ben/">
                     <div class="card-image">
@@ -1147,9 +1363,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1158,43 +1374,6 @@
                                     BlockChain
                                 </a>
                             
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/06/24/java-pian/mybatis/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-24
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            lambda
                             
                         </span>
                     </div>
