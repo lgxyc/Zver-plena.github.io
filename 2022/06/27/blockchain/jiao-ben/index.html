@@ -739,7 +739,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    299
+                    308
                 </div>
                 
 
@@ -789,12 +789,16 @@ wq<span class="token operator">!</span>
 	<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> docker.io -y<span class="token punctuation">;</span>
 <span class="token keyword">fi</span>
 
+<span class="token comment"># sudo rm -rf /usr/local/bin/docker-compose;</span>
+
 <span class="token comment"># docker-compose</span>
-<span class="token function">sudo</span> <span class="token function">rm</span> -rf /usr/local/bin/docker-compose<span class="token punctuation">;</span>
-
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -f <span class="token string">"/usr/local/bin/docker-compose"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
 <span class="token function">sudo</span> <span class="token function">curl</span> -L https://get.daocloud.io/docker/compose/releases/download/v2.4.1/docker-compose-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -s<span class="token variable">`</span></span>-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -m<span class="token variable">`</span></span> -o /usr/local/bin/docker-compose<span class="token punctuation">;</span>
-
 <span class="token function">wait</span> <span class="token variable">$!</span>
+<span class="token keyword">fi</span>
+
+
+
 
 
 <span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose<span class="token punctuation">;</span>
@@ -859,13 +863,13 @@ wq<span class="token operator">!</span>
 --clientType <span class="token string">"goquorum"</span> <span class="token punctuation">\</span>
 --privacy <span class="token boolean">true</span> <span class="token punctuation">\</span>
 --quorumKeyManager <span class="token boolean">true</span> <span class="token punctuation">\</span>
---monitoring <span class="token boolean">true</span> <span class="token punctuation">\</span>
---blockscout <span class="token boolean">true</span> <span class="token punctuation">\</span>
+--monitoring <span class="token boolean">false</span> <span class="token punctuation">\</span>
+--blockscout <span class="token boolean">false</span> <span class="token punctuation">\</span>
 <span class="token punctuation">;</span>
 
 <span class="token builtin class-name">cd</span> quorum-test-network/network
 ./run.sh
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
