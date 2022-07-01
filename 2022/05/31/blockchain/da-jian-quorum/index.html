@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-06-30
+                    2022-07-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3k
+                    2.7k
                 </div>
                 
 
@@ -701,72 +701,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前置环境"><a href="#前置环境" class="headerlink" title="前置环境"></a>前置环境</h2><h3 id="apt-get命令"><a href="#apt-get命令" class="headerlink" title="apt-get命令"></a>apt-get命令</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/get_set/article/details/51276609">删除软件</a></li>
-</ul>
-<h3 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-exec-command.html">exec命令</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1848185">docker常用命令</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-compose.html">docker-compose</a></p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> <span class="token function">ps</span> // 查看所有正在运行容器
-<span class="token function">docker</span> stop containerId // containerId 是容器的ID
-
-<span class="token function">docker</span> <span class="token function">ps</span> -a // 查看所有容器
-<span class="token function">docker</span> <span class="token function">ps</span> -a -q // 查看所有容器ID
-
-<span class="token function">docker</span> stop <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> <span class="token function">ps</span> -a -q<span class="token variable">)</span></span> //  stop停止所有容器
-<span class="token function">docker</span>  <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> <span class="token function">ps</span> -a -q<span class="token variable">)</span></span> //   remove删除所有容器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h3><ul>
+                <h2 id="前置环境"><a href="#前置环境" class="headerlink" title="前置环境"></a>前置环境</h2><h3 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/99134844256b">什么是geth</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e1292dcc72c1">geth的使用</a></li>
 </ul>
-<h3 id="npx、npm、nrml、node"><a href="#npx、npm、nrml、node" class="headerlink" title="npx、npm、nrml、node"></a>npx、npm、nrml、node</h3><blockquote>
-<p>node</p>
-</blockquote>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#清除缓存</span>
-<span class="token function">sudo</span> <span class="token function">npm</span> cache clean -f
-<span class="token comment"># 安装node安装包</span>
-<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g n
-<span class="token comment"># 更新到最新版本</span>
-<span class="token function">sudo</span> n stable
-<span class="token comment"># 查看版本</span>
-<span class="token function">node</span> -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<blockquote>
-<p> nrm</p>
-</blockquote>
-<p>nrm是一个代理管理器</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装</span>
-<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g nrm
-<span class="token comment"># 列出所有代理源</span>
-nrm <span class="token function">ls</span>
-<span class="token comment"># 切换淘宝源</span>
-nrm use taobao
-<span class="token comment"># 测试所有代理源的速度</span>
-nrm <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>npm</p>
-</blockquote>
-<p>npm 是 JavaScript 世界的包管理工具,并且是 Node.js 平台的默认包管理工具</p>
-<blockquote>
-<p>npx</p>
-</blockquote>
-<p>npx是一个工具，npm v5.2.0引入的一条命令（npx），一个npm包执行器，旨在提高从npm注册表使用软件包的体验 ，npm使得它非常容易地安装和管理托管在注册表上的依赖项，npx使得使用CLI工具和其他托管在注册表。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> nodejs 
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">npm</span>
-<span class="token function">npm</span> <span class="token function">install</span> -g npx
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <h3 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 配置 copy公钥到云服务器</span>
 ssh-copy-id mrl@10.10.10.10  <span class="token comment"># 这里输入自己的用户和ip： 用户名@ip</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
