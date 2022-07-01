@@ -2808,9 +2808,9 @@
       
         <tags>
             
-            <tag> 数学知识 </tag>
-            
             <tag> 枚举 </tag>
+            
+            <tag> 数学知识 </tag>
             
         </tags>
       
@@ -3772,6 +3772,19 @@
     
     <entry>
       <title></title>
+      <link href="/2021/12/14/templates/bo-ke-de-wang-ye-ge-shi/"/>
+      <url>/2021/12/14/templates/bo-ke-de-wang-ye-ge-shi/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/2021/12/14/templates/cf/"/>
       <url>/2021/12/14/templates/cf/</url>
       
@@ -3783,19 +3796,6 @@
           <category> codeforces </category>
           
       </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/2021/12/14/templates/bo-ke-de-wang-ye-ge-shi/"/>
-      <url>/2021/12/14/templates/bo-ke-de-wang-ye-ge-shi/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
       
       
     </entry>
@@ -4534,9 +4534,9 @@
       
         <tags>
             
-            <tag> 数学知识 </tag>
-            
             <tag> 枚举 </tag>
+            
+            <tag> 数学知识 </tag>
             
         </tags>
       
