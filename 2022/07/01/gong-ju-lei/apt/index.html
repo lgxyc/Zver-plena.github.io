@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-01
+                    2022-07-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4
+                    196
                 </div>
                 
 
@@ -702,6 +702,36 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/get_set/article/details/51276609">删除软件</a></p>
+<h2 id="apt-换源"><a href="#apt-换源" class="headerlink" title="apt 换源"></a>apt 换源</h2><p>本机的环境是<code>Ubuntu18.04</code></p>
+<p> TLS 代号是 ：bionic</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+<span class="token comment"># 备份一份原始文件</span>
+<span class="token function">sudo</span> <span class="token builtin class-name">cd</span> /etc/apt
+<span class="token function">cp</span> sources.list sources.list.bak
+
+<span class="token comment"># 替换清华源 </span>
+<span class="token function">sudo</span> <span class="token function">vim</span> sources.list
+
+<span class="token comment"># 选择不同的源替换掉里面的内容 </span>
+
+:wq<span class="token operator">!</span>
+<span class="token comment"># 更新</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> upgrade
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>阿里源</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span>
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span>
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span>
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span>
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>

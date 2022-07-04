@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-01
+                    2022-07-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    308
+                    354
                 </div>
                 
 
@@ -713,6 +713,9 @@ wq<span class="token operator">!</span>
 <p>创建成功会在<code>quorum</code>文件夹里面</p>
 <p>搭建脚本代码</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#! /bin/bash</span>
+
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">vim</span><span class="token punctuation">;</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">curl</span><span class="token punctuation">;</span>
 
 <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -d quorum <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
 	<span class="token function">mkdir</span> quorum<span class="token punctuation">;</span>
@@ -752,20 +755,28 @@ wq<span class="token operator">!</span>
 <span class="token keyword">fi</span>
 
 
+
+<span class="token comment"># 如果你有梯子可以用下面来安装node</span>
+<span class="token comment">#MSG=`which  n`;</span>
+<span class="token comment">#if [ -z ${MSG:0:1} ];then</span>
+<span class="token comment">#	sudo npm install -g n -y;</span>
+<span class="token comment">#fi</span>
+<span class="token comment">#sudo n stable;</span>
+<span class="token comment">#wait $!</span>
+
+
+<span class="token function">curl</span> -fsSL https://rpm.nodesource.com/setup_lts.x <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">bash</span> - 
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> nodejs -y
+
+
+<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> npm@latest
+
 <span class="token assign-left variable">MSG</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">which</span> nrm<span class="token variable">`</span></span><span class="token punctuation">;</span>
 <span class="token keyword">if</span> <span class="token punctuation">[</span> -z <span class="token variable">${MSG<span class="token operator">:</span>0<span class="token operator">:</span>1}</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
-	<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> nrm -y<span class="token punctuation">;</span>
+	<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g nrm -y<span class="token punctuation">;</span>
 <span class="token keyword">fi</span>
 
 <span class="token function">sudo</span> nrm use taobao<span class="token punctuation">;</span>
-
-<span class="token assign-left variable">MSG</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">which</span>  n<span class="token variable">`</span></span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> -z <span class="token variable">${MSG<span class="token operator">:</span>0<span class="token operator">:</span>1}</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
-	<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> n -y<span class="token punctuation">;</span>
-<span class="token keyword">fi</span>
-
-<span class="token function">sudo</span> n stable<span class="token punctuation">;</span>
-
 
 <span class="token assign-left variable">MSG</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">which</span> npx<span class="token variable">`</span></span><span class="token punctuation">;</span>
 <span class="token keyword">if</span> <span class="token punctuation">[</span> -z  <span class="token variable">${MSG<span class="token operator">:</span>0<span class="token operator">:</span>1}</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
@@ -806,7 +817,7 @@ wq<span class="token operator">!</span>
 
 <span class="token builtin class-name">cd</span> quorum-test-network/network
 ./run.sh
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 

@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-01
+                    2022-07-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    196
+                    247
                 </div>
                 
 
@@ -702,8 +702,16 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>node 的安装</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g n
-<span class="token function">sudo</span> n stable <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/nodesource/distributions/blob/master/README.md#rpminstall">手动安装教程</a></p>
+<p>真的太难了，找了好久的手动安装</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 有梯子可以用这个</span>
+<span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> -g n
+<span class="token function">sudo</span> n stable 
+
+<span class="token comment"># 手动下载node16</span>
+<span class="token function">curl</span> -fsSL https://rpm.nodesource.com/setup_lts.x <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">bash</span> -
+<span class="token function">sudo</span> <span class="token function">apt</span> update 
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> nodejs -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
