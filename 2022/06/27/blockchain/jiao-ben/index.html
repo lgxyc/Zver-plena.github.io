@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-04
+                    2022-07-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    354
+                    364
                 </div>
                 
 
@@ -711,11 +711,13 @@ wq<span class="token operator">!</span>
 <span class="token builtin class-name">source</span> install.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>创建成功会在<code>quorum</code>文件夹里面</p>
+<p>一些前置工具</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">curl</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">vim</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>搭建脚本代码</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#! /bin/bash</span>
 
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">vim</span><span class="token punctuation">;</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">curl</span><span class="token punctuation">;</span>
 
 <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -d quorum <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
 	<span class="token function">mkdir</span> quorum<span class="token punctuation">;</span>
@@ -765,8 +767,10 @@ wq<span class="token operator">!</span>
 <span class="token comment">#wait $!</span>
 
 
-<span class="token function">curl</span> -fsSL https://rpm.nodesource.com/setup_lts.x <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">bash</span> - 
+<span class="token function">curl</span> -sL https://deb.nodesource.com/setup_16.x <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">bash</span> -
+<span class="token function">sudo</span> <span class="token function">apt</span> update
 <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> nodejs -y
+<span class="token function">wait</span> <span class="token variable">$!</span>
 
 
 <span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> npm@latest
@@ -801,7 +805,7 @@ wq<span class="token operator">!</span>
 <span class="token comment"># add user into docker group</span>
 <span class="token function">sudo</span> gpasswd -a <span class="token environment constant">$USER</span> <span class="token function">docker</span>
 <span class="token comment"># add user into docker group</span>
-<span class="token comment"># newgrp docker</span>
+newgrp <span class="token function">docker</span>
 
 <span class="token function">sudo</span> <span class="token function">service</span> <span class="token function">docker</span> restart<span class="token punctuation">;</span>
 
