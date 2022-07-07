@@ -1,0 +1,43 @@
+<hr>
+<h2 id="abbrlink-9"><a href="#abbrlink-9" class="headerlink" title="abbrlink: 9"></a>abbrlink: 9</h2><h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="推荐书籍"><a href="#推荐书籍" class="headerlink" title="推荐书籍"></a>推荐书籍</h2><ul>
+<li>大话设计模式</li>
+</ul>
+<h2 id="1-singleton"><a href="#1-singleton" class="headerlink" title="1.singleton"></a>1.singleton</h2><h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><blockquote>
+<p>优点</p>
+</blockquote>
+<ol>
+<li>提前加载对象</li>
+<li><blockquote>
+<p>缺点</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h3><blockquote>
+<p>优点<br>​		延迟建立对象</p>
+</blockquote>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<p>容易造成多线程的不安全</p>
+<h4 id="懒汉式创建方法"><a href="#懒汉式创建方法" class="headerlink" title="懒汉式创建方法"></a>懒汉式创建方法</h4><h5 id="普通懒汉式代码实现"><a href="#普通懒汉式代码实现" class="headerlink" title="普通懒汉式代码实现"></a>普通懒汉式代码实现</h5><pre><code class="java">class Person{
+    private static Person instance=null;
+    public static Person getInstance(){
+        if(instance==null){
+            instance=new person();
+        }
+        return instance;
+    }
+}
+</code></pre>
+<h5 id="多线程安全懒汉式代码实现"><a href="#多线程安全懒汉式代码实现" class="headerlink" title="多线程安全懒汉式代码实现"></a>多线程安全懒汉式代码实现</h5><pre><code class="java">class Person {
+    private static Person instance=null;
+    public static Person getInstance(){
+        if(instance==null){
+            synchronized(Person.class){
+                instance=new Person();
+            }
+        }
+        return instance;
+    }
+}
+</code></pre>

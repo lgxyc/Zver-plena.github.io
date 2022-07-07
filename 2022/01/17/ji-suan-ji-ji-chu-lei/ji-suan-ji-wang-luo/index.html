@@ -649,8 +649,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/course/" class="post-category">
-                                course
+                            <a href="/categories/computer/" class="post-category">
+                                computer
                             </a>
                         
                     </div>
@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-01
+                    2022-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.4k
+                    2.1k
                 </div>
                 
 
@@ -701,7 +701,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h2><h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><h3 id="物理层的基本概念"><a href="#物理层的基本概念" class="headerlink" title="物理层的基本概念"></a>物理层的基本概念</h3><h3 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h3><h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><h3 id="编码与编制"><a href="#编码与编制" class="headerlink" title="编码与编制"></a>编码与编制</h3><h3 id="通道的极限容量"><a href="#通道的极限容量" class="headerlink" title="通道的极限容量"></a>通道的极限容量</h3><h3 id="物理层的总结"><a href="#物理层的总结" class="headerlink" title="物理层的总结"></a>物理层的总结</h3><h2 id="3-数据链路层"><a href="#3-数据链路层" class="headerlink" title="3. 数据链路层"></a>3. 数据链路层</h2><h3 id="数据链路层概述"><a href="#数据链路层概述" class="headerlink" title="数据链路层概述"></a>数据链路层概述</h3><p><code> 链路（Link）</code>就是从一个结点到相邻结点的一段物理线路，而中间没有任何其他的交换结点。</p>
+                <h2 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h2><p><code>协议 (protocol) </code>定义了在两个或多个通信实体之间交换的报文的格式和顺 序，以及报文发送和/或接收一条报文或其他事件所采取的动作 。</p>
+<h3 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a>网络核心</h3><h4 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h4><p>路由器在转发前需要接受，存储和处理整个分组</p>
+<p>如果不存储，一旦比特到达就转发比特，</p>
+<p>那么为了你当前的数据可以被完整的转发到目的地，那条线路会被一直占用；</p>
+<p>如果你存储，那么在你存储的过程中，这条线路可以用做其他组到达的且已经存储完的数据转发</p>
+<p>实现共享网络</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><h3 id="物理层的基本概念"><a href="#物理层的基本概念" class="headerlink" title="物理层的基本概念"></a>物理层的基本概念</h3><h3 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h3><h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><h3 id="编码与编制"><a href="#编码与编制" class="headerlink" title="编码与编制"></a>编码与编制</h3><h3 id="通道的极限容量"><a href="#通道的极限容量" class="headerlink" title="通道的极限容量"></a>通道的极限容量</h3><h3 id="物理层的总结"><a href="#物理层的总结" class="headerlink" title="物理层的总结"></a>物理层的总结</h3><h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><h3 id="数据链路层概述"><a href="#数据链路层概述" class="headerlink" title="数据链路层概述"></a>数据链路层概述</h3><p><code> 链路（Link）</code>就是从一个结点到相邻结点的一段物理线路，而中间没有任何其他的交换结点。</p>
 <p><code>数据链路（Data Link）</code>是指把实现通信协议的硬件和软件加到链路上，就构成了数据链路。</p>
 <p>数据链路层以<code>帧</code>为单位传输 和处理数据。</p>
 <h3 id="数据链路层的重要问题"><a href="#数据链路层的重要问题" class="headerlink" title="数据链路层的重要问题"></a>数据链路层的重要问题</h3><p>使用点对点信道的数据链路层</p>
@@ -912,7 +918,7 @@
 </table>
 <p><strong>可靠传输的实现机制–回退N帧协议GBN</strong></p>
 <p> <strong>可靠传输的实现机制–选择重传SR</strong></p>
-<h3 id="3-5-点对点协议PPP"><a href="#3-5-点对点协议PPP" class="headerlink" title="3.5.点对点协议PPP"></a>3.5.点对点协议PPP</h3><h3 id="3-6-媒体接入"><a href="#3-6-媒体接入" class="headerlink" title="3.6.媒体接入"></a>3.6.媒体接入</h3><h4 id="3-6-1-媒体接入控制的基本概念"><a href="#3-6-1-媒体接入控制的基本概念" class="headerlink" title="3.6.1.媒体接入控制的基本概念"></a>3.6.1.媒体接入控制的基本概念</h4><h4 id="3-6-2-媒体接入控制–静态划分信道"><a href="#3-6-2-媒体接入控制–静态划分信道" class="headerlink" title="3.6.2.媒体接入控制–静态划分信道"></a>3.6.2.媒体接入控制–静态划分信道</h4><h4 id="3-6-3-随机接入-—CSMA-x2F-CD协议"><a href="#3-6-3-随机接入-—CSMA-x2F-CD协议" class="headerlink" title="3.6.3. 随机接入 —CSMA/CD协议"></a>3.6.3. 随机接入 —CSMA/CD协议</h4><h4 id="3-6-4-随机接入—-CSMA-x2F-CA协议"><a href="#3-6-4-随机接入—-CSMA-x2F-CA协议" class="headerlink" title="3.6.4.随机接入— CSMA/CA协议"></a>3.6.4.随机接入— CSMA/CA协议</h4><h3 id="3-7-地址"><a href="#3-7-地址" class="headerlink" title="3.7 地址"></a>3.7 地址</h3><h4 id="3-7-1-MAC地址"><a href="#3-7-1-MAC地址" class="headerlink" title="3.7.1.MAC地址"></a>3.7.1.MAC地址</h4><h4 id="3-7-2-IP地址"><a href="#3-7-2-IP地址" class="headerlink" title="3.7.2.IP地址"></a>3.7.2.IP地址</h4><h4 id="3-7-3-ARP地址"><a href="#3-7-3-ARP地址" class="headerlink" title="3.7.3.ARP地址"></a>3.7.3.ARP地址</h4><h3 id="3-8-集线器与交换机"><a href="#3-8-集线器与交换机" class="headerlink" title="3.8.集线器与交换机"></a>3.8.集线器与交换机</h3><h4 id="3-8-1-集线器与交换机的区别"><a href="#3-8-1-集线器与交换机的区别" class="headerlink" title="3.8.1.集线器与交换机的区别"></a>3.8.1.集线器与交换机的区别</h4><h3 id="3-9-以太网交换机自学习和转发帧的流程"><a href="#3-9-以太网交换机自学习和转发帧的流程" class="headerlink" title="3.9.以太网交换机自学习和转发帧的流程"></a>3.9.以太网交换机自学习和转发帧的流程</h3><h3 id="3-10-以太网交换机的生成协议STP"><a href="#3-10-以太网交换机的生成协议STP" class="headerlink" title="3.10.以太网交换机的生成协议STP"></a>3.10.以太网交换机的生成协议STP</h3><h3 id="3-11-虚拟局域网VLAN"><a href="#3-11-虚拟局域网VLAN" class="headerlink" title="3.11.虚拟局域网VLAN"></a>3.11.虚拟局域网VLAN</h3><h4 id="3-11-1-虚拟局域网VLAN的概述"><a href="#3-11-1-虚拟局域网VLAN的概述" class="headerlink" title="3.11.1.虚拟局域网VLAN的概述"></a>3.11.1.虚拟局域网VLAN的概述</h4><h4 id="3-11-2-虚拟局域网VLAN的实现机制"><a href="#3-11-2-虚拟局域网VLAN的实现机制" class="headerlink" title="3.11.2.虚拟局域网VLAN的实现机制"></a>3.11.2.虚拟局域网VLAN的实现机制</h4><h2 id="4-网络层"><a href="#4-网络层" class="headerlink" title="4. 网络层"></a>4. 网络层</h2><h3 id="4-1-网络层的概述"><a href="#4-1-网络层的概述" class="headerlink" title="4.1.网络层的概述"></a>4.1.网络层的概述</h3><h3 id="4-2-网络层提供的两种服务"><a href="#4-2-网络层提供的两种服务" class="headerlink" title="4.2.网络层提供的两种服务"></a>4.2.网络层提供的两种服务</h3><h3 id="4-3-IPv4地址"><a href="#4-3-IPv4地址" class="headerlink" title="4.3.IPv4地址"></a>4.3.IPv4地址</h3><h4 id="4-3-1-分类编址的IPv4地址"><a href="#4-3-1-分类编址的IPv4地址" class="headerlink" title="4.3.1.分类编址的IPv4地址"></a>4.3.1.分类编址的IPv4地址</h4><h4 id="4-3-2-划分子网的IPv4地址"><a href="#4-3-2-划分子网的IPv4地址" class="headerlink" title="4.3.2.划分子网的IPv4地址"></a>4.3.2.划分子网的IPv4地址</h4><h4 id="4-3-3-无分类编址的IPv4地址"><a href="#4-3-3-无分类编址的IPv4地址" class="headerlink" title="4.3.3.无分类编址的IPv4地址"></a>4.3.3.无分类编址的IPv4地址</h4><h4 id="4-3-4-IPv4地址的应用规划"><a href="#4-3-4-IPv4地址的应用规划" class="headerlink" title="4.3.4.IPv4地址的应用规划"></a>4.3.4.IPv4地址的应用规划</h4><h3 id="4-4-IP数据报发送和转发过程"><a href="#4-4-IP数据报发送和转发过程" class="headerlink" title="4.4.IP数据报发送和转发过程"></a>4.4.IP数据报发送和转发过程</h3><h3 id="4-5-静态路由配置及其可能产生的路由环路问题"><a href="#4-5-静态路由配置及其可能产生的路由环路问题" class="headerlink" title="4.5.静态路由配置及其可能产生的路由环路问题"></a>4.5.静态路由配置及其可能产生的路由环路问题</h3><h3 id="4-6-路由选择协议"><a href="#4-6-路由选择协议" class="headerlink" title="4.6.路由选择协议"></a>4.6.路由选择协议</h3><h4 id="4-6-1-路由选择协议概述"><a href="#4-6-1-路由选择协议概述" class="headerlink" title="4.6.1.路由选择协议概述"></a>4.6.1.路由选择协议概述</h4><h4 id="4-6-2-路由信息协议RIP"><a href="#4-6-2-路由信息协议RIP" class="headerlink" title="4.6.2.路由信息协议RIP"></a>4.6.2.路由信息协议RIP</h4><h4 id="4-6-3-开放最短路优先OSPF"><a href="#4-6-3-开放最短路优先OSPF" class="headerlink" title="4.6.3.开放最短路优先OSPF"></a>4.6.3.开放最短路优先OSPF</h4><h4 id="4-6-4-边界网关协议BGP"><a href="#4-6-4-边界网关协议BGP" class="headerlink" title="4.6.4.边界网关协议BGP"></a>4.6.4.边界网关协议BGP</h4><h3 id="4-7-IPv4数据报的首部格式"><a href="#4-7-IPv4数据报的首部格式" class="headerlink" title="4.7.IPv4数据报的首部格式"></a>4.7.IPv4数据报的首部格式</h3><h3 id="4-8-网际控制报文协议ICMP"><a href="#4-8-网际控制报文协议ICMP" class="headerlink" title="4.8.网际控制报文协议ICMP"></a>4.8.网际控制报文协议ICMP</h3><h3 id="4-9-虚拟专用网VPN与网络地址转换NAT"><a href="#4-9-虚拟专用网VPN与网络地址转换NAT" class="headerlink" title="4.9.虚拟专用网VPN与网络地址转换NAT"></a>4.9.虚拟专用网VPN与网络地址转换NAT</h3><h2 id="5-运输层"><a href="#5-运输层" class="headerlink" title="5. 运输层"></a>5. 运输层</h2><h3 id="5-1-运输层概述"><a href="#5-1-运输层概述" class="headerlink" title="5.1.运输层概述"></a>5.1.运输层概述</h3><h3 id="5-2-运输层端口号-复用与分用的概念"><a href="#5-2-运输层端口号-复用与分用的概念" class="headerlink" title="5.2.运输层端口号,复用与分用的概念"></a>5.2.运输层端口号,复用与分用的概念</h3><h3 id="5-3-UDP和TCP的对比"><a href="#5-3-UDP和TCP的对比" class="headerlink" title="5.3.UDP和TCP的对比"></a>5.3.UDP和TCP的对比</h3><h3 id="5-4-TCP的流量控制"><a href="#5-4-TCP的流量控制" class="headerlink" title="5.4.TCP的流量控制"></a>5.4.TCP的流量控制</h3><h3 id="5-5-TCP的堵塞控制"><a href="#5-5-TCP的堵塞控制" class="headerlink" title="5.5.TCP的堵塞控制"></a>5.5.TCP的堵塞控制</h3><h3 id="5-6-TCP超时重传时间的选择"><a href="#5-6-TCP超时重传时间的选择" class="headerlink" title="5.6.TCP超时重传时间的选择"></a>5.6.TCP超时重传时间的选择</h3><h3 id="5-7-TCP可靠传输的实现"><a href="#5-7-TCP可靠传输的实现" class="headerlink" title="5.7.TCP可靠传输的实现"></a>5.7.TCP可靠传输的实现</h3><h3 id="5-8-TCP的运输连接管理"><a href="#5-8-TCP的运输连接管理" class="headerlink" title="5.8.TCP的运输连接管理"></a>5.8.TCP的运输连接管理</h3><h4 id="5-8-1-TCP连接建立"><a href="#5-8-1-TCP连接建立" class="headerlink" title="5.8.1.TCP连接建立"></a>5.8.1.TCP连接建立</h4><h4 id="5-8-2-TCP连接释放"><a href="#5-8-2-TCP连接释放" class="headerlink" title="5.8.2.TCP连接释放"></a>5.8.2.TCP连接释放</h4><h3 id="5-9-TCP报文段的首部格式"><a href="#5-9-TCP报文段的首部格式" class="headerlink" title="5.9.TCP报文段的首部格式"></a>5.9.TCP报文段的首部格式</h3><h2 id="6-应用层"><a href="#6-应用层" class="headerlink" title="6. 应用层"></a>6. 应用层</h2><h3 id="6-1-应用层概述"><a href="#6-1-应用层概述" class="headerlink" title="6.1.应用层概述"></a>6.1.应用层概述</h3><h3 id="6-2-客户-服务器方式和对等方式"><a href="#6-2-客户-服务器方式和对等方式" class="headerlink" title="6.2.客户-服务器方式和对等方式"></a>6.2.客户-服务器方式和对等方式</h3><h3 id="6-3-动态主机配置协议DHCP"><a href="#6-3-动态主机配置协议DHCP" class="headerlink" title="6.3.动态主机配置协议DHCP"></a>6.3.动态主机配置协议DHCP</h3><h3 id="6-4-域名系统DNS"><a href="#6-4-域名系统DNS" class="headerlink" title="6.4.域名系统DNS"></a>6.4.域名系统DNS</h3><h3 id="6-5-文件传送协议FTP"><a href="#6-5-文件传送协议FTP" class="headerlink" title="6.5.文件传送协议FTP"></a>6.5.文件传送协议FTP</h3><h3 id="6-6-电子邮件"><a href="#6-6-电子邮件" class="headerlink" title="6.6.电子邮件"></a>6.6.电子邮件</h3><h3 id="6-7-万维网WWW"><a href="#6-7-万维网WWW" class="headerlink" title="6.7.万维网WWW"></a>6.7.万维网WWW</h3>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
                 
             </div>
             <hr/>
@@ -1238,7 +1244,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/01/17/ji-suan-ji-yu-yan-lei/java-main/io-liu/">
+                <a href="/2022/01/17/bian-cheng-yu-yan/java-main/io-liu/">
                     <div class="card-image">
                         
                         

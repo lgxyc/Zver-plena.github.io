@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-05
+                    2022-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.5k
+                    3.6k
                 </div>
                 
 
@@ -1012,7 +1012,27 @@ s: DATA, <span class="token number">32</span> Bytes - ECDSA signature s<span ari
 
 
 
-<h2 id="quorum-test"><a href="#quorum-test" class="headerlink" title="quorum-test"></a>quorum-test</h2><h3 id="Geth"><a href="#Geth" class="headerlink" title="Geth"></a>Geth</h3><h3 id="部署合约"><a href="#部署合约" class="headerlink" title="部署合约"></a>部署合约</h3><p>test环境提供了一个简单的合约和部署的js代码来演示了如何进行合约的部署</p>
+<h2 id="quorum-test"><a href="#quorum-test" class="headerlink" title="quorum-test"></a>quorum-test</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">attach.sh 	连接geth节点
+remove.sh 	删除所有docker容器
+run.sh 		启动docker容器
+stop.sh 	停止docker容器
+restart.sh  重启所有docker容器
+list.sh 	查看开启的服务
+.env		环境配置
+logs/		日志文件
+logstash/ 	日志收集工具
+metricbeat/ 	工具
+filebeat/ 	工具
+splunk/		工具
+config/ 		放置了goquorum,nodes,tessera和一些工具的配置，quorum共识机制的切换
+quorum-explorer/  信息
+smart_contracts/ 	写和部署智能合约
+extra/ 		生成一个新节点
+dapps/ 		快速启动一个dapp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="Geth"><a href="#Geth" class="headerlink" title="Geth"></a>Geth</h3><h3 id="部署合约"><a href="#部署合约" class="headerlink" title="部署合约"></a>部署合约</h3><p>test环境提供了一个简单的合约和部署的js代码来演示了如何进行合约的部署</p>
 <p><code>SimpleStorage.sol</code></p>
 <pre class="line-numbers language-solidity" data-language="solidity"><code class="language-solidity"><span class="token keyword">pragma</span> <span class="token keyword">solidity</span> <span class="token operator">^</span><span class="token version number">0.7.0</span><span class="token punctuation">;</span>
 
