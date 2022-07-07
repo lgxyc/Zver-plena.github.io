@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="区块链技术与应用[课程], Lambda">
+    <meta name="keywords" content="以太坊, Lambda">
     <meta name="description" content="Where there is a will , there is a way">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -29,7 +29,7 @@
     </style>
 
 
-    <title>区块链技术与应用[课程] | Lambda</title>
+    <title>以太坊 | Lambda</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -514,12 +514,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">区块链技术与应用[课程]</h1>
+                    <h1 class="description center-align post-title">以太坊</h1>
                 </div>
             </div>
         </div>
@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-06-24
+                    2022-07-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    402
+                    3.6k
                 </div>
                 
 
@@ -701,50 +701,293 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Bit"><a href="#Bit" class="headerlink" title="Bit"></a>Bit</h2><h2 id="ETH-ethereum"><a href="#ETH-ethereum" class="headerlink" title="ETH(ethereum)"></a>ETH(ethereum)</h2><h3 id="状态树"><a href="#状态树" class="headerlink" title="状态树"></a>状态树</h3><ul>
-<li>以太坊全部账户</li>
-</ul>
-<h3 id="交易树和收据树"><a href="#交易树和收据树" class="headerlink" title="交易树和收据树"></a>交易树和收据树</h3><p>交易树的对象：一个区块内的所有<code>Tx</code>（Transaction）</p>
-<hr>
+                <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="MPT"><a href="#MPT" class="headerlink" title="MPT"></a>MPT</h3><p>在以太坊中交易树、状态树和收据树的数据结构都是MPT</p>
+<p>交易树的对象：一个区块内的所有<code>Tx</code>（Transaction）</p>
 <p>收据树的对象：每个 <code>Tx</code> 的收据</p>
 <p>收据树和交易树 一一 对应</p>
-<h4 id="收据树的结构体"><a href="#收据树的结构体" class="headerlink" title="收据树的结构体"></a>收据树的结构体</h4><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">type</span> Receipt <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-	<span class="token comment">// Consensus fields: These fields are defined by the Yellow Paper</span>
-	Type              <span class="token builtin">uint8</span>  <span class="token string">`json:"type,omitempty"`</span>
-	PostState         <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span> <span class="token string">`json:"root"`</span>
-	Status            <span class="token builtin">uint64</span> <span class="token string">`json:"status"`</span>
-	CumulativeGasUsed <span class="token builtin">uint64</span> <span class="token string">`json:"cumulativeGasUsed" gencodec:"required"`</span>
-	<span class="token comment">//Bloom Filter</span>
-    Bloom             Bloom  <span class="token string">`json:"logsBloom"         gencodec:"required"`</span>
-	<span class="token comment">//一个交易可以包含多个log</span>
-    <span class="token comment">//Bloom的摘要就是根据这些log生成</span>
-    Logs              <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>Log <span class="token string">`json:"logs"              gencodec:"required"`</span>
-
-	<span class="token comment">// Implementation fields: These fields are added by geth when processing a transaction.</span>
-	<span class="token comment">// They are stored in the chain database.</span>
-	TxHash          common<span class="token punctuation">.</span>Hash    <span class="token string">`json:"transactionHash" gencodec:"required"`</span>
-	ContractAddress common<span class="token punctuation">.</span>Address <span class="token string">`json:"contractAddress"`</span>
-	GasUsed         <span class="token builtin">uint64</span>         <span class="token string">`json:"gasUsed" gencodec:"required"`</span>
-
-	<span class="token comment">// Inclusion information: These fields provide information about the inclusion of the</span>
-	<span class="token comment">// transaction corresponding to this receipt.</span>
-	BlockHash        common<span class="token punctuation">.</span>Hash <span class="token string">`json:"blockHash,omitempty"`</span>
-	BlockNumber      <span class="token operator">*</span>big<span class="token punctuation">.</span>Int    <span class="token string">`json:"blockNumber,omitempty"`</span>
-	TransactionIndex <span class="token builtin">uint</span>        <span class="token string">`json:"transactionIndex"`</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="收据树的作用"><a href="#收据树的作用" class="headerlink" title="收据树的作用"></a>收据树的作用</h4><p>在以太坊中最重要的功能是加入了智能合约，而智能合约的执行过程比较复杂，收据树的作用是利于系统快速查询执行结果。</p>
+<p>收据树的作用</p>
+<p>在以太坊中最重要的功能是加入了智能合约，而智能合约的执行过程比较复杂，收据树的作用是利于系统快速查询执行结果。</p>
 <p>而在收据树中，是通过<code>Bloom Filter</code> 来实现这样的功能</p>
-<h3 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h3><p>为范围存储的东西提供一个紧凑的摘要</p>
-<p><strong>特点</strong></p>
+<h3 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h3><p>在<code>block Header</code>会有一个<code>Bloom Fliter</code>来查找交易是否存在当前区块</p>
+<p>在<code>recipt tree</code>中也会有一个<code>Bloom Fliter</code>来快速查找</p>
+<p>为范围存储的东西提供一个紧凑的摘要</p>
+<p>布隆过滤器可以用于检索一个元素是否在一个集合中</p>
+<p>计算过程</p>
+<ul>
+<li>首先需要k个hash函数，每个函数可以把key散列成为1个整数</li>
+<li>初始化时，需要一个长度为n比特的数组，每个比特位初始化为0</li>
+<li>某个key加入集合时，用k个hash函数计算出k个散列值，并把数组中对应的比特位置为1</li>
+<li>判断某个key是否在集合时，用k个hash函数计算出k个散列值，并查询数组中对应的比特位，如果所有的比特位都是1，认为在集合中。</li>
+</ul>
+<p>优</p>
 <ul>
 <li>可以高效的查询某个元素是否在集合之中</li>
-<li>可能出现误报，但不一定不会出现漏报</li>
-<li>简单的Bloom FIlter不能处理删除操作，因为同一个位置可能存在多个东西，如果想要支持删除操作，需要在摘要的每一位提供一个计数器。需要存储很多额外信息</li>
+<li>时间和空间常数级别</li>
+<li>简单的Bloom FIlter不能处理删除操作。</li>
 </ul>
-<h3 id="GOSTH协议"><a href="#GOSTH协议" class="headerlink" title="GOSTH协议"></a>GOSTH协议</h3>
+<p>缺点</p>
+<ul>
+<li>可能出现误报，但不一定不会出现漏报，误判率</li>
+</ul>
+<p>使用Bloom Filter可以快速的反馈要查询的交易是否在当前区块，</p>
+<p>减少了遍历区块的次数，加快了查找交易的速度</p>
+<h3 id="GOSTH协议"><a href="#GOSTH协议" class="headerlink" title="GOSTH协议"></a>GOSTH协议</h3><h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><h2 id="账户"><a href="#账户" class="headerlink" title="账户"></a>账户</h2><p>以太坊中新出现了一个概念：账户（Account）</p>
+<p>账户由公钥和私钥控制， 账户的地址索引是公钥的后20字节。</p>
+<p>账户一般分类两种类型：</p>
+<ul>
+<li>外部账户：简称为：”账户“、由人创建、存储以太币、由公钥和私钥控制</li>
+<li>合约账户：由外部账户创建的账户 ？合约账户是什么</li>
+</ul>
+<p>一个以太坊的的账户包含如下四个部分</p>
+<ul>
+<li>该地址的交易次数</li>
+<li>用于保障每笔能且只能被处理一次的计数器；有效避免 replay 攻击？什么是replay攻击</li>
+<li>账户目前的余额</li>
+<li>账户的合约二进制代码（如果是合约账户)</li>
+</ul>
+<h2 id="共识机制"><a href="#共识机制" class="headerlink" title="共识机制"></a>共识机制</h2><h3 id="POW-proof-of-work-工作证明"><a href="#POW-proof-of-work-工作证明" class="headerlink" title="POW(proof of work) 工作证明"></a>POW(proof of work) 工作证明</h3><p>ASIC(Application Specific Integrated Circuit)即专用集成电路</p>
+<p><code>Ethash</code>特点</p>
+<ul>
+<li>挖矿的效率与cpu无关</li>
+<li>而内存大小和带宽正相关</li>
+<li>目的就是为了去除专用硬件的优势</li>
+</ul>
+<p><code>Ethash</code> 算法的基本流程</p>
+<ul>
+<li><p>对于每一个区块，都能通过扫描区块头的方式计算出一个种子（seed），该种子只与当前区块有关</p>
+</li>
+<li><p>使用种子能产生一个16MB的伪随机缓存，轻客户端会存储缓存</p>
+</li>
+<li><p>基于缓存再生成一个1GB的数据集，称其为DAG。数据集中的每一个元素都只依赖于缓存中的某几个元素</p>
+</li>
+<li><p>挖矿的过程就是从<code>DAG</code>中随机选择进行散列运算</p>
+</li>
+<li><p>验证者只需要花费少量的内存存储缓存就可以了，因为验证者能够基于缓存计算得到DAG中自己需要的指定位置的元素，然后验证这些指定元素的散列是不是小于某个散列值，也就是验证“矿工”的工作是否符合要求</p>
+</li>
+</ul>
+<p>缓存和<code>DAG</code>中每增加30000个区块更新一次，所以绝大多数的“矿工”将把精力放在读取数据集上，而不是改变它。</p>
+<ul>
+<li>缓存大小设置为16MB<ul>
+<li>是因为一个基于较小缓存的ASIC更容易被生产，16MB的缓存仍然需要非常高的带宽读取，而较小的缓存更容易进行优化</li>
+</ul>
+</li>
+<li>将<code>DAG</code>的大小设为1GB<ul>
+<li>使其内存大于大多数专门的存储器和高速缓存器，但是对于普通的计算机而言它仍然足够的小，能够利用它进行挖矿活动</li>
+</ul>
+</li>
+</ul>
+<p><code>PoW</code>依赖进行散列运算从而获得记账权</p>
+<p>资源消费相比其他共识机制高，性能效率低</p>
+<p>所以以太坊在项目成立之初就实现由<code>PoW</code> 逐渐切换到<code>PoS</code>。</p>
+<h3 id="PoS（proof-of-stake）权益证明"><a href="#PoS（proof-of-stake）权益证明" class="headerlink" title="PoS（proof of stake）权益证明"></a>PoS（proof of stake）权益证明</h3><p>分布式面临的问题： 拜占庭将军问题（BFT）</p>
+<p>pos:抵押代币越多，权重越大</p>
+<p><code>pos算法</code>的描述：</p>
+<p>以太坊区块链由一组验证者决定，任何持有以太币的用户都能发起一笔特殊形式的交易，将他们的以太币锁定在一个存储中，从而使自己成为验证者，然后通过一个当前的验证者都能参与的共识算法，完成新区块的产生和验证过程。</p>
+<p><code>pos算法</code>主要有两种类型的</p>
+<ul>
+<li><p>基于链的PoS</p>
+</li>
+<li><p>Byzantine Fault Tolerant 风格的PoS</p>
+</li>
+</ul>
+<p>基于链的Pos：</p>
+<p>该算法在每个时隙内伪随机地从验证者集合中选择一个验证者（比如，设置每10s一个周期，每个周期都是一个时隙），给予验证者创建新区块的权利，但是验证者要确保该块指向最多的块，因此，随着时间的推移，大多数的块都收敛到一条链上</p>
+<p>Byzantine Fault Tolerant 风格的PoS：</p>
+<p>分配给验证者相对的权利，让他们有权提出块并且给被提出的块投票，从而决定哪个块是新块，并在每一轮选出一个新块加入区块链。在每一轮中，每一个验证者都为某一特定的块进行“投票”，最后所有在线和诚实的验证者都将“商量”被给定的块是否可以添加到区块链中，并且意见不能改变</p>
+<p>pos的优点：</p>
+<ul>
+<li><p>不需要为了保证区块链的安全而消耗大量的电力资源。由于消耗较少，通过发行新币以激励参与者继续参与网络活动的压力会减少</p>
+</li>
+<li><p>随着规模经济（指扩大生产规模引起经济效益增加的现象）的消失，中心化所带来的风险减小。价值100万法币的以太币带来的回报比10万法币带来的多10倍，不会有人负担大规模的生产工具却得不到相应的回报</p>
+</li>
+<li><p>PoS更安全。其实施的奖励惩罚措施使得各种恶意攻击变得极其昂贵，从而确保网络安全</p>
+</li>
+</ul>
+<p>惩罚机制</p>
+<p>早期惩罚机制</p>
+<ul>
+<li>Slasher：即如果验证者在不同的链上创建块，则在某个事后的时间点将能证明他们错误行为的记录包含在区块链中，并对他们做出扣除押金的惩罚</li>
+<li>第二种：惩罚验证者在错链上出块的行为。</li>
+</ul>
+<p>以太坊PoS算法典型的带有惩罚机制的应用是<code>Casper</code></p>
+<p>出块原理：</p>
+<p>Casper里有很多抵押了一定代币的验证人，这些验证人将会对新块进行投票以决定它是否有效，最后根据投票结果形成大多数人意见（即多数人认为新块有效则新块就是有效的），之前投票新块有效的用户将会收回押金并获得奖励，而“作恶”的用户将会被没收保证金。</p>
+<h2 id="以太币"><a href="#以太币" class="headerlink" title="以太币"></a>以太币</h2><p>以太币的来源</p>
+<ul>
+<li>矿前预付款</li>
+<li>区块奖励<ul>
+<li>新区块奖励+交易手续费</li>
+</ul>
+</li>
+<li>叔区块奖励<ul>
+<li>被引用后得到报酬跟区块引用的间隔层数有关、如下图</li>
+</ul>
+</li>
+<li>叔区块引用奖励 <ul>
+<li>一个区块最多引用两个叔区块，无法重复引用</li>
+<li>得到1/32的奖励，大约0.15个以太币</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2022/06/24/blockchain/yi-tai-fang/image-20220628220406345.png" alt="image-20220628220406345"></p>
+<p>以太币的货币单位</p>
+<ul>
+<li><p><code>wei</code> : </p>
+</li>
+<li><p><code>Kwei</code> :  1e3 wei</p>
+</li>
+<li><p><code>Mwei</code> : 1e6 wei</p>
+</li>
+<li><p><code>Gwei</code> : 1e9 wei</p>
+</li>
+<li><p><code>microether</code> : 1e12 wei</p>
+</li>
+<li><p><code>millieether</code> : 1e15 wei</p>
+</li>
+<li><p><code>ether</code>: 1e18 wei</p>
+</li>
+</ul>
+<p>以太坊上所有的账户管理和智能合约的部署都需要花费以太币，因此每个以太坊账户都需要获取以太币，这就促使了矿工挖矿。每当一个矿工挖出一个新的区块，他就能获得一笔奖励，这笔奖励由两部分构成，分为静态奖励和动态奖励。</p>
+<ul>
+<li>静态奖励：直接获取以太币奖励</li>
+<li>动态奖励：如果存在叔区块，还可以从每个叔区块引用中获得额外的挖矿奖励的1/32（大约0.15个以太币），当然每个区块最多引用2个叔区块，被引用过的叔区块不能重复利用</li>
+</ul>
+<p>以太币交易所</p>
+<ul>
+<li>Coinbase</li>
+<li>CEX.io</li>
+<li>Bittrex</li>
+</ul>
+<h2 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h2><p>每一次交易都需要支付费用</p>
+<ul>
+<li><p>以太坊上的每一笔交易都需要支付一定的费用，用于支付交易执行所需要的计算开销。</p>
+</li>
+<li><p>计算开销的费用并不是以太币直接计算的，而是引入Gas作为执行开销的基本单位，通过GasPrice与以太币进行换算的。</p>
+</li>
+<li><p>GasPrice根据市场波动调整，避免以太币价值受市场价格的影响</p>
+</li>
+</ul>
+<hr>
+<p><strong>常见操作与Gas消耗</strong></p>
+<p><img src="/2022/06/24/blockchain/yi-tai-fang/image-20220628220951796.png" alt="image-20220628220951796"></p>
+<p>目前以太坊钱包客户端默认的GasPrice是0.000000001 Ether /Gas</p>
+<p>也就是1Gwei/Gas</p>
+<p>一般矿工来打包交易的时候也是按照Gas * Gas Price 从大到小进行排序</p>
+<p>所以对于网络高峰期，gas费用越多，越容易被尽快打包进区块中</p>
+<hr>
+<p><strong>Gas LImit</strong></p>
+<p>Tx Gas Limit </p>
+<ul>
+<li>交易的发起者愿意为这次交易执行所支付的<code>Gas</code>最大数量；需要发送者在交易的时候设置</li>
+<li><code>Gas Limit</code>可以保护用户免受错误代码影响导致消耗过多的交易费</li>
+<li>因为智能合约的复杂，所以交易的发送者并不能很准确的预估交易所会消耗的Gas</li>
+</ul>
+<p>Block Gas Limit</p>
+<ul>
+<li>单个区块所允许包含的最大Gas总数；由矿工决定</li>
+<li><code>Gas Limit</code>设置得越大，那么矿工可以获取很多交易费，但是会需要更多的时间，可能导致当前块不是最长链，因此矿工也不能任意的改变<code>Gas Limit</code></li>
+<li>目前以太坊协议，当前区块的<code>Gas Limit</code>只能基于上一个区块的<code>Gas Limit</code>上下波动1/1024</li>
+<li></li>
+</ul>
+<hr>
+<p><strong>交易内容</strong></p>
+<ul>
+<li><code>from</code></li>
+<li><code>to</code></li>
+<li><code>value</code>：转移的金额</li>
+<li><code>data：</code>：合约代码</li>
+<li><code>Gas Limit</code></li>
+<li><code>GasPrice</code></li>
+<li><code>nonce</code>:  用来区别同一用户发出的不同交易的标记</li>
+<li><code>hash</code>：</li>
+<li><code>r、s、v</code>:交易签名的三个部分，由发送者的私钥对交易hash进行签名生成</li>
+</ul>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/books/geth/part2/txpool/txpool.html">以太坊交易池设计</a></p>
+<p><strong>交易的过程</strong></p>
+<ul>
+<li><p><code>用户A</code> 按照格式要求在以太坊网络发起一个交易请求,该请求传向<code>用户A</code>的对等节点</p>
+</li>
+<li><p><code>用户B</code> 同步了次交易</p>
+<ul>
+<li>检查交易有效，格式、计算Gas LImit * GasPrice、(检验)</li>
+<li>确定发送方地址，并在本地区块链上从发送账户扣去相应费用；</li>
+<li>如果发送方账户不足，会返回错误，该交易被丢弃</li>
+<li>如果检查通过，<code>用户B</code>将该交易存放在交易存储池中（存储）</li>
+<li>并向其他节点转发该交易，其他节点重复<code>用户B</code> 的处理过程（转发）</li>
+</ul>
+</li>
+<li><p>挖到区块的节点</p>
+<ul>
+<li>会从交易存储池中取交易打包到区块中，一般按照<code>Gas </code>*<code> Gas Price</code>从大到排序。</li>
+<li>会在本地的EVM上运行被调用的合约代码，直到代码运行结束或者<code>Gas</code>用完</li>
+<li>如果Gas不足以支撑代码运行结束，那么因代码运行而改变的状态会回滚到执行之前</li>
+<li>但是已经支付的手续费不可收回，由挖到区块的节点获得</li>
+<li>然后该区块会发送至对等节点，在全网中传播开</li>
+</ul>
+</li>
+<li><p>其他节点如<code>用户C</code>收到该区块后</p>
+<ul>
+<li>验证该区块的合法性</li>
+<li>同时里面的交易的合法性也会再次被验证</li>
+<li>如果是执行智能合约的交易，<code>用户C</code>也会在本地的EVM上运行智能合约，互相验证结果</li>
+<li><code>用户C</code>同步该区块，将其添加到本地 的区块链中</li>
+<li>同时会在交易存储池中将该区块内的交易删除。</li>
+</ul>
+<p>  一般来说，当包含交易的区块被同步到区块链后，也于安全性的需要，还需要再挖掘一些块，这笔交易才能够算是真正地被确认</p>
+</li>
+</ul>
+<h2 id="数据编码与压缩"><a href="#数据编码与压缩" class="headerlink" title="数据编码与压缩"></a>数据编码与压缩</h2><p>RLP（Recursive Length Prefix）是一种编码算法，用于编码具有嵌套结构的二进制数据</p>
+<p>是以太坊数据序列化的主要方法</p>
+<p>以太坊的区块和交易都会经过<code>RLP</code>编码在存储到数据库</p>
+<hr>
+<p><code>RLP</code>编码规则</p>
+<p><strong>对于字符串而言</strong></p>
+<ul>
+<li>对于单个字节：范围<code>[0x00,0x7f] </code>，<code>RLP</code>编码就是他本身</li>
+<li>长度为：0～55字节的字符串<ul>
+<li><code>RLP</code>格式：前缀 + 字符串本身</li>
+<li>前缀 = 0x80 + 字符串字节长度 ；</li>
+</ul>
+</li>
+<li>长度大于55字节的字符串<ul>
+<li><code>RLP</code>格式： 前缀 + 字符串长度的二进制形式的字节长度 + 字符串本身</li>
+<li>前缀 = 0xb7 + 字符串长度</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>字符串长度的二进制形式的字节长度</p>
+<p>如果长度为 72 字节 ， </p>
+<p>72 用二进制表示是 1001000</p>
+<p>这是一个字节的长度所以应该为 1 </p>
+<p>字符串字节长度</p>
+<p>如果长度为72字节</p>
+<p>那么字符串字节长度为 72</p>
+</blockquote>
+<p><strong>对于列表而言</strong></p>
+<ul>
+<li>列表总长度为 0 ～ 55字节<ul>
+<li><code>RLP</code>格式 ：前缀 + 列表各元素项的RLP编码</li>
+<li>前缀 = 0xc0 + 列表字节长度</li>
+</ul>
+</li>
+<li>列表总长度大于 55 字节<ul>
+<li><code>RLP</code>格式： 前缀  + 列表字节长度 + 列表各元素项的RLP编码</li>
+<li>前缀 = 0xf7 + 列表长度的二进制形式的字节长度</li>
+</ul>
+</li>
+</ul>
+<p>例如： </p>
+<p>“ dog “</p>
+<p>字符串长度为 3 字节</p>
+<p>RLP = [0x80 + 3 , ‘d’,’o’,’g]</p>
+<p>“The purpose of RLP is to encode arbitrarily nested arrays of binary data”</p>
+<p>字符串长度为 72 字节，</p>
+<p>二进制表示为 ：1001000  -&gt; 这是一个字节</p>
+<p>字符串长度72表示为 0x48</p>
+<p>RLP = [0xb7 + 1 , 0	x48 , ‘T’,’h’·····，’a’]</p>
+
                 
             </div>
             <hr/>
@@ -1070,19 +1313,19 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/06/24/blockchain/yi-tai-fang-ji-zhu-xiang-jie-yu-shi-zhan/">
+                <a href="/2022/06/24/java-pian/mybatis/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="以太坊技术详解与实战[书籍]">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">以太坊技术详解与实战[书籍]</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Where there is a will , there is a way
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -1091,12 +1334,8 @@
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/BlockChain/" class="post-category">
-                                    BlockChain
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lambda
                             
                         </span>
                     </div>

@@ -701,23 +701,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 配置 copy公钥到云服务器</span>
-ssh-copy-id mrl@10.10.10.10  <span class="token comment"># 这里输入自己的用户和ip： 用户名@ip</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="区块链相关概念"><a href="#区块链相关概念" class="headerlink" title="区块链相关概念"></a>区块链相关概念</h3><ul>
+                <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="区块链相关概念"><a href="#区块链相关概念" class="headerlink" title="区块链相关概念"></a>区块链相关概念</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://consensys.net/docs/goquorum/en/latest/concepts/blockchain-basics/blockchain-components/">blockchainBasic</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.qikegu.com/docs/4682">概念教程</a></li>
 </ul>
 <p>区块链相关名词解释</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1041b6b9b094">区块链相关名词解释</a></li>
-</ul>
-<p>peers和validator</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.qklw.com/top/20200802/107906.html">什么是validator</a></li>
 </ul>
 <h3 id="filebeat"><a href="#filebeat" class="headerlink" title="filebeat"></a>filebeat</h3><ul>
 <li>轻量型日志采集器</li>
@@ -830,7 +820,7 @@ ssh-copy-id mrl@10.10.10.10  <span class="token comment"># 这里输入自己的
 <h3 id="quorum-key-manager"><a href="#quorum-key-manager" class="headerlink" title="quorum-key-manager"></a>quorum-key-manager</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.quorum-key-manager.consensys.net/en/latest/">官方文档</a></li>
 </ul>
-<h3 id="quorum-node"><a href="#quorum-node" class="headerlink" title="quorum node"></a>quorum node</h3><h4 id="Tessera"><a href="#Tessera" class="headerlink" title="Tessera"></a>Tessera</h4><ul>
+<h3 id="Privacy-Manager"><a href="#Privacy-Manager" class="headerlink" title="Privacy Manager"></a>Privacy Manager</h3><h4 id="Tessera"><a href="#Tessera" class="headerlink" title="Tessera"></a>Tessera</h4><ul>
 <li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/207235af9f40">Tessera博客介绍</a></p>
 </li>
 <li><p>GoQuorum node which has a corresponding <code>Tessera </code>node for privacy</p>
@@ -1214,21 +1204,25 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 
 
 
-<h2 id="Goquorum官方文档"><a href="#Goquorum官方文档" class="headerlink" title="Goquorum官方文档"></a>Goquorum官方文档</h2><h3 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h3><p>Consensus :</p>
+<h2 id="Goquorum官方文档"><a href="#Goquorum官方文档" class="headerlink" title="Goquorum官方文档"></a>Goquorum官方文档</h2><h3 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h3><p><strong>Consensus</strong> :</p>
 <p>POA（validators） ： validators 可以验证 and 创建区块，其他节点只可以验证</p>
 <p>Goquorum 目前支持的POA算法包括<code>IBFT</code> , <code>QBFT</code> , <code>Raft</code> and <code>Clique</code></p>
-<p>Permissioning :</p>
+<p><strong>Permissioning</strong> :</p>
 <p>许可是分布式可信网络的规则</p>
-<p>Privacy :</p>
+<p><strong>Privacy</strong> :</p>
 <p>goquorum 通过 private transaction managet(PTM) 来保持节点隐私</p>
 <p>例如 ： <code>Tessera</code></p>
 <p><code>Tessera</code> 通过 enclave 加密交易数据，同其他节点的<code>Tessera</code> 交换加密后数据</p>
-<p>Forks</p>
+<p><strong>Forks</strong></p>
 <p>forks 其实就是区块链网络的分裂</p>
-<p>soft forks : </p>
+<ul>
+<li>soft forks :</li>
+</ul>
 <p>对于以太坊以秒的出块速度，出现soft forks 应该是一般概率，以太坊 有了个uncle block的方案</p>
 <p>主链可以通过引用uncle block 将它并入最长链，短暂的分叉</p>
-<p>hard forks : </p>
+<ul>
+<li>hard forks :</li>
+</ul>
 <p>执行新共识协议的算力达到全网的51%就会进行hard forks</p>
 <p>旧节点无法验证新节点</p>
 <p>新节点可以选择兼容旧节点</p>
