@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-01
+                    2022-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    84
+                    225
                 </div>
                 
 
@@ -709,14 +709,50 @@
 <li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-compose.html">docker-compose</a></p>
 </li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> <span class="token function">ps</span> // 查看所有正在运行容器
-<span class="token function">docker</span> stop containerId // containerId 是容器的ID
+<p>停止和删除容器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#  stop停止所有容器</span>
+<span class="token function">docker</span> stop <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> <span class="token function">ps</span> -a -q<span class="token variable">)</span></span> 
 
-<span class="token function">docker</span> <span class="token function">ps</span> -a // 查看所有容器
-<span class="token function">docker</span> <span class="token function">ps</span> -a -q // 查看所有容器ID
+<span class="token comment">#  remove删除所有容器</span>
+<span class="token function">docker</span>  <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> <span class="token function">ps</span> -a -q<span class="token variable">)</span></span> 
 
-<span class="token function">docker</span> stop <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> <span class="token function">ps</span> -a -q<span class="token variable">)</span></span> //  stop停止所有容器
-<span class="token function">docker</span>  <span class="token function">rm</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">docker</span> <span class="token function">ps</span> -a -q<span class="token variable">)</span></span> //   remove删除所有容器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">docker</span> stop <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>删除镜像</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> rmi <span class="token punctuation">[</span>IMAGE ID<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>删除容器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> <span class="token function">rm</span> <span class="token punctuation">[</span>CONTAINER ID/CONTIANER NAME<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>查看容器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> <span class="token function">ps</span> -a
+<span class="token comment"># 参数</span>
+<span class="token comment"># -a 显示所有的容器（包括没有运行的容器）</span>
+<span class="token comment"># -q 显示容器id</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>显示镜像</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> images<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>启动镜像</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run -p <span class="token number">20000</span>:22 -p <span class="token number">8000</span>:8000 -p <span class="token number">80</span>:80 -p <span class="token number">443</span>:443 --name CONTAINER_NAME -itd django_lesson:1.1
+
+<span class="token comment">#参数</span>
+<span class="token comment"># -p 指定运行容器开放的端口</span>
+<span class="token comment"># -name 指定容器的名字</span>
+<span class="token comment"># -itd 指定容器对应的镜像</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>保存和下载镜像</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#1.export/import :会丢弃历史记录和元数据信息，仅保存容器当时的快照状态</span>
+<span class="token function">docker</span> <span class="token builtin class-name">export</span> <span class="token punctuation">[</span>NAME<span class="token punctuation">]</span>
+<span class="token function">docker</span> <span class="token function">import</span> <span class="token punctuation">[</span>NAME<span class="token punctuation">]</span>
+<span class="token comment">#2.save/load会保存完整记录，体积更大</span>
+<span class="token function">docker</span> save <span class="token punctuation">[</span>NAME<span class="token punctuation">]</span>
+<span class="token function">docker</span> load <span class="token punctuation">[</span>NAME<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
 
 <h2 id="docker-compose命令"><a href="#docker-compose命令" class="headerlink" title="docker-compose命令"></a>docker-compose命令</h2>
                 

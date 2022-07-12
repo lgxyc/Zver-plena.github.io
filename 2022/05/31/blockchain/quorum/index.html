@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-08
+                    2022-07-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.6k
+                    4.2k
                 </div>
                 
 
@@ -1306,8 +1306,62 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <li><code>clef</code> - Goquorum2.6.0引入，独立的流程运行，通过处理Goquorum账户管理职责来增加灵活和安全性</li>
 <li><code>account plugins </code>- Goquorum2.7.0引入，允许扩展Goquorum或<code>Clef</code>管理账户方式</li>
 </ul>
-<p><strong>Tessera</strong></p>
-<h3 id="Privacy"><a href="#Privacy" class="headerlink" title="Privacy"></a>Privacy</h3><p>GoQuorum uses <a target="_blank" rel="noopener" href="https://docs.tessera.consensys.net/">Tessera</a> as the private transaction manager to implement private transactions.</p>
+<h3 id="Privacy"><a href="#Privacy" class="headerlink" title="Privacy"></a>Privacy</h3><ul>
+<li>PSV ： private state validation</li>
+<li>PMTs:   Privacy marker transactions</li>
+</ul>
+<h4 id="Tessera-1"><a href="#Tessera-1" class="headerlink" title="Tessera"></a>Tessera</h4><p>Tessera ：私人事务管理内部采用 enclave 来进行加密或解密</p>
+<p>并且Tessera 和 enclave 是为单独的部件</p>
+<p>Tessera:</p>
+<ul>
+<li>存储加密交易数据</li>
+<li>同其他Tessera节点交换payloads</li>
+<li>可以负载均衡</li>
+</ul>
+<p>对于goquorum支持两种状态，也有两棵MPT树</p>
+<ul>
+<li>public state</li>
+<li>private state</li>
+</ul>
+<h4 id="Privacy-enhancements"><a href="#Privacy-enhancements" class="headerlink" title="Privacy enhancements"></a>Privacy enhancements</h4><p>goquorum支持三种来加强隐私</p>
+<ul>
+<li>Counter-party protection(PP)</li>
+<li>Mandatory party protection(MPP)</li>
+<li>Private state validation(PSV)</li>
+</ul>
+<p><strong>Counter-party protection</strong></p>
+<p>预防未参与者同 private contract 进行交互，在未通过权限控制的情况下</p>
+<p>例子：</p>
+<p>node 1 和 node 3 进行部署private contract 进行交易</p>
+<p>如果node 2 发现private contract address ，调用发起交易向node 3 ，</p>
+<p>这个交易不会改变node2的private state</p>
+<p>但会改变node 3 的private state</p>
+<p>在启用之后，不会改变node3的private state</p>
+<p>启动<code>counter-party protection</code>，在启用enhance privacy 后</p>
+<p>在发起 private transaction 的时候设置<code>privacyFlag=1</code></p>
+<p><strong>Mandatory part protection</strong></p>
+<p><code>Mandatory part protection</code>在继承了<code>Counter-part protection</code>的基础上</p>
+<p>允许定义一个或更多<code>mandatory recipient</code></p>
+<p><code>mandatory recipient</code>包含有在private contract 所有后续交易，并且有完全的private state</p>
+<p><code>normal recipient</code>仅仅包含private contract 所有交易部分的private state </p>
+<p>启用<code>Mandatory part protection</code>,在启用enhance privacy 后</p>
+<p>在发起 private transaction 的时候设置<code>privacyFlag=2</code></p>
+<p>并且在<code>mandatoryFor</code>后面指定<code>mandatory recipient</code></p>
+<p><strong>Private state validation</strong></p>
+<p><code>private state validation</code>确保所有的交易，所有人都知道，所有人都知道这个私人事务中的参与者列表，来防止状态分歧</p>
+<p>在standard privacy 和 counter-part protection 中，只有发起者才知道参与者列表</p>
+<p>例如：</p>
+<p>当node 1 和node 2 之间有private contract ,</p>
+<p>在没有<code>private state validation</code>的时候</p>
+<p>node1 可以发起一个交易给private contract </p>
+<p>这会改变node1的private state,但不会改变node2的Private state，因为node2不知道这个交易</p>
+<p>导致node1 和 node2 在同一个private contract ，但是他们的private state不一致</p>
+<p>当启用<code>private state validation</code></p>
+<p>node1 发起一个交易给private contract 会被拒绝</p>
+<p>只有当他发起交易被所有参与者知道才会被允许(privateFor 中包含private contract所有参与者)</p>
+<p>启用<code>private state validation</code>，在启用enhance privacy 后</p>
+<p>在发起private transactino 的时候设置<code>privacyFlag=3</code></p>
+<h4 id="Privacy-marker-transactions"><a href="#Privacy-marker-transactions" class="headerlink" title="Privacy marker transactions"></a>Privacy marker transactions</h4><p>未完待续····························</p>
 <h2 id="过程问题"><a href="#过程问题" class="headerlink" title="过程问题"></a>过程问题</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># TypeError: types.forEach is not a function</span>
  at ABICoder.mapTypes <span class="token punctuation">(</span>/home/mrl/github/quorum-test-network/network/smart_contracts/privacy/node_modules/web3-eth-abi/lib/index.js:132:11<span class="token punctuation">)</span>
  

@@ -1,0 +1,2554 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="JavaWeb, Lambda">
+    <meta name="description" content="Where there is a will , there is a way">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+    <style>
+        body{
+            background-image: url(/medias/images/4.jpg);
+            background-repeat:no-repeat;
+            background-size: 100% 100%;
+            background-attachment:fixed;
+        }
+    </style>
+
+
+    <title>JavaWeb | Lambda</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+    <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+
+ 
+<body>
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/fireworks.js"></script>
+    
+        <div id="loading-container">
+             <p class="loading-text">祝你有个美好的一天 </p> 
+             <div class="loading-image">
+                 <div></div>
+                 <div></div>
+                 <div></div>
+                 <div></div> 
+                 <div></div>
+             </div>
+        </div>
+    
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Lambda</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/summary" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/navigate">
+          
+          <i class="fas fa-location-arrow" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Navigate</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Books</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/channel_four">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>通道四号</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Lambda</div>
+        <div class="logo-desc">
+            
+            欢迎来到我的博客
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/summary" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/navigate " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-location-arrow" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Navigate</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/books " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Books</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/channel_four " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>通道四号</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">JavaWeb</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.8);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 10px 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;  
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        font-size: 16px;
+        color: black;
+        font-weight: body;
+        margin-top: 10px;
+        padding-bottom: 50px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #850000;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #003ada;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/WEB/" class="post-category">
+                                WEB
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-02-04
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2022-07-09
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    8k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="javaWeb教程网站"><a href="#javaWeb教程网站" class="headerlink" title="javaWeb教程网站"></a>javaWeb教程网站</h2><p><a target="_blank" rel="noopener" href="https://heavy_code_industry.gitee.io/code_heavy_industry/pro001-javaweb/lecture/">javaWeb教程</a></p>
+<h2 id="BS和CS"><a href="#BS和CS" class="headerlink" title="BS和CS"></a>BS和CS</h2><h3 id="CS（client-server）"><a href="#CS（client-server）" class="headerlink" title="CS（client server）"></a>CS（client server）</h3><p>客户端服务器架构模式</p>
+<ul>
+<li>优点<ul>
+<li>充分利用客户端机器的资源，减轻服务器的负荷（一部分安全要求不高的计算任务存储在客户端进行名，不需要把所有的计算和存储都在服务器端执行，从而减轻服务器的压力，减轻网络负荷）</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>需要安装</li>
+<li>升级维护成本高</li>
+</ul>
+</li>
+</ul>
+<h3 id="BS（browser-server）"><a href="#BS（browser-server）" class="headerlink" title="BS（browser server）"></a>BS（browser server）</h3><p>浏览器服务器架构模式</p>
+<ul>
+<li>优点<ul>
+<li>客户端不需要安装，维护成本较低</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>所有的计算和存储任务都是放在服务器端，服务器的负荷较重，在服务器端计算完成之后把结果在传输给客户端，因此客户端和服务器端会进行非常频繁的数据通信，从而网络负荷重</li>
+</ul>
+</li>
+</ul>
+<h2 id="Tomcat-WebContainer"><a href="#Tomcat-WebContainer" class="headerlink" title="Tomcat(WebContainer)"></a>Tomcat(WebContainer)</h2><h3 id="Tomcat目录结构"><a href="#Tomcat目录结构" class="headerlink" title="Tomcat目录结构"></a>Tomcat目录结构</h3><ul>
+<li>bin (可执行文件目录)</li>
+<li>conf (配置文件目录)</li>
+<li>lib (存放资源的目录)</li>
+<li>logs (日志文件目录)</li>
+<li>webapps（项目部署的目录）</li>
+<li>work （工作目录）</li>
+<li>temp (临时目录)</li>
+</ul>
+<h3 id="IDEA设置config"><a href="#IDEA设置config" class="headerlink" title="IDEA设置config"></a>IDEA设置config</h3><h4 id="设置目录"><a href="#设置目录" class="headerlink" title="设置目录"></a>设置目录</h4><ul>
+<li>Application server:选择你的Tomcat的目录</li>
+</ul>
+<p><img src="/2022/02/04/web/javaweb/image-20220212151413314.png" alt="image-20220212151413314"></p>
+<h4 id="导入Servlet-jar包"><a href="#导入Servlet-jar包" class="headerlink" title="导入Servlet jar包"></a>导入Servlet jar包</h4><p>需要用到Servlet jar包，而Tomcat里面就已经有了这个包所以直接把下载的Tomcat里面的jar包导入进来就可以用Servlet</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220222141821840.png" alt="image-20220222141821840"></p>
+<h4 id="设置Deployment"><a href="#设置Deployment" class="headerlink" title="设置Deployment"></a>设置Deployment</h4><p>添加你的项目到Artifacts （注意如果要导入jar包，要在problems那里更新）</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220222141056511.png" alt="image-20220222141056511"></p>
+<p>然后再在Tomcat加入你当前的项目modules</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220212152941711.png" alt="image-20220212152941711"></p>
+<p>配置路径</p>
+<p>​	<img src="/2022/02/04/web/javaweb/image-20220212152959492.png" alt="image-20220212152959492"></p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//tomcat8之前设置编码</span>
+<span class="token comment">//1.get方式</span>
+	string name <span class="token operator">=</span>request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token string">"ISO-8859-1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// Tomcat默认</span>
+	name <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//2.post 方式</span>
+    <span class="token comment">//获取参数之前 </span>
+    request<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//tomcat8之后只需要针对post方式编码</span>
+<span class="token comment">//post方式</span>
+request<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="idea创建Web-Application"><a href="#idea创建Web-Application" class="headerlink" title="idea创建Web Application"></a>idea创建Web Application</h3><p><img src="/2022/02/04/web/javaweb/image-20220212151143049.png" alt="image-20220212151143049"></p>
+<h3 id="web-xml工作"><a href="#web-xml工作" class="headerlink" title="web.xml工作"></a>web.xml工作</h3><ol>
+<li>用户发请求 action = add</li>
+<li>项目中 web.xml中 <code>&lt;servlet-mapping&gt;</code>找到<code>url-pattern</code> =/add</li>
+<li>在同一个<code>&lt;servlet-mapping&gt;</code>中找到<code>servlet-name</code></li>
+<li>找到<code>&lt;servlet&gt;</code>中找到跟<code>&lt;servlet-mapping&gt;</code>中<code>servlet-name</code>一致的<code>servlet-name</code></li>
+<li>找到<code>&lt;servlet&gt;</code>中<code>&lt;servlet-class&gt;</code></li>
+<li>用户发送post 请求 Tomcat调用 servlet-&gt;class.doPost()方法；</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span><span class="token operator">?</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>web<span class="token operator">-</span>app xmlns<span class="token operator">=</span><span class="token string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
+         xmlns<span class="token operator">:</span>xsi<span class="token operator">=</span><span class="token string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         xsi<span class="token operator">:</span>schemaLocation<span class="token operator">=</span><span class="token string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
+         version<span class="token operator">=</span><span class="token string">"4.0"</span><span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>servlet<span class="token punctuation">&gt;</span></span>
+            <span class="token operator">&lt;</span>servlet<span class="token operator">-</span>name<span class="token operator">&gt;</span>x<span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">-</span>name<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>servlet<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">&gt;</span><span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>java<span class="token punctuation">.</span>servlets<span class="token punctuation">.</span></span>AddServlets</span><span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span>servlet<span class="token operator">-</span>mapping<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>servlet<span class="token operator">-</span>name<span class="token operator">&gt;</span>x<span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">-</span>name<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>url<span class="token operator">-</span>pattern<span class="token operator">&gt;</span><span class="token operator">/</span>add<span class="token operator">&lt;</span><span class="token operator">/</span>url<span class="token operator">-</span>pattern<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">-</span>mapping<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>web<span class="token operator">-</span>app<span class="token operator">&gt;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Servlet从3-0版本开始支持注解方式的注册"><a href="#Servlet从3-0版本开始支持注解方式的注册" class="headerlink" title="Servlet从3.0版本开始支持注解方式的注册"></a>Servlet从3.0版本开始支持注解方式的注册</h3><p>可以用注解的方式替代在web.xml里面写</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220222140836069.png" alt="image-20220222140836069"></p>
+<h3 id="ServletConfig配置"><a href="#ServletConfig配置" class="headerlink" title="ServletConfig配置"></a>ServletConfig配置</h3><ul>
+<li><p>Servlet的配置文件都封装在一个ServletConfig对象里面</p>
+</li>
+<li><p>需要对应到实际的类中</p>
+</li>
+</ul>
+<p>下面两个方法从作用上来看是等价的,并且对于一个类只需要选用一种即可。</p>
+<h4 id="在web-xml文件添加初始配置中"><a href="#在web-xml文件添加初始配置中" class="headerlink" title="在web.xml文件添加初始配置中"></a>在web.xml文件添加初始配置中</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token generics"><span class="token punctuation">&lt;</span>servlet<span class="token punctuation">&gt;</span></span>
+        <span class="token operator">&lt;</span>servlet<span class="token operator">-</span>name<span class="token operator">&gt;</span>x<span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">-</span>name<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>servlet<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">&gt;</span><span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span></span>Servlet<span class="token punctuation">.</span>StudentController</span><span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">&gt;</span>
+        <span class="token comment">//配置初始化</span>
+        <span class="token operator">&lt;</span>init<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span>encoding<span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span>utf8<span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>init<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>servlet<span class="token operator">-</span>mapping<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>servlet<span class="token operator">-</span>name<span class="token operator">&gt;</span>x<span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">-</span>name<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>url<span class="token operator">-</span>pattern<span class="token operator">&gt;</span><span class="token operator">/</span>add<span class="token operator">&lt;</span><span class="token operator">/</span>url<span class="token operator">-</span>pattern<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>servlet<span class="token operator">-</span>mapping<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="在注解添加初始配置中"><a href="#在注解添加初始配置中" class="headerlink" title="在注解添加初始配置中"></a>在注解添加初始配置中</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>urlPatterns<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"*.do"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">//配置文件    </span>
+        initParams<span class="token operator">=</span><span class="token punctuation">{</span>
+            
+            <span class="token annotation punctuation">@WebInitParam</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"encoding"</span><span class="token punctuation">,</span>value<span class="token operator">=</span><span class="token string">"utf8"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ServletConfig</span> config <span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">,</span><span class="token function">getServletConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> value <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span><span class="token string">"encoding"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="ServletContext"><a href="#ServletContext" class="headerlink" title="ServletContext"></a>ServletContext</h3><h4 id="ServletContext概述"><a href="#ServletContext概述" class="headerlink" title="ServletContext概述"></a>ServletContext概述</h4><p>一个web应用都会创建一个ServletContext对象，代表当前Web应用</p>
+<ul>
+<li>域对象<ul>
+<li>一个Web应用中的所有Servlet共享同一个ServletContext对象</li>
+<li>因此ServletContext对象的域属性被Web应用的所有servlet访问</li>
+</ul>
+</li>
+<li>作用范围<ul>
+<li>整个web应用程序范围内共享数据</li>
+</ul>
+</li>
+<li>生命周期<ul>
+<li>web应用加载后创建出ServletContext对象后，域产生，当web应用关闭时销毁</li>
+</ul>
+</li>
+</ul>
+<p><strong>所以对于配置文件可以放在ServletContext中来传递</strong></p>
+<h4 id="在web-xml文件添加初始配置参数"><a href="#在web-xml文件添加初始配置参数" class="headerlink" title="在web.xml文件添加初始配置参数"></a>在web.xml文件添加初始配置参数</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token operator">&lt;</span>context<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span> company <span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span> <span class="token class-name">Apple</span> <span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>context<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+    <span class="token comment">//多个context-param是并列关系</span>
+<span class="token operator">&lt;</span>context<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span> company <span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span> XM <span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>context<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="调用初始化配置参数-InitParameter"><a href="#调用初始化配置参数-InitParameter" class="headerlink" title="调用初始化配置参数(InitParameter)"></a>调用初始化配置参数(InitParameter)</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ServletContext</span> context <span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//获取初始化参数值</span>
+<span class="token class-name">Enumeration</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> names <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getInitParameterNames</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>names<span class="token punctuation">.</span><span class="token function">hasMoreElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token class-name">String</span> name <span class="token operator">=</span> names<span class="token punctuation">.</span><span class="token function">nextElement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> value <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>域属性:<strong>Attribute</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Enumeration</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">setAttribute(String name )</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">Object</td>
+<td align="center">getAttribute(String name)</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">removeAtrribute(String name )</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="ServletContext实现读取Web应用下的资源文件"><a href="#ServletContext实现读取Web应用下的资源文件" class="headerlink" title="ServletContext实现读取Web应用下的资源文件"></a>ServletContext实现读取Web应用下的资源文件</h4><p>name.properties</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// /WEB-INF/name.properties 内容如下</span>
+
+company<span class="token operator">=</span>apple<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="getResourceAsStream（“path”）方法读取"><a href="#getResourceAsStream（“path”）方法读取" class="headerlink" title="getResourceAsStream（“path”）方法读取"></a>getResourceAsStream（“path”）方法读取</h5><p><strong>家目录为web</strong></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ServletContext</span> context <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+inputStream is <span class="token operator">=</span>context<span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span><span class="token string">"/WEB-INF/name.properties"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Properties</span> prop <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+prop<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>is<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>prop<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"company"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="getRealPath（“path”）方法"><a href="#getRealPath（“path”）方法" class="headerlink" title="getRealPath（“path”）方法"></a>getRealPath（“path”）方法</h5><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ServletContext</span> context <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> realPath context<span class="token punctuation">.</span><span class="token function">getRealPath</span><span class="token punctuation">(</span><span class="token string">"/WEB-INF/name.properties"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">InputStream</span> is <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>realPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Properties</span> prop <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//配置文件</span>
+prop<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>is<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="HttpServletResponse应用"><a href="#HttpServletResponse应用" class="headerlink" title="HttpServletResponse应用"></a>HttpServletResponse应用</h3><h4 id="中文输出乱码问题"><a href="#中文输出乱码问题" class="headerlink" title="中文输出乱码问题"></a>中文输出乱码问题</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 方法一</span>
+    
+<span class="token comment">//设置编码</span>
+response<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//设置浏览器解码方式</span>
+response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">,</span><span class="token string">"text/html;charset=utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 方法二</span>
+
+response<span class="token punctuation">.</span><span class="token function">setContecntType</span><span class="token punctuation">(</span><span class="token string">"text/html;charset=utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="实现网页定时刷新并跳转"><a href="#实现网页定时刷新并跳转" class="headerlink" title="实现网页定时刷新并跳转"></a>实现网页定时刷新并跳转</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// URL 要全大写 这样跳转的是www.baidu.com</span>
+response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Refresh"</span><span class="token punctuation">,</span><span class="token string">"2;URL=www.baidu.com"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 这样跳转的是WEB-INF目录下的index.html</span>
+response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Refresh"</span><span class="token punctuation">,</span><span class="token string">"2;url=index.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="服务器内部转发以及客户端重定向"><a href="#服务器内部转发以及客户端重定向" class="headerlink" title="服务器内部转发以及客户端重定向"></a>服务器内部转发以及客户端重定向</h3><h4 id="服务器内部请求转发"><a href="#服务器内部请求转发" class="headerlink" title="服务器内部请求转发"></a>服务器内部请求转发</h4><ul>
+<li>服务器内部转发：<code>request.getRequestDispatcher("url-pattern").forward(request,response)</code></li>
+<li>客户端向服务器请求一次，服务器进行内部转发，客户端是不知道的</li>
+<li>地址栏没有变化</li>
+</ul>
+<h4 id="客户端重定向"><a href="#客户端重定向" class="headerlink" title="客户端重定向"></a>客户端重定向</h4><ul>
+<li>客户端重定向：<code>response.sendRedirect("url-pattern")</code></li>
+<li>客户端向服务器请求，然后服务器会响应给客户端一个重定向的url，客户端再次向这个url发送请求</li>
+<li>地址栏有变化，客户端是知道自己请求url的变化</li>
+<li>所以这是两次请求过程</li>
+</ul>
+<h3 id="ServletContext保存作用域"><a href="#ServletContext保存作用域" class="headerlink" title="ServletContext保存作用域"></a>ServletContext保存作用域</h3><p>Servlet可以保存作用域采用的是<code>[k,v]</code></p>
+<p>可以从当前的保存作用域通过指定的k获取对应的v</p>
+<ul>
+<li>作用域跟SessionId绑定</li>
+</ul>
+<p>常用API</p>
+<ul>
+<li>void HttpSession.setAttribute(“key”,value)</li>
+<li>Object HttpSession.getAttribute(“key”)</li>
+</ul>
+<h4 id="page级别（页面级别）"><a href="#page级别（页面级别）" class="headerlink" title="page级别（页面级别）"></a>page级别（页面级别）</h4><h4 id="request级别（一次请求范围）"><a href="#request级别（一次请求范围）" class="headerlink" title="request级别（一次请求范围）"></a>request级别（一次请求范围）</h4><ul>
+<li><p><code>request.setAttribute(k,v);</code></p>
+</li>
+<li><p>对于服务器内部转发,仍然属于一次请求，所以session作用域依旧有效</p>
+</li>
+<li><p>但是对于客户端重定向，因为是第二次请求，所以上一次请求的session作用域在这一次请求里面无法进行获取</p>
+</li>
+</ul>
+<h4 id="session级别（一次会话范围）"><a href="#session级别（一次会话范围）" class="headerlink" title="session级别（一次会话范围）"></a>session级别（一次会话范围）</h4><ul>
+<li><code>request.getSession().setAttribute(k,v);</code></li>
+<li>换个浏览器（客户端），那么就无法访问之前浏览器的session作用域里面k,v</li>
+</ul>
+<h4 id="application级别（整个应用程序范围）"><a href="#application级别（整个应用程序范围）" class="headerlink" title="application级别（整个应用程序范围）"></a>application级别（整个应用程序范围）</h4><ul>
+<li><p><code>ServletContext application = request.getServletContext();</code></p>
+</li>
+<li><p><code>application.SetAttribute(k,v);</code></p>
+</li>
+<li><p>在这里就是Tomcat，Tomcat结束代表应用程序的关闭，session域清空</p>
+</li>
+<li><p>换个浏览器（客户端），仍然可以访问之前浏览器的session作用域里面的k,v</p>
+</li>
+</ul>
+<h3 id="Servlet继承关系"><a href="#Servlet继承关系" class="headerlink" title="Servlet继承关系"></a>Servlet继承关系</h3><ul>
+<li>javax.servlet.Servlet 接口<ul>
+<li>javax.servlet.GenericServlet 抽象类<ul>
+<li>javax.servlet.http.HttpServlet 抽象子类</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Servlet-相关方法"><a href="#Servlet-相关方法" class="headerlink" title="Servlet 相关方法"></a>Servlet 相关方法</h3><ul>
+<li><p>javax.servlet.Servlet:</p>
+<ul>
+<li>void init(config)</li>
+<li>void service(request,response)–抽象</li>
+<li>void destory()</li>
+</ul>
+</li>
+<li><p>javax.servlet.GenericServlet</p>
+<ul>
+<li>void service(request,response)–抽象</li>
+</ul>
+</li>
+<li><p>javax.servlet.http.HttpServlet</p>
+<ul>
+<li>void service(request,response) -不是抽象的</li>
+<li>String method =request.getMethod();</li>
+<li>子类复写请求方式方法，各种if判断，根据请求方式不同，去调用不同方法</li>
+<li>如果没有这个请求方式方法，就会去调用父类的这个请求方式方法，父类的方法就会报405错误</li>
+</ul>
+</li>
+</ul>
+<h3 id="Servlet声明周期"><a href="#Servlet声明周期" class="headerlink" title="Servlet声明周期"></a>Servlet声明周期</h3><ul>
+<li><p><code>init()</code></p>
+</li>
+<li><p><code>service()</code></p>
+</li>
+<li><p><code>destroy()</code></p>
+</li>
+<li><p>默认情况下</p>
+<ul>
+<li>第一次接收请求，Servlet会进行实例化（调用构造方法）,<code>init()</code> , <code>service()</code>,从第二次请求开始每一次都是service.</li>
+<li>当容器关闭时，其中所有的<code>servlet</code>实例会被销毁，调用<code>destroy()</code></li>
+</ul>
+</li>
+<li><p>Servlet实例tomcat只会创建一个，所有的请求都是这个实例去响应，tomcat通过反射来创建</p>
+</li>
+<li><p>默认情况下，第一次请求时，tomcat才会去实例化，初始化然后服务</p>
+<ul>
+<li>好处：提高系统的启动速度</li>
+<li>缺点：降低了客户的响应速度</li>
+</ul>
+</li>
+<li><p>可以设置Servlet的初始化时候</p>
+<ul>
+<li>通过在web.xml中设置<load-on-startup>设置servlet启动的先后顺序，数字越小，启动越靠前。</load-on-startup></li>
+</ul>
+</li>
+<li><p>Servlet在容器中是:单例</p>
+</li>
+<li><p>单例：所有的请求都是同一个实例去响应</p>
+</li>
+<li><p>线程不安全：</p>
+<ul>
+<li>servlet线程不安全，尽量不要在servlet中定义成员变量</li>
+</ul>
+</li>
+</ul>
+<h3 id="HttpSession会话跟踪"><a href="#HttpSession会话跟踪" class="headerlink" title="HttpSession会话跟踪"></a>HttpSession会话跟踪</h3><ul>
+<li>客户端第一次发请求给服务器，服务器会去获取你的session，如果没有那么就会创建新的响应给客户端</li>
+<li>下次客户端再来发送请求给服务器就会有sessionID,服务器就可以做出相应的判断</li>
+</ul>
+<p>常用的API</p>
+<ul>
+<li><strong>HttpServletrequest.getSession()</strong>  ：获取当前的会话，如果没有就创建一个会话</li>
+<li><strong>HttpServletrequest.getSession(true)</strong> ： 效果和不带参数一样</li>
+<li><strong>HttpServletrequest.getSession(false)</strong> ：获取当前的会话，如果没有返回null，不会创建新的会话</li>
+<li></li>
+<li><strong>Httpsession.getId()</strong> ： 获取sessionId</li>
+<li><strong>Httpsession.isNew()</strong> : 判断当前session是否为新的</li>
+<li><strong>Httpsession.getMaxInactiveInterval()</strong> : session的非间隔时长，默认1800秒</li>
+<li><strong>session.invalidate()</strong> : 取消会话</li>
+</ul>
+<h3 id="Servlet-路径"><a href="#Servlet-路径" class="headerlink" title="Servlet-路径"></a>Servlet-路径</h3><p>对于<strong>html</strong>查找css文件的路径</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--    相对路径--&gt;</span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../../cssFiles/main.css<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">&lt;!--    绝对路径--&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span>   <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://localhost:63342/JAVAWEB/ThymeleafTest/web/cssFiles/main.css<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+绝对路径的端口号和文件路径根据实际情况修改<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="MVC（Model-View-Controller）"><a href="#MVC（Model-View-Controller）" class="headerlink" title="MVC（Model View Controller）"></a>MVC（Model View Controller）</h2><h3 id="MVC结构"><a href="#MVC结构" class="headerlink" title="MVC结构"></a>MVC结构</h3><ul>
+<li>view<ul>
+<li>用于做数据展示以及用户交互的一个界面</li>
+</ul>
+</li>
+<li>controller<ul>
+<li>接收客户端的请求，具体的业务功能还需要借助于组件来完成</li>
+</ul>
+</li>
+<li>model<ul>
+<li>模型分为很多种例如<ol>
+<li>POJO/VO(value object) : 	值对象</li>
+<li>DAO（data access object） ： 数据访问对象</li>
+<li>BO/（business object）： 业务对象</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h3><p><img src="/2022/02/04/web/javaweb/image-20220330202432900.png" alt="image-20220330202432900"></p>
+<h3 id="（Server）业务对象和（DAO）数据访问对象"><a href="#（Server）业务对象和（DAO）数据访问对象" class="headerlink" title="（Server）业务对象和（DAO）数据访问对象"></a>（Server）业务对象和（DAO）数据访问对象</h3><p>:	DAO中的方法都是单精度方法或者称之为细粒度方法。什么叫单精度？一个方法只考虑一个操作，比如添加，那就是insert操作</p>
+<p>:	BO中的方法属于业务方法，也实际的业务是比较复杂的，因此业务方法的粒度是比较粗的</p>
+<p>例如注册这个功能属于业务功能，也就是说用来注册这个方法属于业务方法</p>
+<p>那么这个方法中会存在多个dao方法，也就是业务方法中会调用多个dao方法	</p>
+<ul>
+<li>例如注册使用dao中的select操作</li>
+<li>添加使用dao中的insert操作</li>
+</ul>
+<h3 id="服务层"><a href="#服务层" class="headerlink" title="服务层"></a>服务层</h3><p>对于DAO操作和Controller层之间还有要一个Server层</p>
+<h3 id="IOC（inversion-of-Control）"><a href="#IOC（inversion-of-Control）" class="headerlink" title="IOC（inversion of Control）"></a>IOC（inversion of Control）</h3><p>BeanFactor来分配每个类以及他所需要的依赖类的实例</p>
+<h4 id="耦合-x2F-依赖"><a href="#耦合-x2F-依赖" class="headerlink" title="耦合/依赖"></a>耦合/依赖</h4><ol>
+<li><p>软件系统之间层与层之间存在依赖，</p>
+</li>
+<li><p>系统架构或者是设计的原则：高内聚低耦合</p>
+</li>
+<li><p>内部的组成应该是高度聚合的，而层与层的关系是0耦合，最理想的情况0耦合</p>
+</li>
+</ol>
+<h4 id="控制反转（IOS）"><a href="#控制反转（IOS）" class="headerlink" title="控制反转（IOS）"></a>控制反转（IOS）</h4><p>控制反转</p>
+<p>将程序中可能存在的由程序员创建的对象，放到beanFactory里面，由beanFactory来控制生命周期，程序员需要的对象只需要从这个beanFactory里面取就可以了，这样对象的生命周期就不由程序员控制，而是交给了baenFactory，这种现象就叫做控制反转</p>
+<h4 id="依赖注入（DI）"><a href="#依赖注入（DI）" class="headerlink" title="依赖注入（DI）"></a>依赖注入（DI）</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">1.之前的写法
+	StudentServer studentServer = new StudentServiceImpl();
+	这样会存在着 StudentServer 和 serviece 层存在耦合
+2.之后的做法
+	StudentServer studentServer =null ;
+	然后在配置文件中配置，手动的给这个Controller里面需要用到的控制层的东西注入依赖
+	然后可以直接通过反射来获取到，不需要显性的创建
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>student<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>studentController<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>studentServer<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>studentServer<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="过滤器Filter"><a href="#过滤器Filter" class="headerlink" title="过滤器Filter"></a>过滤器Filter</h2><h3 id="Filter概述"><a href="#Filter概述" class="headerlink" title="Filter概述"></a>Filter概述</h3><p>Filter也属于Servlet规范</p>
+<p>继承Filter接口，实现方法</p>
+<h3 id="Filter配置"><a href="#Filter配置" class="headerlink" title="Filter配置"></a>Filter配置</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//	1.注解</span>
+<span class="token annotation punctuation">@WebFilter</span><span class="token punctuation">(</span>urlPatterns<span class="token operator">=</span><span class="token string">"*.do"</span><span class="token punctuation">)</span>
+
+<span class="token comment">//	2.xml文件中配置</span>
+<span class="token comment">// 在xml文件配置也和WebServlet一样，换个名字</span>
+	<span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Filter</span><span class="token punctuation">&gt;</span></span>
+            <span class="token operator">&lt;</span><span class="token class-name">Filter</span><span class="token operator">-</span>name<span class="token operator">&gt;</span>x<span class="token operator">&lt;</span><span class="token operator">/</span><span class="token class-name">Filter</span><span class="token operator">-</span>name<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token class-name">Filter</span><span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">&gt;</span><span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>java<span class="token punctuation">.</span>servlets<span class="token punctuation">.</span></span>AddServlets</span><span class="token operator">&lt;</span><span class="token operator">/</span><span class="token class-name">Filter</span><span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token class-name">Filter</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token class-name">Filter</span><span class="token operator">-</span>mapping<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token class-name">Filter</span><span class="token operator">-</span>name<span class="token operator">&gt;</span>x<span class="token operator">&lt;</span><span class="token operator">/</span><span class="token class-name">Filter</span><span class="token operator">-</span>name<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>url<span class="token operator">-</span>pattern<span class="token operator">&gt;</span><span class="token operator">/</span>add<span class="token operator">&lt;</span><span class="token operator">/</span>url<span class="token operator">-</span>pattern<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token class-name">Filter</span><span class="token operator">-</span>mapping<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="Filter的触发优先级顺序"><a href="#Filter的触发优先级顺序" class="headerlink" title="Filter的触发优先级顺序"></a>Filter的触发优先级顺序</h3><ul>
+<li>如果是类按照字典序</li>
+<li>如果是配置文件，按照配置文件的先后</li>
+</ul>
+<h3 id="Filter的事务处理"><a href="#Filter的事务处理" class="headerlink" title="Filter的事务处理"></a>Filter的事务处理</h3><ul>
+<li>可以通过Filter来进行编码的设置</li>
+<li>执行事务的回滚操作</li>
+</ul>
+<h2 id="事务管理的前置知识"><a href="#事务管理的前置知识" class="headerlink" title="事务管理的前置知识"></a>事务管理的前置知识</h2><p>在Serice层开启事务管理，如果有一个DAO操作失败，那么就进行事务回滚</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220319101556570.png" alt="image-20220319101556570"></p>
+<p>过滤器的基本应用，将上图的在Service层开启事务管理，向上抽取，在Filter层开启事务管理之后所有的操作都包含在<code>放行</code>里面，一旦出错就会rollback（）</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220319102004854.png" alt="image-20220319102004854"></p>
+<h3 id="涉及的组件"><a href="#涉及的组件" class="headerlink" title="涉及的组件"></a>涉及的组件</h3><ul>
+<li><p>ThreadLocal：管理数据库的连接</p>
+</li>
+<li><p>openSessionInViewFilter：具体实现负责事务的开启，提交，回滚的管理</p>
+</li>
+<li><p>JunitConnection：获取数据库连接</p>
+</li>
+<li><p>BaseDao：对数据库的操作</p>
+</li>
+<li><p>TransactionManager：事务管理</p>
+</li>
+</ul>
+<h3 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h3><p>在一个Filter里面进行事务的提交和回滚，底层如果一个DAO操作出现失误，那么会向上抛出异常，直到在Filter里面被捕获到这个异常</p>
+<p>然后就会进行事务回滚</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> servletRequest<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> servletResponse<span class="token punctuation">,</span> <span class="token class-name">FilterChain</span> filterChain<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">ServletException</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开启事务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">TransactionManager</span><span class="token punctuation">.</span><span class="token function">beginTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        filterChain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>servletRequest<span class="token punctuation">,</span>servletResponse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">TransactionManager</span><span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"提交事务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"事务回滚"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">TransactionManager</span><span class="token punctuation">.</span><span class="token function">rollback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ex<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><h4 id="ThreadLocal的set方法"><a href="#ThreadLocal的set方法" class="headerlink" title="ThreadLocal的set方法"></a>ThreadLocal的set方法</h4><p><img src="/2022/02/04/web/javaweb/image-20220330171652239.png" alt="image-20220330171652239"></p>
+<h4 id="ThreadLocal的get方法"><a href="#ThreadLocal的get方法" class="headerlink" title="ThreadLocal的get方法"></a>ThreadLocal的get方法</h4><p><img src="/2022/02/04/web/javaweb/image-20220330171800202.png" alt="image-20220330171800202"></p>
+<h3 id="通过线程进行Server后项目框架"><a href="#通过线程进行Server后项目框架" class="headerlink" title="通过线程进行Server后项目框架"></a>通过线程进行Server后项目框架</h3><p>每一个Server对应一个线程，对同一个线程他的DAO对应的ID是同一个</p>
+<p>所以在同一个Server中可能会用到多个DAO操作</p>
+<p>可以在当前线程上存储数据，也可以在当前线程上获取数据</p>
+<p>当前DAO操作如果需要连接到数据库就从ThreadLocal中获取连接</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220331115337112.png" alt="image-20220331115337112"></p>
+<h2 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h2><h3 id="配置监听器（Listener）"><a href="#配置监听器（Listener）" class="headerlink" title="配置监听器（Listener）"></a>配置监听器（Listener）</h3><h3 id="监听器-1"><a href="#监听器-1" class="headerlink" title="监听器"></a>监听器</h3><p><img src="/2022/02/04/web/javaweb/image-20220330172329072.png" alt="image-20220330172329072"></p>
+<hr>
+<h4 id="监听器的作用"><a href="#监听器的作用" class="headerlink" title="监听器的作用"></a>监听器的作用</h4><p>对之前的项目通过监听器来优化</p>
+<p>可以通过ServletContextListener来舰艇ServletContext对象的创建</p>
+<p>在ServletContext对象创建之前就将BeanFactory创建完成并且保存到application作用域中</p>
+<p>这样有虽然会减慢系统的启动速度，但是会提高后续的响应速度</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220330184344808.png" alt="image-20220330184344808"></p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">请求网址<span class="token operator">:</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>baidu<span class="token punctuation">.</span>com<span class="token operator">/</span>
+请求方法<span class="token operator">:</span> GET
+状态代码<span class="token operator">:</span> <span class="token number">200</span> OK
+远程地址<span class="token operator">:</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token operator">:</span><span class="token number">7890</span>
+引荐来源网址政策<span class="token operator">:</span> unsafe<span class="token operator">-</span>url<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate, br
+
+Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
+
+Cache-Control: max-age=0
+
+Connection: keep-alive
+
+Cookie: __yjs_duid=1_07cb77934cc2cb7cba7321fe70e08e581631009224078; BIDUPSID=A160E32AF109862081730C99479850EA; PSTM=1631010583; BD_UPN=123253; BDUSS=01dTJza3o5fnh3ZFVpfjNiRXR0NHBnSVkyR0xEWHVwUjh6dC0zV1F5cUZSOFZoRVFBQUFBJCQAAAAAAAAAAAEAAACcoJqNWnZlcl8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIW6nWGFup1hUE; BDUSS_BFESS=01dTJza3o5fnh3ZFVpfjNiRXR0NHBnSVkyR0xEWHVwUjh6dC0zV1F5cUZSOFZoRVFBQUFBJCQAAAAAAAAAAAEAAACcoJqNWnZlcl8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIW6nWGFup1hUE; BAIDUID=C63C39519CA91244F4EE9F8EC57A6355:FG=1; BDORZ=FFFB88E999055A3F8A630C64834BD6D0; delPer=0; BD_CK_SAM=1; PSINO=7; BAIDUID_BFESS=C63C39519CA91244F4EE9F8EC57A6355:FG=1; BDRCVFR[NUOtsRvVoHc]=mk3SLVN4HKm; H_PS_645EC=1016eFqKPY9kQNweStgu8qUVLVYtjKr0LyMuNgI%2FUZ8k46%2Fdw1CbB3xoNLusvrXxZjh1LsRtOfmP; BD_HOME=1; H_PS_PSSID=35106_31660_35773_34584_35490_35796_35318_26350_35746; sug=3; sugstore=0; ORIGIN=2; bdime=0; BA_HECTOR=a5042180a0210lalph1gvs2vr0q
+
+Host: www.baidu.com
+
+Referer: https://www.baidu.com/link?
+
+url=S1DCLMC5HRtFPUFeE_48NQoJvAKOB6gKa4AXKOCMdPO&amp;wd=&amp;eqid=fbd4eab2004e9d080000000661fe0bec
+
+sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="97", "Chromium";v="97"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h4><ul>
+<li><p><strong>GET</strong>，<strong>POST</strong></p>
+<ul>
+<li>get：请求能够携带的参数比较少，大小有限制，会在浏览器的URL地址栏显示数据内容，不安全但高效</li>
+<li>post: 请求能够携带的参数没有限制，大小没限制，不显示数据内容，安全但不高效</li>
+</ul>
+</li>
+<li><p>json格式，请求题,request payload</p>
+</li>
+<li><p>HEAD，DELETE,PUT</p>
+</li>
+</ul>
+<h4 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Accept</span><span class="token operator">:</span> <span class="token comment">//告诉浏览器，他所支持的文件类型</span>
+<span class="token class-name">Accept</span><span class="token operator">-</span><span class="token class-name">Encoding</span><span class="token operator">:</span> 	<span class="token comment">//支持的编码格式</span>
+<span class="token class-name">Accept</span><span class="token operator">-</span><span class="token class-name">Language</span><span class="token operator">:</span>  	<span class="token comment">//支持的语言环境</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span>  	<span class="token comment">//缓存控制</span>
+<span class="token class-name">Connection</span><span class="token operator">:</span>		<span class="token comment">//告诉浏览器请求还是断开链接</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
+<h3 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h3><ul>
+<li><p>响应行</p>
+<ul>
+<li>协议</li>
+<li>响应状态码</li>
+<li>响应状态</li>
+</ul>
+</li>
+<li><p>响应头</p>
+<ul>
+<li>包含服务器的信息，服务器发送给浏览器的信息(内容类型，编码，长度)</li>
+</ul>
+</li>
+<li><p>响应体</p>
+<ul>
+<li>响应实际内容</li>
+</ul>
+</li>
+<li><p>服务器响应-&gt;客户端</p>
+</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Bdpagetype</span><span class="token operator">:</span> <span class="token number">2</span>
+<span class="token class-name">Bdqid</span><span class="token operator">:</span> <span class="token number">0xe0f3d0f700863cfa</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> <span class="token keyword">private</span>	<span class="token comment">//缓存控制</span>
+<span class="token class-name">Connection</span><span class="token operator">:</span> keep<span class="token operator">-</span>alive	<span class="token comment">//连接：保持活跃</span>
+<span class="token class-name">Content</span><span class="token operator">-</span><span class="token class-name">Encoding</span><span class="token operator">:</span> gzip	<span class="token comment">//编码</span>
+<span class="token class-name">Content</span><span class="token operator">-</span><span class="token class-name">Type</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">;</span>charset<span class="token operator">=</span>utf<span class="token operator">-</span><span class="token number">8</span>	<span class="token comment">//字符集</span>
+<span class="token class-name">Date</span><span class="token operator">:</span> <span class="token class-name">Sat</span><span class="token punctuation">,</span> <span class="token number">05</span> <span class="token class-name">Feb</span> <span class="token number">2022</span> <span class="token number">05</span><span class="token operator">:</span><span class="token number">32</span><span class="token operator">:</span><span class="token number">43</span> GMT	
+<span class="token class-name">Expires</span><span class="token operator">:</span> <span class="token class-name">Sat</span><span class="token punctuation">,</span> <span class="token number">05</span> <span class="token class-name">Feb</span> <span class="token number">2022</span> <span class="token number">05</span><span class="token operator">:</span><span class="token number">32</span><span class="token operator">:</span><span class="token number">43</span> GMT
+<span class="token class-name">Server</span><span class="token operator">:</span> BWS<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Set</span><span class="token operator">-</span><span class="token class-name">Cookie</span><span class="token operator">:</span> BDSVRTM<span class="token operator">=</span><span class="token number">444</span><span class="token punctuation">;</span> path<span class="token operator">=</span><span class="token operator">/</span>
+<span class="token class-name">Set</span><span class="token operator">-</span><span class="token class-name">Cookie</span><span class="token operator">:</span> BD_HOME<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> path<span class="token operator">=</span><span class="token operator">/</span>
+<span class="token class-name">Set</span><span class="token operator">-</span><span class="token class-name">Cookie</span><span class="token operator">:</span> H_PS_PSSID<span class="token operator">=</span><span class="token number">35106_31660_35773_34584_35490_35796_35318_26350_35746</span><span class="token punctuation">;</span> path<span class="token operator">=</span><span class="token operator">/</span><span class="token punctuation">;</span> domain<span class="token operator">=</span><span class="token punctuation">.</span>baidu<span class="token punctuation">.</span>com
+<span class="token class-name">Strict</span><span class="token operator">-</span><span class="token class-name">Transport</span><span class="token operator">-</span><span class="token class-name">Security</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">172800</span>
+<span class="token class-name">Traceid</span><span class="token operator">:</span> <span class="token number">1644039163070749261816209529243120844026</span>
+<span class="token class-name">Transfer</span><span class="token operator">-</span><span class="token class-name">Encoding</span><span class="token operator">:</span> chunked
+<span class="token class-name">X</span><span class="token operator">-</span><span class="token class-name">Frame</span><span class="token operator">-</span><span class="token class-name">Options</span><span class="token operator">:</span> sameorigin
+<span class="token class-name">X</span><span class="token operator">-</span><span class="token class-name">Ua</span><span class="token operator">-</span><span class="token class-name">Compatible</span><span class="token operator">:</span> IE<span class="token operator">=</span><span class="token class-name">Edge</span><span class="token punctuation">,</span>chrome<span class="token operator">=</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h4><ul>
+<li><p>200 ： 请求成功</p>
+</li>
+<li><p>3xx : 请求重定向（重新给新位置）</p>
+<ul>
+<li>302:重定向</li>
+</ul>
+</li>
+<li><p>4xx : 找不到资源</p>
+<ul>
+<li>404： 资源不存在</li>
+<li>405:   表单提交方法错误</li>
+</ul>
+</li>
+<li><p>5xx ： 服务器代码错误</p>
+<ul>
+<li>500</li>
+<li>502 网关错误</li>
+</ul>
+</li>
+</ul>
+<h3 id="获取请求行信息的相关方法"><a href="#获取请求行信息的相关方法" class="headerlink" title="获取请求行信息的相关方法"></a>获取请求行信息的相关方法</h3><table>
+<thead>
+<tr>
+<th align="center">方法声明</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int getRemotePort()</td>
+<td align="center">获取请求客户端网络连接的<strong>端口号</strong></td>
+</tr>
+<tr>
+<td align="center">String getLocalAddr</td>
+<td align="center">获取Web服务器上接收当前请求网络连接的<strong>IP地址</strong></td>
+</tr>
+<tr>
+<td align="center">String getLocalName</td>
+<td align="center">获取Web服务器上接收当前网络连接IP对应的<strong>主机名</strong></td>
+</tr>
+<tr>
+<td align="center">String getScheme()</td>
+<td align="center">获取请求的<strong>协议名</strong></td>
+</tr>
+<tr>
+<td align="center">String getServerName()</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h2><h3 id="为什么要学习Maven"><a href="#为什么要学习Maven" class="headerlink" title="为什么要学习Maven"></a>为什么要学习Maven</h3><ul>
+<li>javaweb开发中，需要大量的jar包，我们手动去导入；</li>
+<li>让一个东西帮我自动导入和配置这个jar包，由此有了Maven</li>
+</ul>
+<h3 id="Maven项目架构管理工具"><a href="#Maven项目架构管理工具" class="headerlink" title="Maven项目架构管理工具"></a>Maven项目架构管理工具</h3><p>Maven的核心思想：<strong>约定大于配置</strong></p>
+<ul>
+<li>有约束，不要去喂饭</li>
+</ul>
+<p>Maven会规定编写java代码，按照规范</p>
+<h3 id="Maven文件结构"><a href="#Maven文件结构" class="headerlink" title="Maven文件结构"></a>Maven文件结构</h3><p><strong>java获取文件目录</strong></p>
+<p>├── pom.xml<br>├── src<br>│   ├── main<br>│   │   ├── java<br>│   │   │   ├── com<br>│   │   │   │   ├── alipay<br>│   │   │   │   │   ├── ResourceTest.java<br>│   │   │   │   │   └── Resource.java<br>│   │   └── resources<br>│   │   │   ├── conf<br>│   │   │   │   ├── sysConf.json<br>│   │   │   └── request.xml<br>└── local.iml</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ResourceTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 1、通过Class的getResource方法</span>
+        <span class="token class-name">String</span> a1 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/com/alipay/Resource.class"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> a2 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"Resource.class"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> a3 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/request.xml"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> a4 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"../../request.xml"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> a5 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/conf/sysConf.json"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> a6 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"../../conf/sysConf.json"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+        <span class="token comment">// 2、通过本类的ClassLoader的getResource方法</span>
+        <span class="token class-name">String</span> b1 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"com/alipay/Resource.class"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> b2 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"request.xml"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> b3 <span class="token operator">=</span> <span class="token class-name">ResourceTest</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"conf/sysConf.json"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+        <span class="token comment">// 3、通过ClassLoader的getSystemResource方法</span>
+        <span class="token class-name">String</span> c1 <span class="token operator">=</span> <span class="token class-name">ClassLoader</span><span class="token punctuation">.</span><span class="token function">getSystemClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"com/alipay/Resource.class"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> c2 <span class="token operator">=</span> <span class="token class-name">ClassLoader</span><span class="token punctuation">.</span><span class="token function">getSystemClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"request.xml"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> c3 <span class="token operator">=</span> <span class="token class-name">ClassLoader</span><span class="token punctuation">.</span><span class="token function">getSystemClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"conf/sysConf.json"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+        <span class="token comment">// 4、通过ClassLoader的getSystemResource方法</span>
+        <span class="token class-name">String</span> d1 <span class="token operator">=</span> <span class="token class-name">ClassLoader</span><span class="token punctuation">.</span><span class="token function">getSystemResource</span><span class="token punctuation">(</span><span class="token string">"com/alipay/Resource.class"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> d2 <span class="token operator">=</span> <span class="token class-name">ClassLoader</span><span class="token punctuation">.</span><span class="token function">getSystemResource</span><span class="token punctuation">(</span><span class="token string">"request.xml"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> d3 <span class="token operator">=</span> <span class="token class-name">ClassLoader</span><span class="token punctuation">.</span><span class="token function">getSystemResource</span><span class="token punctuation">(</span><span class="token string">"conf/sysConf.json"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+        <span class="token comment">// 5、通过Thread方式</span>
+        <span class="token class-name">String</span> e1 <span class="token operator">=</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContextClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"com/alipay/Resource.class"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> e2 <span class="token operator">=</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContextClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"request.xml"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> e3 <span class="token operator">=</span> <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContextClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"conf/sysConf.json"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<p>由于maven打包会把 src/main/java 和 src/main/resources 下的文件放到 target/classes 下，所以下面统一以根路径代表此目录，总结起来有以下几个规律：</p>
+<p>Class.getResource()的资源获取如果以 / 开头，则从根路径开始搜索资源。<br>Class.getResource()的资源获取如果不以 / 开头，则从当前类所在的路径开始搜索资源。<br>ClassLoader.getResource()的资源获取不能以 / 开头，统一从根路径开始搜索资源。</p>
+<h3 id="java8方法参数名称–maven配置"><a href="#java8方法参数名称–maven配置" class="headerlink" title="java8方法参数名称–maven配置"></a>java8方法参数名称–maven配置</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token generics"><span class="token punctuation">&lt;</span>plugin<span class="token punctuation">&gt;</span></span>
+       <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>maven<span class="token punctuation">.</span>plugins<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+       <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>maven<span class="token operator">-</span>compiler<span class="token operator">-</span>plugin<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+       <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">3.3</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+       <span class="token generics"><span class="token punctuation">&lt;</span>configuration<span class="token punctuation">&gt;</span></span>
+           <span class="token generics"><span class="token punctuation">&lt;</span>source<span class="token punctuation">&gt;</span></span><span class="token number">1.8</span><span class="token operator">&lt;</span><span class="token operator">/</span>source<span class="token operator">&gt;</span>
+           <span class="token generics"><span class="token punctuation">&lt;</span>target<span class="token punctuation">&gt;</span></span><span class="token number">1.8</span><span class="token operator">&lt;</span><span class="token operator">/</span>target<span class="token operator">&gt;</span>
+           <span class="token generics"><span class="token punctuation">&lt;</span>compilerArgs<span class="token punctuation">&gt;</span></span>
+               <span class="token generics"><span class="token punctuation">&lt;</span>arg<span class="token punctuation">&gt;</span></span><span class="token operator">-</span>parameters<span class="token operator">&lt;</span><span class="token operator">/</span>arg<span class="token operator">&gt;</span>
+           <span class="token operator">&lt;</span><span class="token operator">/</span>compilerArgs<span class="token operator">&gt;</span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>configuration<span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>plugin<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="QQZone项目学习过程"><a href="#QQZone项目学习过程" class="headerlink" title="QQZone项目学习过程"></a>QQZone项目学习过程</h2><h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><ul>
+<li>用户登陆</li>
+<li>登陆成功，显示主界面</li>
+<li>查看日志详情<ul>
+<li>日志本身信息（作者头像，昵称，日志标题，日志内容）</li>
+<li>回复列表（回复者头像，昵称，回复内容，回复日期）</li>
+<li>主人回复信息</li>
+</ul>
+</li>
+<li>删除日志</li>
+<li>删除特定回复</li>
+<li>删除特定主人回复</li>
+<li>添加日志，添加回复，添加主人回复</li>
+<li>点击左侧好友链接，进入好友的空间</li>
+</ul>
+<h3 id="数据库设计（E-R分析）"><a href="#数据库设计（E-R分析）" class="headerlink" title="数据库设计（E-R分析）"></a>数据库设计（E-R分析）</h3><h4 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h4><ul>
+<li><p>用户登陆信息</p>
+</li>
+<li><p>用户详情信息</p>
+</li>
+<li><p>日志</p>
+</li>
+<li><p>回复</p>
+</li>
+<li><p>主人回复</p>
+</li>
+<li><p>分析其中的属性</p>
+<ul>
+<li>用户登陆信息：账号，密码，头像，名称</li>
+<li>用户详情：星座，血型····</li>
+<li>日志：标题，内容，日期，作者</li>
+<li>回复：内容，日期，作者，对那片日志的回复</li>
+<li>主人回复：内容，日期，作者，对那片日志的回复</li>
+</ul>
+</li>
+<li><p>分析实体之间的关系</p>
+<ul>
+<li>用户登陆信息 - 用户详情信息：1:1</li>
+<li>日志 - 回复： 1: N</li>
+<li>用户登陆信息 - 日志：1:N</li>
+<li>回复 - 主人回复 ：1:1</li>
+<li>用户登陆信息 ： 回复：1:N</li>
+<li>用户登陆信息 ： 主人回复 ： 1:N</li>
+</ul>
+</li>
+</ul>
+<h4 id="Entity-Relationship图"><a href="#Entity-Relationship图" class="headerlink" title="Entity Relationship图"></a>Entity Relationship图</h4><p><img src="/2022/02/04/web/javaweb/image-20220331125935148.png" alt="image-20220331125935148"></p>
+<h3 id="数据库范式"><a href="#数据库范式" class="headerlink" title="数据库范式"></a>数据库范式</h3><h4 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h4><p>属性不可再分</p>
+<h4 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h4><p>每个非主属性完全函数依赖于任何一个候选码</p>
+<p>对于每个非主属性完全由任何一个候选码所确定</p>
+<p>一张表只用来描述一件事情</p>
+<h4 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h4><p>表中的每一列和主键都是直接依赖关系，而不是间接依赖</p>
+<p>也就是说每一列应该不能由主键通过和其他表连接得到</p>
+<h4 id="数据库规范和效率的决定"><a href="#数据库规范和效率的决定" class="headerlink" title="数据库规范和效率的决定"></a>数据库规范和效率的决定</h4><p>数据库设计得越规范，冗余数据就越少，但是效率会有所下降</p>
+<h3 id="XML约束"><a href="#XML约束" class="headerlink" title="XML约束"></a>XML约束</h3><p><img src="/2022/02/04/web/javaweb/image-20220401192313134.png" alt="image-20220401192313134"></p>
+<h3 id="截止目前的项目工作框架"><a href="#截止目前的项目工作框架" class="headerlink" title="截止目前的项目工作框架"></a>截止目前的项目工作框架</h3><p><img src="/2022/02/04/web/javaweb/image-20220402125506255.png" alt="image-20220402125506255"></p>
+<h3 id="截止目前为止的错误"><a href="#截止目前为止的错误" class="headerlink" title="截止目前为止的错误"></a>截止目前为止的错误</h3><ol>
+<li>数据库没有更换</li>
+<li>字段名跟类的属性名不相等可以用ColumeLable（）方法来用别名</li>
+<li>遇见.html的Thymeleaf页面没有生效，是因为直接通过跳转的静态页面，没有经过服务器端的渲染，也就是super.processTemplate();所以可以写给pageController来跳转给DispacherServelt渲染然后在实现页面的跳转</li>
+</ol>
+<h3 id="根据好友链接进入空间实现"><a href="#根据好友链接进入空间实现" class="headerlink" title="根据好友链接进入空间实现"></a>根据好友链接进入空间实现</h3><p> 存储一个作用于为 UserBasic 和 Friend 作用域，</p>
+<p>如果UserBasic = Friend 那么说明是自己的空间：进行额外的操作</p>
+<p>如果不相等那么说明不是自己的空间</p>
+<p>日志展示可以直接按照Friend 来展示，</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220403143501223.png" alt="image-20220403143501223"></p>
+<h3 id="日志详情页面实现"><a href="#日志详情页面实现" class="headerlink" title="日志详情页面实现"></a>日志详情页面实现</h3><h4 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h4><ol>
+<li><p>获取topic 内容</p>
+</li>
+<li><p>获取所有topic reply<list></list></p>
+</li>
+<li><p>获取所有topic hostReply<list></list></p>
+</li>
+<li><p>对于topic的author通过UserService获取所有author信息在赋予给topic的author</p>
+</li>
+<li><p>reply的author同理也需要同4一样的操作在获取Reply的时候对所有的id通过UserService赋予信息后在赋予author</p>
+</li>
+<li></li>
+</ol>
+<p><img src="/2022/02/04/web/javaweb/image-20220403151258073.png" alt="image-20220403151258073"></p>
+<h3 id="删除回复的功能实现"><a href="#删除回复的功能实现" class="headerlink" title="删除回复的功能实现"></a>删除回复的功能实现</h3><h4 id="逻辑-1"><a href="#逻辑-1" class="headerlink" title="逻辑"></a>逻辑</h4><ul>
+<li><p>是你的空间，你可以删除任何回复</p>
+</li>
+<li><p>不是你的空间，你可以删除你自己的回复  </p>
+</li>
+<li><p>在删除回复记录的时候，发现删除失败:原因是当前主人回复中仍然有该回复记录</p>
+</li>
+<li><p>如果回复中有关联的主人回复，需要先删除主人回复，因为在数据库中对于当前回复的外健存在主人回复</p>
+<ul>
+<li>根据replyId 根据HostReplyService 获取replyId 的所有HostReply删除掉，在删除reply</li>
+</ul>
+</li>
+</ul>
+<h3 id="删除日志功能实现"><a href="#删除日志功能实现" class="headerlink" title="删除日志功能实现"></a>删除日志功能实现</h3><h4 id="逻辑-2"><a href="#逻辑-2" class="headerlink" title="逻辑"></a>逻辑</h4><ul>
+<li>删除日志，需要先删除所有相关联的回复</li>
+<li>删除回复，需要先删除所有相关联的主人回复</li>
+<li>如果不是自己的空间，那么不可以删除日志</li>
+<li>删除完后局部刷新展示日志的html,就是重新用数据来覆盖之前的session作用域里面的数据</li>
+</ul>
+<h3 id="QQZone-Review"><a href="#QQZone-Review" class="headerlink" title="QQZone Review"></a>QQZone Review</h3><h4 id="关于Data时间显示的格式问题"><a href="#关于Data时间显示的格式问题" class="headerlink" title="关于Data时间显示的格式问题"></a>关于Data时间显示的格式问题</h4><p>thymeleaf提供来方法</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">${#dates.format(topic.topicDate,{yyyy-MM-dd HH:mm:ss})} <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>java实现</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// String -&gt; java.util.Data;</span>
+<span class="token class-name">String</span> dateString <span class="token operator">=</span> <span class="token string">"2021-12-30 12:30:59"</span>
+<span class="token class-name">SimpleDateFormate</span> sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormate</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Date</span> date <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>dateString<span class="token punctuation">)</span>
+    
+<span class="token comment">// Data -&gt; String</span>
+<span class="token class-name">Date</span> date <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> dateString <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="添加PageContorller的目的"><a href="#添加PageContorller的目的" class="headerlink" title="添加PageContorller的目的"></a>添加PageContorller的目的</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">系统启动时，我们访问的页面是：http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">1</span>ocalhost<span class="token operator">:</span><span class="token number">8080</span><span class="token operator">/</span>pro23<span class="token operator">/</span>page<span class="token punctuation">.</span><span class="token keyword">do</span><span class="token operator">?</span>operate<span class="token operator">=</span>page<span class="token operator">&amp;</span>page<span class="token operator">=</span>login为什么不是：http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">1</span>oca1host<span class="token operator">:</span><span class="token number">8080</span><span class="token operator">/</span>pro23<span class="token operator">/</span><span class="token number">1</span>ogin<span class="token punctuation">.</span>htm1<span class="token operator">?</span>
+答：如果是后者，那么属于直接访问静态页面。那么页面上的chymeleaf：表达式（标签）浏览器是不能识别的
+我们访问前者的目的其实就是要执行viewBaseServlet中的processTemplete（）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="项目整个流程"><a href="#项目整个流程" class="headerlink" title="项目整个流程"></a>项目整个流程</h4><p><img src="/2022/02/04/web/javaweb/image-20220407180734265.png" alt="image-20220407180734265"></p>
+<hr>
+<p><img src="/2022/02/04/web/javaweb/image-20220407180757854.png" alt="image-20220407180757854"></p>
+<hr>
+<p><img src="/2022/02/04/web/javaweb/image-20220407181041224.png" alt="image-20220407181041224"></p>
+<h4 id="快速进行一个项目套路"><a href="#快速进行一个项目套路" class="headerlink" title="快速进行一个项目套路"></a>快速进行一个项目套路</h4><ul>
+<li><p>复制myssm包(通用)</p>
+</li>
+<li><p>新建applicationContent.xml配置文件，进行组件和依赖注入</p>
+</li>
+<li><p>在web.xml中指定文件名，如果使用thymeleaf配置thymeleaf前后缀</p>
+</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>context<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span>view<span class="token operator">-</span>prefix<span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span><span class="token operator">/</span><span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>context<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>context<span class="token operator">-</span>param<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span>view<span class="token operator">-</span>suffix<span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>name<span class="token operator">&gt;</span><span class="token operator">&lt;</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span><span class="token punctuation">.</span>html<span class="token operator">&lt;</span><span class="token operator">/</span>param<span class="token operator">-</span>value<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>context<span class="token operator">-</span>param<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>配置监听器需要读取的参数 (例如监听创建提前创建好factory)</p>
+</li>
+<li><p>开发具体的业务模块</p>
+</li>
+</ul>
+<p>一个具体的业务模块纵向上由几个部分组成</p>
+<p>​	html页面</p>
+<p>​	POJO类（对应数据库的表）</p>
+<p>​	DAO接口和实现类</p>
+<p>​	Service接口和实现类</p>
+<p>​	Controller控制器组件</p>
+<p>在applicationContext.xml中配置DAO，Service,Controller之间的依赖关系</p>
+<p>DAO实现类继承BaseDao实现具体的接口，BaseDao<t>泛型类型要对应</t></p>
+<p>Service是业务控制类：业务逻辑都封装在Service层，</p>
+<p>​	保证DAO方法的单精度（DAO只实现一个功能）</p>
+<p>​	当一个业务功能需要使用其他模块的业务功能时，尽量调用别人的Service方法，而不是深入到DAO层细节</p>
+<ul>
+<li>Controller类的编写规则</li>
+</ul>
+<p>在配置文件中配置Controller类的时候</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"user"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.qqzone.controllers.UserConroller"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>​		那么，用户在前端发送请求的时候对应的servlectPath就是 /user.do</p>
+<p>​		其中 user 应该要对应bean的id值</p>
+<p>在Controller中设计的方法应该要和operate的值一致</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>​		在前端中应该要有如下</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">&lt;form type=“hidden”,name=“operate”,value=“login”&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>​		其中的 value 值对应方法名</p>
+<p>在表单中组件的name属性要和Controller的方法的参数名一致</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>loginId<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">&gt;</span></span>
+public String login(String loginId,String pwd,HttpSession session)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>Controller中方法的参数不一定是全部通过作用域来获取</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span>“request”<span class="token punctuation">.</span>equals<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>“session”<span class="token punctuation">.</span>equals…<span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"response"</span><span class="token punctuation">.</span>equals<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    直接由dispacherServlet赋予
+<span class="token punctuation">}</span><span class="token keyword">else</span>
+<span class="token punctuation">{</span>
+    通过反射获取类型赋予参数
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>DispacherServlet大致流程</li>
+</ul>
+<p>从application作用域获取Ioc容器<br>解析servletPath，在Ioc容器中寻找对应的Controller组件<br>准备operate指定的方法所要求的参数<br>调用operate,指定的方法<br>接收到执行operate指定的方法的返回值，对返回值进行处理-视图处理</p>
+<ul>
+<li>DispacherServlet从 application 作用域中获取IOC容器</li>
+</ul>
+<p>ContextLoaderListener在容器启动时会执行初始化任务，而它的操作就是：<br>解析IOC的配置文件，创建一个一个的组件，并完成组件之间依赖关系的注入<br>将Ioc容器保存到application作用域</p>
+<ul>
+<li>修改BaseDAO，让其支持oroperties文件以及druid数据源连接池</li>
+</ul>
+<p>讲解了两种方式：<br>1）直接自己配置oroperties，然后读取，然后加载驱动.·…</p>
+<p>2）使用druid连接池技术，那么properties中的key是有要求的</p>
+<ul>
+<li>将通用的代码弄成jar包，在工程直接添加library可以直接使用</li>
+</ul>
+<h2 id="书城项目学习过程"><a href="#书城项目学习过程" class="headerlink" title="书城项目学习过程"></a>书城项目学习过程</h2><h3 id="需求分析-1"><a href="#需求分析-1" class="headerlink" title="需求分析"></a>需求分析</h3><h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><h4 id="实体-1"><a href="#实体-1" class="headerlink" title="实体"></a>实体</h4><p><img src="/2022/02/04/web/javaweb/image-20220408113357175.png" alt="image-20220408113357175"></p>
+<h4 id="Entity-relationship-Diagram（ER图）"><a href="#Entity-relationship-Diagram（ER图）" class="headerlink" title="Entity-relationship Diagram（ER图）"></a>Entity-relationship Diagram（ER图）</h4><p><img src="/2022/02/04/web/javaweb/image-20220408113251068.png" alt="image-20220408113251068"></p>
+<h3 id="登陆功能实现"><a href="#登陆功能实现" class="headerlink" title="登陆功能实现"></a>登陆功能实现</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li><p>提交表单包含用户名和密码</p>
+</li>
+<li><p>根据用户名和密码去数据库验证</p>
+</li>
+</ul>
+<h3 id="首页书籍显示功能实现"><a href="#首页书籍显示功能实现" class="headerlink" title="首页书籍显示功能实现"></a>首页书籍显示功能实现</h3><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>获取所有书籍的信息</li>
+<li>通过thymeleaf在网页中展示</li>
+</ul>
+<h3 id="加入购物车功能实现"><a href="#加入购物车功能实现" class="headerlink" title="加入购物车功能实现"></a>加入购物车功能实现</h3><h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ul>
+<li><p>获取该用户的所有购物车项</p>
+</li>
+<li><p>通过map标记购物车里面的图书的 id 所属购物车项</p>
+</li>
+<li><p>通过map对当前添加书籍判断是否已有所属购物车项</p>
+<ul>
+<li>如果有该购物车项中的数量+1</li>
+<li>如果没有通过该书籍创建新的购物车项，</li>
+</ul>
+</li>
+</ul>
+<h3 id="购物车详情页面实现"><a href="#购物车详情页面实现" class="headerlink" title="购物车详情页面实现"></a>购物车详情页面实现</h3><h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>通过用户id获取该用户的所有的购物车项</li>
+<li>在根据每个购物车项里面的book id 为每个book赋予详细信息</li>
+<li>通过每一个购物车项的价格和数量，算出该购物车项的小计</li>
+<li>通过每个购物车项的小计算出总金额</li>
+</ul>
+<h3 id="结账功能实现"><a href="#结账功能实现" class="headerlink" title="结账功能实现"></a>结账功能实现</h3><h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>订单表中添加一条记录</li>
+<li>订单详情表添加所有订单项的记录</li>
+<li>购物车项删除对应的记录</li>
+</ul>
+<h3 id="代码重构"><a href="#代码重构" class="headerlink" title="代码重构"></a>代码重构</h3><h4 id="购物车里面的订单数量问题"><a href="#购物车里面的订单数量问题" class="headerlink" title="购物车里面的订单数量问题"></a>购物车里面的订单数量问题</h4><p><strong>问题：</strong></p>
+<p>当前在购物车中的订单数量可以达到 0 </p>
+<p><strong>解决方案：</strong></p>
+<ul>
+<li>添加逻辑逻辑判断，订单数量最少为1</li>
+</ul>
+<h4 id="Double数据运算过程中精度调整"><a href="#Double数据运算过程中精度调整" class="headerlink" title="Double数据运算过程中精度调整"></a>Double数据运算过程中精度调整</h4><p>在购物车中小计和总和是直接使用double进行计算，会出现显示问题</p>
+<p><img src="/2022/02/04/web/javaweb/image-20220421173524625.png" alt="image-20220421173524625"></p>
+<p>解决方案</p>
+<ul>
+<li>使用BigDecimal类型来进行Double类型数据运算</li>
+<li>创建BigDecimal类型对象时将Double类型的数据转换为字符串</li>
+</ul>
+<p>求小计</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 获取金额时需要计算得到</span>
+<span class="token keyword">public</span> <span class="token class-name">Double</span> <span class="token function">getAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">// +" " 将类型转化成字符串类型</span>
+    <span class="token class-name">BigDecimal</span> bigDecimalCount <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>count <span class="token operator">+</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">BigDecimal</span> bigDecimalPrice <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>price <span class="token operator">+</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+    <span class="token class-name">BigDecimal</span> multiReuslt <span class="token operator">=</span> bigDecimalCount<span class="token punctuation">.</span><span class="token function">multiply</span><span class="token punctuation">(</span>bigDecimalPrice<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> multiReuslt<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>求总和</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 计算总金额</span>
+<span class="token keyword">public</span> <span class="token class-name">Double</span> <span class="token function">getTotalAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// 1.声明一个变量用于存储累加结果</span>
+    <span class="token class-name">BigDecimal</span> sum <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span><span class="token string">"0.0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 2.遍历Map集合</span>
+    <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> keySet <span class="token operator">=</span> cartItemMap<span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> key <span class="token operator">:</span> keySet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">CartItem</span> cartItem <span class="token operator">=</span> cartItemMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Double</span> amount <span class="token operator">=</span> cartItem<span class="token punctuation">.</span><span class="token function">getAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        sum <span class="token operator">=</span> sum<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span>amount <span class="token operator">+</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 3.返回累加结果</span>
+    <span class="token keyword">return</span> sum<span class="token punctuation">.</span><span class="token function">doubleValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="区分用户和非用户"><a href="#区分用户和非用户" class="headerlink" title="区分用户和非用户"></a>区分用户和非用户</h4><p><strong>问题：</strong></p>
+<p>因为在购物车处需要获得对应的用户来显示对应的购物车，如果当前没有用户登录，那么就会在进入购物车的时候获取用户不到，出现异常，</p>
+<p><strong>解决方案：</strong></p>
+<ul>
+<li>创建一个过滤器Filter，如果当前用户没有登录，并且还点击了除首页外其他组件（例如，加入购物车，立即购买等等），就会跳转到登录界面，</li>
+</ul>
+<p><strong>在解决方案中，出现以下问题</strong></p>
+<p>localhost將您重定向的次数过多。尝试清除Cookie</p>
+<p>ERR TOO MANY REDIRECTS</p>
+<p><strong>问题原因：</strong></p>
+<p>​	当第一次到登录界面由于没有登录，会被过滤器又跳转到登录界面，重复上述过程，造成死循环</p>
+<p><strong>解决方案1：</strong></p>
+<ul>
+<li>在过滤器中添加逻辑判断，如果当前在指定页面中直接放行，不重定向</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//http://localhost:8080/pro25/page.do?operate=page&amp;&amp;page=user/login</span>
+
+request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//  pro25/page.do</span>
+request<span class="token punctuation">.</span><span class="token function">getQueryString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//  operate=page&amp;&amp;page=user/login</span>
+
+    
+<span class="token comment">//通过在webFilter中设置初始值，对于所有的合法的操作加入到initParams中（白名单）</span>
+<span class="token comment">//如果当前跳转的页面在initParameter中直接放行，否则拦截跳转</span>
+<span class="token comment">//通过上述的两个方法可以获取到对应的操作</span>
+<span class="token annotation punctuation">@WebFilter</span><span class="token punctuation">(</span>
+    initParams<span class="token operator">=</span><span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@WebInitParam</span><span class="token operator">=</span><span class="token punctuation">(</span>name <span class="token operator">=</span><span class="token string">"bai"</span><span class="token punctuation">,</span>
+		value<span class="token operator">=</span><span class="token string">"/pro25/page.do?opetater=page&amp;&amp;page=user/ogin,/pro25/user.do?null,/pro25/user.do?"</span>
+                      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+    
+<span class="token comment">//在 init方法中通过","分割分别放入List中，通过这个List来判断当前的合法操作</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">FilterCOnfig</span> config <span class="token punctuation">)</span><span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">{</span>
+    	<span class="token class-name">String</span> bai<span class="token operator">=</span>config<span class="token punctuation">.</span><span class="token function">getInitParameter</span><span class="token punctuation">(</span><span class="token string">"bai"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    	<span class="token class-name">String</span> baiArr <span class="token operator">=</span>bai<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    	baiList <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>baiArr<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+<span class="token punctuation">}</span>
+    
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>解决方案2:</strong></p>
+<ul>
+<li>在对应需要用户的网页如果没有获取到用户信息，跳转到首页中</li>
+</ul>
+<p>缺点是，如果存在多个网页不如第一个解决方案添加白名单管理方便。</p>
+<h4 id="添加Cookie实现自动登录"><a href="#添加Cookie实现自动登录" class="headerlink" title="添加Cookie实现自动登录"></a>添加Cookie实现自动登录</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Cookie</span><span class="token punctuation">.</span><span class="token function">setMaxAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h4 id="添加注册的验证码（反爬）"><a href="#添加注册的验证码（反爬）" class="headerlink" title="添加注册的验证码（反爬）"></a>添加注册的验证码（反爬）</h4><h4 id="判断用户是否已经被注册（ajax）"><a href="#判断用户是否已经被注册（ajax）" class="headerlink" title="判断用户是否已经被注册（ajax）"></a>判断用户是否已经被注册（ajax）</h4><p>Ajax:异步的javascript and xml</p>
+<p>目的：用来发送异步的请求，然后当服务器给我响应的时候进行回调操作，进行局部刷新</p>
+<p>步骤</p>
+<ol>
+<li>创建XMLHttpRequest</li>
+<li>调用open进行设置：“GET”，URL，TRUE</li>
+<li>绑定改变时执行的回调函数 -onreadystatechange</li>
+<li>发送请求-send（）</li>
+<li>编写回调函数，在回调函数，我们对XMLHttpRequest的readyState为4和XMLHttpRequest的status为200；<ul>
+<li>0（未初始化）还没有调用send（）方法</li>
+<li>1（载入）已调用send0方法，正在发送请求</li>
+<li>2（载入完成）send（）方法执行完成，已经接收到全部响应内容</li>
+<li>3（交互）正在解析响应内容</li>
+<li>4（完成）响应内容解析完成，可以在客户端调用了</li>
+</ul>
+</li>
+</ol>
+<h2 id="Axios交互"><a href="#Axios交互" class="headerlink" title="Axios交互"></a>Axios交互</h2><p>在<code>Vue</code>博文中</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'EgKQH2gWMlQC81fkD1FLJOdf-gzGzoHsz',
+        appKey: 'rkutKghPIOS2I2RrGf1XdGqC',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'en',
+        placeholder: 'just go go'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/02/04/summary/acwing/suan-fa-ti-gao/shu-ju-jie-gou/xian-duan-shu-he-shu-zhuang-shu-zu/1275.zui-da-shu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="1275.最大数">
+                        
+                        <span class="card-title">1275.最大数</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Where there is a will , there is a way
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-04
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/acwing/" class="post-category">
+                                    acwing
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/summary/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                        <span class="chip bg-color">线段树</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/03/summary/teach/dai-ma-mo-ban-hui-zong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="代码模版">
+                        
+                        <span class="card-title">代码模版</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Where there is a will , there is a way
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/teach/" class="post-category">
+                                    teach
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card"  >
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content" ></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+           
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="xxx" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:xxx" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=xxx" class="tooltipped" target="_blank" data-tooltip="QQ联系我: xxx" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hk416_805.model.json"},"display":{"position":"right","width":300,"height":350},"mobile":{"show":true,"react":{"opacity":"0.7a"}}});</script></body>
+
+</html>

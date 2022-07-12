@@ -673,14 +673,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-05-09
+                    2022-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3k
+                    2.8k
                 </div>
                 
 
@@ -1153,49 +1153,18 @@ game playground
 
 
 
-##### 删除镜像
-
-</span><span class="token template-punctuation string">`</span></span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span>shell
-docker rmi <span class="token punctuation">[</span><span class="token constant">IMAGE</span> <span class="token constant">ID</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h5 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> <span class="token function">rm</span> <span class="token punctuation">[</span>CONTAINER ID/CONTIANER NAME<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h5 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 显示已经运行的容器</span>
-
-<span class="token function">docker</span> <span class="token function">ps</span> -a
-
-<span class="token comment"># 参数</span>
-<span class="token comment"># -a 显示所有的容器（包括没有运行的容器）</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h5 id="显示镜像"><a href="#显示镜像" class="headerlink" title="显示镜像"></a>显示镜像</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> images<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h5 id="启动镜像"><a href="#启动镜像" class="headerlink" title="启动镜像"></a>启动镜像</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
-<span class="token function">docker</span> run -p <span class="token number">20000</span>:22 -p <span class="token number">8000</span>:8000 -p <span class="token number">80</span>:80 -p <span class="token number">443</span>:443 --name CONTAINER_NAME -itd django_lesson:1.1
-
-<span class="token comment">#参数</span>
-<span class="token comment"># -p 指定运行容器开放的端口</span>
-<span class="token comment"># -name 指定容器的名字</span>
-<span class="token comment"># -itd 指定容器对应的镜像</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h5 id="保存和下载镜像"><a href="#保存和下载镜像" class="headerlink" title="保存和下载镜像"></a>保存和下载镜像</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#1.export/import :会丢弃历史记录和元数据信息，仅保存容器当时的快照状态</span>
-<span class="token function">docker</span> <span class="token builtin class-name">export</span> <span class="token punctuation">[</span>NAME<span class="token punctuation">]</span>
-<span class="token function">docker</span> <span class="token function">import</span> <span class="token punctuation">[</span>NAME<span class="token punctuation">]</span>
-<span class="token comment">#2.save/load会保存完整记录，体积更大</span>
-<span class="token function">docker</span> save <span class="token punctuation">[</span>NAME<span class="token punctuation">]</span>
-<span class="token function">docker</span> load <span class="token punctuation">[</span>NAME<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 
+## django命令
 
 
 
+##### 运行调试端口：8000
 
-
-<h2 id="django命令"><a href="#django命令" class="headerlink" title="django命令"></a>django命令</h2><h5 id="运行调试端口：8000"><a href="#运行调试端口：8000" class="headerlink" title="运行调试端口：8000"></a>运行调试端口：8000</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python">python3 manage<span class="token punctuation">.</span>py runserver <span class="token number">0.0</span><span class="token number">.0</span><span class="token number">.0</span><span class="token punctuation">:</span><span class="token number">8000</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</span><span class="token template-punctuation string">`</span></span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span>py
+python3 manage<span class="token punctuation">.</span>py runserver <span class="token number">0.0</span><span class="token number">.0</span><span class="token number">.0</span><span class="token operator">:</span><span class="token number">8000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
