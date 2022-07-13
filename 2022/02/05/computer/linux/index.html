@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-08
+                    2022-07-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    5.3k
+                    5.5k
                 </div>
                 
 
@@ -871,16 +871,20 @@ tmux kill-window -t s1 ： 关闭会话s1的一个窗口
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">name</span><span class="token operator">=</span>xxx  <span class="token comment"># 不用引号</span>
 
 <span class="token builtin class-name">echo</span> <span class="token string">'hi, $name \"hh\"'</span>  
-<span class="token comment"># 单引号字符串，输出 hi, $name \"hh\"</span>
+<span class="token comment"># 单引号字符串</span>
+<span class="token comment"># 输出 hi, $name \"hh\"</span>
 
 <span class="token builtin class-name">echo</span> <span class="token string">"hi, <span class="token variable">$name</span> <span class="token entity" title="\&quot;">\"</span>hh<span class="token entity" title="\&quot;">\"</span>"</span> 
-<span class="token comment"># 双引号字符串，输出 hi, xxx "hh"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 双引号字符串</span>
+<span class="token comment"># 输出 hi, xxx "hh"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="判断语句"><a href="#判断语句" class="headerlink" title="判断语句"></a>判断语句</h3><ul>
 <li>表达式的exit code为0，表示真；为非零，表示假</li>
-<li><strong>test  或 [ ]</strong> </li>
-<li>条件表达式要放在方括号之间，并且两边要有空格，例如: <strong>[$a==$b]</strong> 是错误的，必须写成 **[ $a == $b ]**。</li>
+<li><strong>test  或 [ ]</strong></li>
 </ul>
+<blockquote>
+<p>使用 [ ] 的时候，条件表达式要放在方括号之间，并且两边要有空格，例如: <strong>[a==b]</strong> 是错误的，必须写成 **[ a==b ]**。</p>
+</blockquote>
 <h4 id="判断文件类型"><a href="#判断文件类型" class="headerlink" title="判断文件类型"></a>判断文件类型</h4><table>
 <thead>
 <tr>
@@ -1027,6 +1031,37 @@ tmux kill-window -t s1 ： 关闭会话s1的一个窗口
 
 
 
+
+
+<h3 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h3><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-shell-echo.html">连接</a></p>
+<h4 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+<span class="token builtin class-name">echo</span> -e <span class="token string">"OK! <span class="token entity" title="\c">\c</span>"</span> <span class="token comment"># -e 开启转义 \c 不换行</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"It is a test"</span>
+
+<span class="token builtin class-name">echo</span> -e <span class="token string">"OK! <span class="token entity" title="\n">\n</span>"</span> <span class="token comment"># -e 开启转义</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="结果重定向"><a href="#结果重定向" class="headerlink" title="结果重定向"></a>结果重定向</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"It is a test"</span> <span class="token operator">&gt;</span> myfile <span class="token comment"># 覆写</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"I know "</span> <span class="token operator">&gt;&gt;</span> myfile <span class="token comment">#追加内容到文件后面</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="shell-输入-x2F-输出重定向"><a href="#shell-输入-x2F-输出重定向" class="headerlink" title="shell 输入/输出重定向"></a>shell 输入/输出重定向</h3><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-shell-io-redirections.html">Shell 输入/输出重定向</a></p>
+<table>
+<thead>
+<tr>
+<th>command &gt; file</th>
+<th>输出重定向到file</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>command &lt; file</td>
+<td>输入重定向到file</td>
+</tr>
+<tr>
+<td>command &gt;&gt; file</td>
+<td>输出追加到file</td>
+</tr>
+</tbody></table>
 <h3 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h3><h4 id="移动图片"><a href="#移动图片" class="headerlink" title="移动图片"></a>移动图片</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#! /bin/bash</span>
 
 
@@ -1097,48 +1132,38 @@ tmux kill-window -t s1 ： 关闭会话s1的一个窗口
 
 
 
-<h3 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h3><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-shell-echo.html">连接</a></p>
-<h4 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
-<span class="token builtin class-name">echo</span> -e <span class="token string">"OK! <span class="token entity" title="\c">\c</span>"</span> <span class="token comment"># -e 开启转义 \c 不换行</span>
-<span class="token builtin class-name">echo</span> <span class="token string">"It is a test"</span>
+<h2 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h2><h3 id="apt"><a href="#apt" class="headerlink" title="apt"></a>apt</h3><h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/get_set/article/details/51276609">apt删除软件</a></p>
+<h4 id="apt换源"><a href="#apt换源" class="headerlink" title="apt换源"></a>apt换源</h4><p>本机的环境是<code>Ubuntu18.04</code></p>
+<p> TLS 代号是 ：bionic</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 备份一份原始文件</span>
+<span class="token function">sudo</span> <span class="token builtin class-name">cd</span> /etc/apt
+<span class="token function">cp</span> sources.list sources.list.bak
 
-<span class="token builtin class-name">echo</span> -e <span class="token string">"OK! <span class="token entity" title="\n">\n</span>"</span> <span class="token comment"># -e 开启转义</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 替换清华源 </span>
+<span class="token function">sudo</span> <span class="token function">vim</span> sources.list
 
-<h4 id="结果重定向"><a href="#结果重定向" class="headerlink" title="结果重定向"></a>结果重定向</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"It is a test"</span> <span class="token operator">&gt;</span> myfile <span class="token comment"># 覆写</span>
-<span class="token builtin class-name">echo</span> <span class="token string">"I know "</span> <span class="token operator">&gt;&gt;</span> myfile <span class="token comment">#追加内容到文件后面</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token comment"># 选择不同的源替换掉里面的内容 </span>
+
+:wq<span class="token operator">!</span>
+<span class="token comment"># 更新</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> upgrade
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>阿里源</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span>
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span>
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span>
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span>
+<span class="token comment">#deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="shell-输入-x2F-输出重定向"><a href="#shell-输入-x2F-输出重定向" class="headerlink" title="shell 输入/输出重定向"></a>shell 输入/输出重定向</h3><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-shell-io-redirections.html">Shell 输入/输出重定向</a></p>
-<table>
-<thead>
-<tr>
-<th>command &gt; file</th>
-<th>输出重定向到file</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>command &lt; file</td>
-<td>输入重定向到file</td>
-</tr>
-<tr>
-<td>command &gt;&gt; file</td>
-<td>输出追加到file</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h2><h3 id="apt常用命令"><a href="#apt常用命令" class="headerlink" title="apt常用命令"></a>apt常用命令</h3><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-apt.html">教程链接</a></p>
 <h3 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h3><p>查看文件类型和内容</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 判断文件类型</span>
 <span class="token function">file</span> a.txt
@@ -1173,23 +1198,26 @@ tmux kill-window -t s1 ： 关闭会话s1的一个窗口
 
 <h3 id="键盘读取，数组与声明"><a href="#键盘读取，数组与声明" class="headerlink" title="键盘读取，数组与声明"></a>键盘读取，数组与声明</h3><h4 id="读取命令输入（read"><a href="#读取命令输入（read" class="headerlink" title="读取命令输入（read)"></a>读取命令输入（read)</h4><p>zsh和bash的区别</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 参数</span>
-<span class="token comment"># -p 提示信息</span>
-<span class="token comment"># -t 倒计时</span>
-<span class="token comment"># zsh和bash的区别</span>
+-p 提示信息
+-t 倒计时
 
+
+zsh和bash的区别
 <span class="token comment">#bash</span>
 <span class="token builtin class-name">read</span> -p <span class="token string">"please input : "</span> -t <span class="token number">30</span> name
 
+
 <span class="token comment">#zsh</span>
 <span class="token builtin class-name">read</span> -t <span class="token number">30</span> <span class="token string">"name?please input : "</span> 
-<span class="token comment">#提示信息在？后面 -t 在前面</span>
+<span class="token comment">#提示信息在？后面 </span>
+<span class="token comment">#-t 在前面</span>
 
 
 
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="declare命令"><a href="#declare命令" class="headerlink" title="declare命令"></a>declare命令</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#申明变量类型</span>
+<h4 id="申明类型（declare）"><a href="#申明类型（declare）" class="headerlink" title="申明类型（declare）"></a>申明类型（declare）</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#申明变量类型</span>
 <span class="token comment">#参数</span>
 <span class="token comment"># -a ：array类型</span>
 <span class="token comment"># -i : int类型</span>
@@ -1303,16 +1331,13 @@ mrl@MrdeMacBook-Pro ~ % <span class="token builtin class-name">echo</span> <span
 
 
 
-<h3 id="监测磁盘空间"><a href="#监测磁盘空间" class="headerlink" title="监测磁盘空间"></a>监测磁盘空间</h3><p>挂载存储媒体</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># mount 命令 mounting(挂载）</span>
+<h3 id="监测磁盘空间"><a href="#监测磁盘空间" class="headerlink" title="监测磁盘空间"></a>监测磁盘空间</h3><h4 id="挂载存储媒体-mount"><a href="#挂载存储媒体-mount" class="headerlink" title="挂载存储媒体(mount)"></a>挂载存储媒体(mount)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># mount 命令 mounting(挂载）</span>
 
 <span class="token comment"># unmount 命令</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>显示挂载设备剩余磁盘空间</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># df 命令 （disk free）</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="显示挂载设备剩余磁盘空间-df"><a href="#显示挂载设备剩余磁盘空间-df" class="headerlink" title="显示挂载设备剩余磁盘空间(df)"></a>显示挂载设备剩余磁盘空间(df)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># df 命令 （disk free）</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>显示文件，目录的磁盘使用情况</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># du 命令 (disk usage)</span>
+<h4 id="显示文件，目录的磁盘使用情况-du"><a href="#显示文件，目录的磁盘使用情况-du" class="headerlink" title="显示文件，目录的磁盘使用情况(du)"></a>显示文件，目录的磁盘使用情况(du)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># du 命令 (disk usage)</span>
 <span class="token function">du</span> -chs ~/blog
 
 -c：显示所有列出文件总的大小（count）
@@ -1330,8 +1355,7 @@ mrl@MrdeMacBook-Pro ~ % <span class="token builtin class-name">echo</span> <span
 
 
 
-<p>添加用户</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># useradd [option] username</span>
+<h4 id="添加用户-useradd"><a href="#添加用户-useradd" class="headerlink" title="添加用户(useradd)"></a>添加用户(useradd)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># useradd [option] username</span>
 
 参数 
 -c <span class="token builtin class-name">:</span> 注释描述
@@ -1353,8 +1377,7 @@ mrl@MrdeMacBook-Pro ~ % <span class="token builtin class-name">echo</span> <span
 
 
 
-<p>删除用户</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">userdel</span> <span class="token punctuation">[</span>option<span class="token punctuation">]</span> username
+<h4 id="删除用户-userdel"><a href="#删除用户-userdel" class="headerlink" title="删除用户(userdel)"></a>删除用户(userdel)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">userdel</span> <span class="token punctuation">[</span>option<span class="token punctuation">]</span> username
 
 <span class="token comment"># 删除用户账户会将/etc/passwd等系统文件中该用户删除</span>
 <span class="token comment"># 如何需要删除用户的主目录 -r 参数</span>
@@ -1362,8 +1385,7 @@ mrl@MrdeMacBook-Pro ~ % <span class="token builtin class-name">echo</span> <span
 
 
 
-<p>修改用户信息</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">usermod</span> <span class="token punctuation">[</span>option<span class="token punctuation">]</span> username
+<h4 id="修改用户信息-usermod"><a href="#修改用户信息-usermod" class="headerlink" title="修改用户信息(usermod)"></a>修改用户信息(usermod)</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">usermod</span> <span class="token punctuation">[</span>option<span class="token punctuation">]</span> username
 
 参数
 -c <span class="token builtin class-name">:</span> 注释描述
@@ -1381,8 +1403,7 @@ systemctl restart <span class="token function">docker</span>
 
 
 
-<p>密码管理</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">passwd</span> <span class="token punctuation">[</span>option<span class="token punctuation">]</span> username
+<h4 id="用户密码管理"><a href="#用户密码管理" class="headerlink" title="用户密码管理"></a>用户密码管理</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">passwd</span> <span class="token punctuation">[</span>option<span class="token punctuation">]</span> username
 
 参数
 -l 锁定口令，即禁用账号。
@@ -1400,8 +1421,7 @@ systemctl restart <span class="token function">docker</span>
 
 
 
-<p>添加用户组</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">groupadd</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> groupname
+<h4 id="添加用户组"><a href="#添加用户组" class="headerlink" title="添加用户组"></a>添加用户组</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">groupadd</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> groupname
 
 <span class="token comment">#参数：</span>
 -g :GID 指定新用户组的组标识号（GID）。
@@ -1409,14 +1429,12 @@ systemctl restart <span class="token function">docker</span>
 
 
 
-<p>删除用户组</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">groupdel</span> groupname
+<h4 id="删除用户组"><a href="#删除用户组" class="headerlink" title="删除用户组"></a>删除用户组</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">groupdel</span> groupname
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
-<p>修改用户组</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">groupmod</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> groupname
+<h4 id="修改用户组"><a href="#修改用户组" class="headerlink" title="修改用户组"></a>修改用户组</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">groupmod</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> groupname
 
 <span class="token comment">#参数:</span>
 -g :GID 为用户组指定新的组标识号。
@@ -1425,15 +1443,13 @@ systemctl restart <span class="token function">docker</span>
 
 
 
-<p>切换用户所在组</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 切换当前用户到docker组</span>
+<h4 id="切换用户所在组"><a href="#切换用户所在组" class="headerlink" title="切换用户所在组"></a>切换用户所在组</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 切换当前用户到docker组</span>
 <span class="token comment"># 前提条件是 docker 组确实是该组的主组或附加组</span>
 newgrp <span class="token function">docker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 
 
-<p>添加用户进组或者删除</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gpasswd <span class="token punctuation">[</span>options<span class="token punctuation">]</span> groupname
+<h4 id="添加用户进组或者删除"><a href="#添加用户进组或者删除" class="headerlink" title="添加用户进组或者删除"></a>添加用户进组或者删除</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gpasswd <span class="token punctuation">[</span>options<span class="token punctuation">]</span> groupname
 
 参数
 -a ： +username 将username加入groupname
@@ -1441,8 +1457,7 @@ newgrp <span class="token function">docker</span><span aria-hidden="true" class=
 
 
 
-<p>用户文件的存储</p>
-<ul>
+<h4 id="用户文件的存储"><a href="#用户文件的存储" class="headerlink" title="用户文件的存储"></a>用户文件的存储</h4><ul>
 <li><code>etc/passwd</code></li>
 <li><code>etc/shadow</code></li>
 <li><code>etc/group</code></li>
@@ -1506,7 +1521,7 @@ mrl:x:1000:1000:mrl,,,:/home/mrl:/bin/bash<span aria-hidden="true" class="line-n
 <li>“<code>组标识号</code>“与用户标识号类似，也是一个整数，被系统内部用来标识组。</li>
 <li>“<code>组内用户列表</code>“是属于这个组的所有用户的列表，不同用户之间用逗号(,)分隔。这个用户组可能是用户的主组，也可能是附加组。</li>
 </ul>
-<h2 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h2>
+<h2 id="记录问题"><a href="#记录问题" class="headerlink" title="记录问题"></a>记录问题</h2>
                 
             </div>
             <hr/>

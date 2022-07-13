@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-09
+                    2022-07-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    3.2k
                 </div>
                 
 
@@ -806,30 +806,37 @@ window<span class="token punctuation">.</span><span class="token function-variab
 
 
 
-<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><p><code>v-if</code>：true添加元素和删除元素实现元素显示</p>
-<p><code>v-else</code>：</p>
-<p><code>v-show</code>：通过display属性实现元素显示</p>
+<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><ul>
+<li><p><code>v-if</code>：true添加元素和删除元素实现元素显示</p>
+</li>
+<li><p><code>v-else</code>：</p>
+</li>
+<li><p><code>v-else-if</code></p>
+</li>
+<li><p><code>v-show</code>：通过display属性实现元素显示</p>
+</li>
+</ul>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//根据seen的真假来操作元素</span>
 <span class="token operator">&lt;</span>p v<span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">=</span><span class="token string">"seen"</span><span class="token operator">&gt;</span>现在你看到我了<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>v-show和v-if的用法大致一样</p>
 <p>v-if vs v-show</p>
-<p>v-if</p>
+<p><code>v-if</code></p>
 <ul>
 <li>v-if 会确保在切换的过程中，条件块内的事件监听器和子组件被销毁和重建</li>
 <li>v-if如果为假什么都不会处理，直到为真才开始渲染条件块</li>
 </ul>
-<p>v-show</p>
+<p><code>v-show</code></p>
 <ul>
 <li>不管初始条件是什么，元素总是会被渲染，只是简单的基于css的切换</li>
 </ul>
-<p>v-if有更高的切换开销，v-show有更高的渲染开销</p>
+<p><code>v-if</code>有更高的切换开销，<code>v-show</code>有更高的渲染开销</p>
 <ul>
 <li>频繁切换 v-show</li>
 <li>不频繁 v-if</li>
 </ul>
-<h3 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h3><p><code>v-for</code>：迭代</p>
+<h3 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h3><h4 id="遍历列表"><a href="#遍历列表" class="headerlink" title="遍历列表"></a>遍历列表</h4><p><code>v-for</code>遍历列表</p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">var</span> vue <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -843,7 +850,7 @@ window<span class="token punctuation">.</span><span class="token function-variab
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 
-
+// 方案一：遍历列表
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x in List<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>{{x.fname}} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>{{x.price}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>	
@@ -851,23 +858,196 @@ window<span class="token punctuation">.</span><span class="token function-variab
 
 
 
-// key 
+// 方案一：遍历列表
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>(value, name) in myObject<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
   {{ name }}: {{ value }}
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-Vue.createApp({
-  data() {
-    return {
-      myObject: {
-        title: 'How to do lists in Vue',
-        author: 'Jane Doe',
-        publishedAt: '2020-03-22'
-      }
-    }
-  }
-}).mount('#v-for-object')
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="遍历对象"><a href="#遍历对象" class="headerlink" title="遍历对象"></a>遍历对象</h4><p><code>v-for</code>用来遍历对象的[k,v]</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>(value, name) in object<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  {{ name }}: {{ value }}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">el</span><span class="token operator">:</span> <span class="token string">'#v-for-object'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">object</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'How to do lists in Vue'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">author</span><span class="token operator">:</span> <span class="token string">'Jane Doe'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">publishedAt</span><span class="token operator">:</span> <span class="token string">'2016-04-10'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+输出结果
+title:How to do lists in Vue
+author:Jane Doe 
+publishedAt:2016-04-10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="计算属性筛选"><a href="#计算属性筛选" class="headerlink" title="计算属性筛选"></a>计算属性筛选</h4><p>计算属性 + <code>v-for</code>进行筛选</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--
+ * @Autor: Zver
+ * @Date: 2022-07-04 15:07:46
+ * @LastEditTime: 2022-07-13 05:46:19
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+ 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>n in evenNumbers<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+            {{n}}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+        <span class="token keyword">const</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token literal-property property">numbers</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">computed</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token function-variable function">evenNumbers</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>numbers<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">number</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                        <span class="token keyword">return</span> number<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">===</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">"#app"</span><span class="token punctuation">)</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h4><p>改变数组原始数据</p>
+<ul>
+<li><code>push()</code></li>
+<li><code>pop()</code></li>
+<li><code>shift()</code></li>
+<li><code>unshift()</code></li>
+<li><code>splice()</code></li>
+<li><code>sort()</code></li>
+<li><code>reverse()</code></li>
+</ul>
+<p>返回新数组</p>
+<ul>
+<li><code>filter()</code></li>
+<li><code>concat()</code></li>
+<li><code>slice()</code></li>
+</ul>
+<p>filter</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">items = items.filter(function(item){
+	return item % 2 === 0
+})<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="组件使用"><a href="#组件使用" class="headerlink" title="组件使用"></a>组件使用</h4><p>在组件上使用<code>v-for</code>，<code>key</code>是必须的</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-component</span>
+  <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>(item, index) in items<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">v-bind:</span>item</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">v-bind:</span>index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">v-bind:</span>key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item.id<span class="token punctuation">"</span></span>
+<span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-component</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>v-for</code> + component 做一个todolist</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--
+ * @Autor: Zver
+ * @Date: 2022-07-04 15:07:46
+ * @LastEditTime: 2022-07-13 06:10:15
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+     
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 通过学到的一些列表渲染 + 计算属性来试着去做一个todolist --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>todo-list<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name"><span class="token namespace">v-on:</span>submit.prevent</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>new-todo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Add a todo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span>
+              <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>newTodoText<span class="token punctuation">"</span></span>
+              <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>new-todo<span class="token punctuation">"</span></span>
+              <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>E.g. Feed the cat<span class="token punctuation">"</span></span>
+            <span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>Add<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> 
+                <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>todo-item<span class="token punctuation">"</span></span>
+                <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>(todo,index) in todos<span class="token punctuation">"</span></span> 
+                <span class="token attr-name"><span class="token namespace">v-bind:</span>key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>todo.id<span class="token punctuation">"</span></span>
+                <span class="token attr-name"><span class="token namespace">v-bind:</span>title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>todo.title<span class="token punctuation">"</span></span>
+                <span class="token attr-name"><span class="token namespace">v-on:</span>remove</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>todos.splice(index,1)<span class="token punctuation">"</span></span>
+            <span class="token punctuation">&gt;</span></span>
+            {{todo.title}}    
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+        Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'todo-item'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token string">'\
+            &lt;li&gt;\
+            {{ title }}\
+            &lt;button v-on:click="$emit(\'remove\')"&gt;Remove&lt;/button&gt;\
+            &lt;/li&gt;\
+        '</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">props</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword">const</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token literal-property property">newTodoText</span><span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">todos</span><span class="token operator">:</span><span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token literal-property property">id</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+                        <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'Do no dished'</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">nextTodoId</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">methods</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                <span class="token function-variable function">add</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>newTodoText<span class="token operator">===</span><span class="token string">''</span><span class="token punctuation">)</span>
+                        <span class="token keyword">return</span> <span class="token punctuation">;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span>todos<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>
+                        <span class="token punctuation">{</span>
+                            <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>nextTodoId <span class="token operator">++</span><span class="token punctuation">,</span>
+                            <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>newTodoText
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">)</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span>newTodoText<span class="token operator">=</span><span class="token string">''</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">"#todo-list"</span><span class="token punctuation">)</span>
+      
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -1006,7 +1186,8 @@ Vue.createApp({
 
 
 
-<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性的简单使用</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--
  * @Autor: Zver
  * @Date: 2022-07-04 15:07:46
  * @LastEditTime: 2022-07-04 15:30:24
@@ -1062,10 +1243,8 @@ Vue.createApp({
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-
-
+<p>为什么会有计算属性？</p>
+<p>简化模块内表达式，对于复杂逻辑，单独写成计算属性，可以在模块内方便复用</p>
 <h3 id="Class-绑定-和-Style-绑定"><a href="#Class-绑定-和-Style-绑定" class="headerlink" title="Class 绑定 和 Style 绑定"></a>Class 绑定 和 Style 绑定</h3><p>Class 动态绑定</p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--
  * @Autor: Zver

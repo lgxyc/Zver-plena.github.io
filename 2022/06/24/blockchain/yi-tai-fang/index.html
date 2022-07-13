@@ -669,7 +669,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-07
+                    2022-07-13
                 </div>
                 
 
@@ -701,14 +701,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="MPT"><a href="#MPT" class="headerlink" title="MPT"></a>MPT</h3><p>在以太坊中交易树、状态树和收据树的数据结构都是MPT</p>
+                <h2 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h2><p>在以太坊中交易树、状态树和收据树的数据结构都是MPT</p>
 <p>交易树的对象：一个区块内的所有<code>Tx</code>（Transaction）</p>
 <p>收据树的对象：每个 <code>Tx</code> 的收据</p>
-<p>收据树和交易树 一一 对应</p>
 <p>收据树的作用</p>
 <p>在以太坊中最重要的功能是加入了智能合约，而智能合约的执行过程比较复杂，收据树的作用是利于系统快速查询执行结果。</p>
 <p>而在收据树中，是通过<code>Bloom Filter</code> 来实现这样的功能</p>
-<h3 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h3><p>在<code>block Header</code>会有一个<code>Bloom Fliter</code>来查找交易是否存在当前区块</p>
+<h2 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h2><p>在<code>block Header</code>会有一个<code>Bloom Fliter</code>来查找交易是否存在当前区块</p>
 <p>在<code>recipt tree</code>中也会有一个<code>Bloom Fliter</code>来快速查找</p>
 <p>为范围存储的东西提供一个紧凑的摘要</p>
 <p>布隆过滤器可以用于检索一个元素是否在一个集合中</p>
@@ -731,7 +730,7 @@
 </ul>
 <p>使用Bloom Filter可以快速的反馈要查询的交易是否在当前区块，</p>
 <p>减少了遍历区块的次数，加快了查找交易的速度</p>
-<h3 id="GOSTH协议"><a href="#GOSTH协议" class="headerlink" title="GOSTH协议"></a>GOSTH协议</h3><h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><h2 id="账户"><a href="#账户" class="headerlink" title="账户"></a>账户</h2><p>以太坊中新出现了一个概念：账户（Account）</p>
+<h2 id="GOSTH协议"><a href="#GOSTH协议" class="headerlink" title="GOSTH协议"></a>GOSTH协议</h2><h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><h2 id="账户"><a href="#账户" class="headerlink" title="账户"></a>账户</h2><p>以太坊中新出现了一个概念：账户（Account）</p>
 <p>账户由公钥和私钥控制， 账户的地址索引是公钥的后20字节。</p>
 <p>账户一般分类两种类型：</p>
 <ul>

@@ -669,14 +669,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-07
+                    2022-07-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    851
+                    1.4k
                 </div>
                 
 
@@ -748,7 +748,7 @@ whisper         提供了whisper节点的协议。
 
 
 
-<h2 id="trie"><a href="#trie" class="headerlink" title="trie"></a>trie</h2><h3 id="decode"><a href="#decode" class="headerlink" title="decode"></a>decode</h3><p><img src="/2022/07/05/blockchain/go-ethereum-yuan-ma-yue-du/image-20220706205629503.png" alt="image-20220706205629503"></p>
+<h2 id="trie（MPT）"><a href="#trie（MPT）" class="headerlink" title="trie（MPT）"></a>trie（MPT）</h2><h3 id="decode"><a href="#decode" class="headerlink" title="decode"></a>decode</h3><p><img src="/2022/07/05/blockchain/go-ethereum-yuan-ma-yue-du/image-20220706205629503.png" alt="image-20220706205629503"></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34310276/article/details/81869574">参考博客</a></p>
 <p>MPT 引入了（hex-prefix,HP)编码来对key进行编码</p>
 <ul>
@@ -759,8 +759,58 @@ whisper         提供了whisper节点的协议。
 <li><p>HEX-Prefix：十六进制前缀编码</p>
 </li>
 </ul>
-<p><strong>三种编码格式相互转换的代码实现</strong></p>
-<p>Compact就是上面说的HEX-Prefix</p>
+<h4 id="RAW编码"><a href="#RAW编码" class="headerlink" title="RAW编码"></a>RAW编码</h4><p>就是原生的key值，不做任何改变，这种编码方式的key，也是MPT对外提供借口的默认编码方式</p>
+<blockquote>
+<p>例如[ cat: dog ]，Raw编码为[‘c’, ‘a’, ‘t’ ]，换成ASCLL表示方式就是[63,61,74] （十六进制）</p>
+</blockquote>
+<h4 id="Hex编码"><a href="#Hex编码" class="headerlink" title="Hex编码"></a>Hex编码</h4><p>为了减少分支节点的孩子个数，需要对key的编码进行转换</p>
+<p>将key的高低四位拆成两个字节进行存储</p>
+<p>Raw -&gt; Hex 编码的规则就是</p>
+<ul>
+<li>将Raw编码的每个字符，根据高4位低4位拆成两个字节；</li>
+<li>该节点是叶子节点，则在末位添加一个ASCII值为16的字符作为终止标志符；</li>
+<li>如果是扩展节点，不加任何字符</li>
+</ul>
+<blockquote>
+<p>例如[ cat: dog ]，Raw编码为[3, 15, 3, 13, 4, 10]</p>
+<p>输入”cat”，Raw编码后 [63, 61, 74]</p>
+<p>63 / 16  = 3<br>63 % 16 = 15</p>
+<p>61 / 16 =3</p>
+<p>61 % 16 =13</p>
+<p>74 / 16 = 4<br>74 % 16 = 10<br>编码后的结果 [3，15，3，13，4，10]</p>
+<p>如果是叶子节点[3，15，3，13，4，10,16]</p>
+</blockquote>
+<h4 id="Hex-Prefix编码-Hp编码"><a href="#Hex-Prefix编码-Hp编码" class="headerlink" title="Hex-Prefix编码(Hp编码 )"></a>Hex-Prefix编码(Hp编码 )</h4><p>之前说的Hex编码后的数据是在内存里面的，如果要对Hex编码数据进行持久化</p>
+<p>那么就会发现一个问题我们对原数据进行了扩展，本来1个byte的数据被我们变成了2个byte，显然这对于存储来说是存储空间变大了一倍的，于是就又有了HP编码。</p>
+<p>HP编码的过程如下；</p>
+<p>输入key（Hex编码的结果）如果有标识符，则去掉这个标识符。</p>
+<p>key的头部填充一个nibble，填充的规则如下</p>
+<ul>
+<li><p>如果key的nibble长度是偶数则最后一位 0</p>
+</li>
+<li><p>如果key的nibble长度是奇数则最后一位 1</p>
+</li>
+<li><p>如果key是<code>扩展节点</code>则倒数第二位是 0</p>
+</li>
+<li><p>如果key是<code>叶子节点</code>则倒数第二位是 1</p>
+</li>
+</ul>
+<blockquote>
+<p>例如[ cat: dog ]，Raw编码为[3, 15, 3, 13, 4, 10]</p>
+<p>如果是叶子节点[3，15，3，13，4，10,16]，这里我们按照叶子节点来处理</p>
+<p>HP编码</p>
+<p>1.nibble 长度为7，所以长度是奇数</p>
+<p>2.去掉16，同时表明这个是叶子节点 </p>
+<p>综上两个条件得到hp编码为 0010 0000</p>
+<p>将HP编码后的结果二进制表示</p>
+<p>[0010, 0000，0011, 1111, 0011, 1101, 0100, 1010]</p>
+<p>将编码后的结果合并后</p>
+<p>[00100000，00111111, 00111101, 01001010]</p>
+<p>转换为十进制后</p>
+<p>[32,63,61,74]</p>
+</blockquote>
+<p><img src="/2022/07/05/blockchain/go-ethereum-yuan-ma-yue-du/image-20220713222546774.png" alt="image-20220713222546774"></p>
+<h4 id="三种编码转换"><a href="#三种编码转换" class="headerlink" title="三种编码转换"></a>三种编码转换</h4><p>Compact就是上面说的HEX-Prefix</p>
 <p>keybytes为按完整字节（8bit）存储的正常信息</p>
 <p>hex为按照半字节nibble（4bit）储存信息的格式。</p>
 <p><code>go-ehereum/trie/encoding</code></p>
