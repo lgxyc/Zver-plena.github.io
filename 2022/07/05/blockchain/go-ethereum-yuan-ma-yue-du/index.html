@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Go-Ethereum源码阅读, Lambda">
+    <meta name="keywords" content="Go-Ethereum阅读, Lambda">
     <meta name="description" content="Where there is a will , there is a way">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -29,7 +29,7 @@
     </style>
 
 
-    <title>Go-Ethereum源码阅读 | Lambda</title>
+    <title>Go-Ethereum阅读 | Lambda</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -514,12 +514,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Go-Ethereum源码阅读</h1>
+                    <h1 class="description center-align post-title">Go-Ethereum阅读</h1>
                 </div>
             </div>
         </div>
@@ -669,7 +669,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-13
+                    2022-07-23
                 </div>
                 
 
@@ -767,7 +767,7 @@ whisper         提供了whisper节点的协议。
 <li>如果是扩展节点，不加任何字符</li>
 </ul>
 <blockquote>
-<p>例如[ cat: dog ]，Raw编码为[3, 15, 3, 13, 4, 10]</p>
+<p>例如[ cat: dog ]，Hex编码为[3, 15, 3, 13, 4, 10]</p>
 <p>输入”cat”，Raw编码后 [63, 61, 74]</p>
 <p>63 / 16  = 3<br>63 % 16 = 15</p>
 <p>61 / 16 =3</p>
@@ -791,7 +791,7 @@ whisper         提供了whisper节点的协议。
 </li>
 </ul>
 <blockquote>
-<p>例如[ cat: dog ]，Raw编码为[3, 15, 3, 13, 4, 10]</p>
+<p>例如[ cat: dog ]，Hex编码为[3, 15, 3, 13, 4, 10]</p>
 <p>如果是叶子节点[3，15，3，13，4，10,16]，这里我们按照叶子节点来处理</p>
 <p>HP编码</p>
 <p>1.nibble 长度为7，所以长度是奇数</p>
@@ -865,6 +865,93 @@ whisper         提供了whisper节点的协议。
 
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="core"><a href="#core" class="headerlink" title="core"></a>core</h2><h3 id="bloom-Filter"><a href="#bloom-Filter" class="headerlink" title="bloom Filter"></a>bloom Filter</h3><h4 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h4><p>bloom 为了消除不必要的磁盘访问。</p>
+<h3 id="误报分析"><a href="#误报分析" class="headerlink" title="误报分析"></a>误报分析</h3><p>虽然存在误报的风险，但相较于其他的数据结构，bloom filter有着空间和时间的优势</p>
+<p>实际上，哈希表就是k = 1 的bloom filter</p>
+<p>最佳的k值的bloom filter </p>
+<p>可以并行查找，互不干扰</p>
+<h3 id="误报的概率"><a href="#误报的概率" class="headerlink" title="误报的概率"></a>误报的概率</h3><h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	<span class="token comment">// BloomByteLength represents the number of bytes used in a header log bloom.</span>
+	BloomByteLength <span class="token operator">=</span> <span class="token number">256</span>
+
+	<span class="token comment">// BloomBitLength represents the number of bits used in a header log bloom.</span>
+	BloomBitLength <span class="token operator">=</span> <span class="token number">8</span> <span class="token operator">*</span> BloomByteLength
+<span class="token punctuation">)</span>
+
+<span class="token comment">// Bloom represents a 2048 bit bloom filter.</span>
+<span class="token keyword">type</span> Bloom <span class="token punctuation">[</span>BloomByteLength<span class="token punctuation">]</span><span class="token builtin">byte</span>
+
+
+<span class="token comment">// Add adds d to the filter. Future calls of Test(d) will return true.</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>b <span class="token operator">*</span>Bloom<span class="token punctuation">)</span> <span class="token function">Add</span><span class="token punctuation">(</span>d <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	b<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// add is internal version of Add, which takes a scratch buffer for reuse (needs to be at least 6 bytes)</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>b <span class="token operator">*</span>Bloom<span class="token punctuation">)</span> <span class="token function">add</span><span class="token punctuation">(</span>d <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> buf <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	i1<span class="token punctuation">,</span> v1<span class="token punctuation">,</span> i2<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> i3<span class="token punctuation">,</span> v3 <span class="token operator">:=</span> <span class="token function">bloomValues</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> buf<span class="token punctuation">)</span>
+	b<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">|=</span> v1
+	b<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">|=</span> v2
+	b<span class="token punctuation">[</span>i3<span class="token punctuation">]</span> <span class="token operator">|=</span> v3
+    
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Test checks if the given topic is present in the bloom filter</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>b Bloom<span class="token punctuation">)</span> <span class="token function">Test</span><span class="token punctuation">(</span>topic <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+	i1<span class="token punctuation">,</span> v1<span class="token punctuation">,</span> i2<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> i3<span class="token punctuation">,</span> v3 <span class="token operator">:=</span> <span class="token function">bloomValues</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"v1=%d,v2=%d,v3=%d\n"</span><span class="token punctuation">,</span> v1<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> v3<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> v1 <span class="token operator">==</span> v1<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
+		   v2 <span class="token operator">==</span> v2<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
+		   v3 <span class="token operator">==</span> v3<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i3<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// CreateBloom creates a bloom filter out of the give Receipts (+Logs)</span>
+<span class="token keyword">func</span> <span class="token function">CreateBloom</span><span class="token punctuation">(</span>receipts Receipts<span class="token punctuation">)</span> Bloom <span class="token punctuation">{</span>
+	buf <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span>
+	<span class="token keyword">var</span> bin Bloom
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> receipt <span class="token operator">:=</span> <span class="token keyword">range</span> receipts <span class="token punctuation">{</span>
+		<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> log <span class="token operator">:=</span> <span class="token keyword">range</span> receipt<span class="token punctuation">.</span>Logs <span class="token punctuation">{</span>
+			bin<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Address<span class="token punctuation">.</span><span class="token function">Bytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span>
+			<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> b <span class="token operator">:=</span> <span class="token keyword">range</span> log<span class="token punctuation">.</span>Topics <span class="token punctuation">{</span>
+				bin<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> bin
+<span class="token punctuation">}</span>
+
+<span class="token comment">// bloomValues returns the bytes (index-value pairs) to set for the given data</span>
+<span class="token keyword">func</span> <span class="token function">bloomValues</span><span class="token punctuation">(</span>data <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> hashbuf <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">uint</span><span class="token punctuation">,</span> <span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">uint</span><span class="token punctuation">,</span> <span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">uint</span><span class="token punctuation">,</span> <span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+	sha <span class="token operator">:=</span> hasherPool<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">(</span>crypto<span class="token punctuation">.</span>KeccakState<span class="token punctuation">)</span>
+	<span class="token comment">//生成散列函数，初始化</span>
+	sha<span class="token punctuation">.</span><span class="token function">Reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token comment">//对data进行加密</span>
+	sha<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+	<span class="token comment">//加密后的结果输入的 hashbuf</span>
+	sha<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>hashbuf<span class="token punctuation">)</span>
+	<span class="token comment">//保留散列值</span>
+	hasherPool<span class="token punctuation">.</span><span class="token function">Put</span><span class="token punctuation">(</span>sha<span class="token punctuation">)</span>
+
+	<span class="token comment">// The actual bits to flip</span>
+	<span class="token comment">// 翻转的bit位</span>
+	<span class="token comment">// 最多左移7位</span>
+	<span class="token comment">// 0x7 = 0000 0000 0000 0111</span>
+	v1 <span class="token operator">:=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span> <span class="token number">0x7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	v2 <span class="token operator">:=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span> <span class="token number">0x7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	v3 <span class="token operator">:=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span> <span class="token number">0x7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token comment">// The indices for the bytes to OR in</span>
+	<span class="token comment">// index</span>
+	<span class="token comment">// 0x7ff = 0000 0111 1111 1111</span>
+	i1 <span class="token operator">:=</span> BloomByteLength <span class="token operator">-</span> <span class="token function">uint</span><span class="token punctuation">(</span><span class="token punctuation">(</span>binary<span class="token punctuation">.</span>BigEndian<span class="token punctuation">.</span><span class="token function">Uint16</span><span class="token punctuation">(</span>hashbuf<span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x7ff</span><span class="token punctuation">)</span><span class="token operator">&gt;&gt;</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+	i2 <span class="token operator">:=</span> BloomByteLength <span class="token operator">-</span> <span class="token function">uint</span><span class="token punctuation">(</span><span class="token punctuation">(</span>binary<span class="token punctuation">.</span>BigEndian<span class="token punctuation">.</span><span class="token function">Uint16</span><span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x7ff</span><span class="token punctuation">)</span><span class="token operator">&gt;&gt;</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+	i3 <span class="token operator">:=</span> BloomByteLength <span class="token operator">-</span> <span class="token function">uint</span><span class="token punctuation">(</span><span class="token punctuation">(</span>binary<span class="token punctuation">.</span>BigEndian<span class="token punctuation">.</span><span class="token function">Uint16</span><span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x7ff</span><span class="token punctuation">)</span><span class="token operator">&gt;&gt;</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+
+	<span class="token keyword">return</span> i1<span class="token punctuation">,</span> v1<span class="token punctuation">,</span> i2<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> i3<span class="token punctuation">,</span> v3
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 

@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Lambda">
-    <meta name="description" content="">
+    <meta name="keywords" content="Caliper, Lambda">
+    <meta name="description" content="Where there is a will , there is a way">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -29,7 +29,7 @@
     </style>
 
 
-    <title>Lambda</title>
+    <title>Caliper | Lambda</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -514,12 +514,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">Caliper</h1>
                 </div>
             </div>
         </div>
@@ -646,6 +646,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/BlockChain/" class="post-category">
+                                BlockChain
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -653,14 +662,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-06-24
+                    2022-07-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-09
+                    2022-07-23
                 </div>
                 
 
@@ -687,7 +696,196 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>记录时间2022.07.15</p>
+<p>最近因为要测试quorum网络的TPS，</p>
+<p>自己也不知道怎么去测试js的async和监控区块链网络的transaction成功和失败，</p>
+<p>由于上述原因，所以找到了Caliper，</p>
+<p>但是文档很少啊，然后看着官网文档，自己英语也不太好，</p>
+<p>弄了一整天都是爆红，就一个位置不对他都给你弄一堆错误信息，</p>
+<p>好在最后还是启动成功了，下面记录一下自己启动成功的配置文件和一些坑点</p>
+<h2 id="Hyperledger-Caliper"><a href="#Hyperledger-Caliper" class="headerlink" title="Hyperledger Caliper"></a><a target="_blank" rel="noopener" href="https://hyperledger.github.io/caliper/v0.5.0/getting-started/">Hyperledger Caliper</a></h2><p>对区块链的压力测试 </p>
+<h2 id="测试quoum"><a href="#测试quoum" class="headerlink" title="测试quoum"></a>测试quoum</h2><p>安装Caliper</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> --only<span class="token operator">=</span>prod     @hyperledger/caliper-cli<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>需要配置 network 和 beanchmark 配置文件</p>
+<p>坑点：</p>
+<p>因为caliper可以帮你部署合约，你需要指明<code>contractDeveloperAddress</code>，还有在合约里面指明合约的json文件路径<code>path</code>，但是我就是在这不断的报错有问题，然后排错不了，所以我手动的部署了合约在测试网络上，然后把contract的<code>address</code> 和 <code>abi</code> 写在配置文件中</p>
+<p>并且在启动的时候加上选项<code>--caliper-flow-only-test=true</code>:不需要caliper实例化合约，只需要执行测试</p>
+<p>下列就是一些参数解释：</p>
+<ul>
+<li><code>url</code> : websocket url</li>
+<li><code>fromAddressSeed</code> : node privateKey</li>
+</ul>
+<blockquote>
+<p>还有就是要申明 test 的gas limit。</p>
+<p>一种格式是  ‘function name’ : 100000</p>
+<p>还有就是按照函数的类型来设置 ‘tranfer’ : 100000</p>
+<p>具体可以看官方文档</p>
+</blockquote>
+<p><code>branch/networkconfig.jsonl</code></p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"caliper"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"blockchain"</span><span class="token operator">:</span> <span class="token string">"ethereum"</span><span class="token punctuation">,</span>
+        <span class="token property">"command"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"ethereum"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"ws://127.0.0.1:8546"</span> <span class="token punctuation">,</span>
+        <span class="token property">"fromAddressSeed"</span><span class="token operator">:</span> <span class="token string">"0x4762e04d10832808a0aebdaa79c12de54afbe006bfffd228b3abcc494fe986f9"</span><span class="token punctuation">,</span>
+        <span class="token property">"transactionConfirmationBlocks"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"contracts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"Fabonacci"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"address"</span><span class="token operator">:</span> <span class="token string">"0x00fFD3548725459255f1e78A61A07f1539Db0271"</span><span class="token punctuation">,</span>
+                <span class="token property">"gas"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">"fabonacci"</span><span class="token operator">:</span> <span class="token number">10000000</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token property">"abi"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"inputs"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                        <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"fabonacci"</span><span class="token punctuation">,</span>
+                        <span class="token property">"outputs"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                            <span class="token punctuation">{</span>
+                                <span class="token property">"internalType"</span><span class="token operator">:</span> <span class="token string">"uint256"</span><span class="token punctuation">,</span>
+                                <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+                                <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"uint256"</span>
+                            <span class="token punctuation">}</span>
+                        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                        <span class="token property">"stateMutability"</span><span class="token operator">:</span> <span class="token string">"nonpayable"</span><span class="token punctuation">,</span>
+                        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"function"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个配置文件的一些坑点是</p>
+<p>你必须要有<code>rateControl</code> 和<code>tps</code> 属性</p>
+<p>然后是一些信息的说明</p>
+<ul>
+<li><p>txNumber: 发送次数</p>
+</li>
+<li><p>type: fixed-load : 发送速率</p>
+</li>
+<li><p>tps: 每秒发送个数</p>
+</li>
+<li><p>workload: 调用合约的js文件路径</p>
+</li>
+</ul>
+<p>具体的rateControl的支持可以看官网文档</p>
+<p><code>branch/config.yaml</code></p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># rateControl https://hyperledger.github.io/caliper/v0.5.0/rate-controllers/#fixed-load</span>
+
+<span class="token key atrule">test</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> Fabonacci
+  <span class="token key atrule">workers</span><span class="token punctuation">:</span>
+    <span class="token key atrule">number</span><span class="token punctuation">:</span> <span class="token number">3</span>
+  <span class="token key atrule">rounds</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">label</span><span class="token punctuation">:</span> Fabonacci_round_load
+      <span class="token key atrule">txNumber</span><span class="token punctuation">:</span> <span class="token number">100</span>
+      <span class="token key atrule">rateControl</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> fixed<span class="token punctuation">-</span>load
+        <span class="token key atrule">opts</span><span class="token punctuation">:</span>
+          <span class="token key atrule">tps</span><span class="token punctuation">:</span> <span class="token number">10</span>
+      <span class="token key atrule">workload</span><span class="token punctuation">:</span>
+        <span class="token key atrule">module</span><span class="token punctuation">:</span> testScript/TestFabonacci.js
+    <span class="token punctuation">-</span> <span class="token key atrule">label</span><span class="token punctuation">:</span> Fabonacci_round_rate
+      <span class="token key atrule">txNumber</span><span class="token punctuation">:</span> <span class="token number">1000</span>
+      <span class="token key atrule">rateControl</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> fixed<span class="token punctuation">-</span>rate
+        <span class="token key atrule">opts</span><span class="token punctuation">:</span>
+          <span class="token key atrule">tps</span><span class="token punctuation">:</span> <span class="token number">20</span>
+      <span class="token key atrule">workload</span><span class="token punctuation">:</span>
+        <span class="token key atrule">module</span><span class="token punctuation">:</span> testScript/TestFabonacci.js
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个就是参照官网文档写的</p>
+<p><code>testScrpt/TestFabonacci.js</code></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">
+<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">use script</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> WorkloadModuleBase <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@hyperledger/caliper-core'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">FabonacciWorkload</span> <span class="token keyword">extends</span> <span class="token class-name">WorkloadModuleBase</span><span class="token punctuation">{</span>
+	<span class="token comment">// 参照直接copy ，</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>     
+    <span class="token comment">// 初始化的参数可以看官网文档</span>
+    <span class="token keyword">async</span> <span class="token function">initializeWorkloadModule</span><span class="token punctuation">(</span>workerIndex<span class="token punctuation">,</span> totalWorkers<span class="token punctuation">,</span> roundIndex<span class="token punctuation">,</span> roundArguments<span class="token punctuation">,</span> sutAdapter<span class="token punctuation">,</span> sutContext<span class="token punctuation">)</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>workerIndex <span class="token operator">=</span> workerIndex<span class="token punctuation">;</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>totalWorkers <span class="token operator">=</span> totalWorkers<span class="token punctuation">;</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>roundIndex <span class="token operator">=</span> roundIndex<span class="token punctuation">;</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>roundArguments <span class="token operator">=</span> roundArguments<span class="token punctuation">;</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>sutAdapter <span class="token operator">=</span> sutAdapter<span class="token punctuation">;</span>
+         <span class="token keyword">this</span><span class="token punctuation">.</span>sutContext<span class="token operator">=</span>sutContext<span class="token punctuation">;</span>
+
+     <span class="token punctuation">}</span>
+	<span class="token comment">// 发起交易</span>
+    <span class="token keyword">async</span> <span class="token function">submitTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">// 合约参数</span>
+        <span class="token keyword">const</span> Args <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment">// contract: ’contract name‘,</span>
+        <span class="token comment">// verb : 'test function name',</span>
+        <span class="token comment">// args :  [function parameter,···],</span>
+        <span class="token keyword">const</span> arg <span class="token operator">=</span><span class="token punctuation">{</span>
+            <span class="token literal-property property">contract</span><span class="token operator">:</span> <span class="token string">'Fabonacci'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">verb</span><span class="token operator">:</span> <span class="token string">'fabonacci'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">args</span><span class="token operator">:</span> Args
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+       
+        <span class="token comment">// 通过sutAdapter发送请求</span>
+        <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sutAdapter<span class="token punctuation">.</span><span class="token function">sendRequests</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+	<span class="token comment">// 执行完成，释放资源占用</span>
+    <span class="token keyword">async</span> <span class="token function">cleanupWorkloadModule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">createWorkloadModule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">FabonacciWorkload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span>createWorkloadModule <span class="token operator">=</span> createWorkloadModule<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npx caliper launch  manager  <span class="token punctuation">\</span>
+-caliper-bind-sut ethereum <span class="token punctuation">\</span>
+-caliper-workspace <span class="token builtin class-name">.</span> <span class="token punctuation">\</span>
+--caliper-networkconfig  networkconfig.json   <span class="token punctuation">\</span>
+--caliper-benchconfig    config.yaml      
+--caliper-flow-only-test<span class="token operator">=</span>true  <span class="token punctuation">\</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>结果会在终端打印</p>
+<p>也会在 workspace 路径下有一个<code>report.html</code>展示测试结果</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="caliper问题"><a href="#caliper问题" class="headerlink" title="caliper问题"></a>caliper问题</h3><p>目前这个还存在一些没有解决的错误</p>
+<ul>
+<li><p>去掉–caliper-flow-only-test=true 就会报错</p>
+</li>
+<li><p>合约要自己手动部署，在networkconfig.json里面让caliper帮你自动部署会报错</p>
+</li>
+</ul>
+<p>不错不错，解决了一个谜</p>
+<p>–caliper-flow-only-test=true  </p>
+<p> 只需要进行测试，合约就不帮你部署了</p>
+<p>caliper 帮我部署合约会报错，然后我就自己手动发布了合约，然后在networkconfig.json 中手动设置address 和 abi </p>
+<p>所以我在运行的时候可以加上–caliper-flow-only-test=true</p>
+<h3 id="raft测试下的问题"><a href="#raft测试下的问题" class="headerlink" title="raft测试下的问题"></a>raft测试下的问题</h3><h4 id=""><a href="#" class="headerlink" title=""></a></h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Error: Number can only safely store up to <span class="token number">53</span> bits<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>出现此错误的原因是Raft以纳秒(而不是秒)为单位存储块时间戳，而Truffle无法处理此问题。一个简单的解决方案是其他共识。</p>
+<p>解决方案</p>
+<p>看到下面这个网站，web3版本问题，更新到新版就可以了，呜呜～～～</p>
+<p><a target="_blank" rel="noopener" href="https://www.likecs.com/ask-1378276.html">解决方案的网站</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">npm</span> <span class="token function">install</span> web3@2.0.0-alpha.1
+或者下面
+<span class="token function">npm</span> i web3@3.0.0-rc.5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>对raft机制还不是很了解，之前一直不挖矿我还以为我错了，结果</p>
+<p>还有一个问题就是，他的交易就是有一部分不处理是什么意思。</p>
+<p><img src="/2022/07/15/blockchain/caliper/image-20220716001608168.png" alt="image-20220716001608168"></p>
+<p>他就一直不处理我无语了</p>
+
                 
             </div>
             <hr/>
@@ -1013,33 +1211,29 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/06/27/blockchain/jiao-ben/">
+                <a href="/2022/07/23/summary/codeforces/20220721-132-div.2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="脚本">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">脚本</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Where there is a will , there is a way
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-23
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/BlockChain/" class="post-category">
-                                    BlockChain
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lambda
                             
                         </span>
                     </div>
@@ -1054,13 +1248,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/24/blockchain/yi-tai-fang/">
+                <a href="/2022/07/11/gong-ju-lei/postman/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="以太坊">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Node">
                         
-                        <span class="card-title">以太坊</span>
+                        <span class="card-title">Node</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1071,14 +1265,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-11
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/BlockChain/" class="post-category">
-                                    BlockChain
+                            <a href="/categories/Tools/" class="post-category">
+                                    Tools
                                 </a>
                             
                             

@@ -669,7 +669,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-08
+                    2022-07-22
                 </div>
                 
 
@@ -696,7 +696,151 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12L4y1379V?spm_id_from=333.880.my_history.page.click&amp;vd_source=a40a59401885e1704307acd1406c88a3">视频</a></p>
+<p><a target="_blank" rel="noopener" href="http://jyywiki.cn/OS/2022/">课件</a></p>
+<h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 开启O2优化</span>
+gcc <span class="token operator">-</span>O2
+<span class="token comment">// 展开 define 定义</span>
+gcc <span class="token operator">-</span>E a<span class="token punctuation">.</span>c 
+<span class="token comment">// 调试信息，用gdb调试</span>
+gcc <span class="token operator">-</span>g a<span class="token punctuation">.</span>c
+<span class="token comment">// compile only</span>
+<span class="token comment">//gcc支持对汇编代码的预编译</span>
+gcc <span class="token operator">-</span>c a<span class="token punctuation">.</span>c
+<span class="token comment">// 显示汇编</span>
+objdump <span class="token operator">-</span>d a<span class="token punctuation">.</span>o
+<span class="token comment">// 链接</span>
+ld a<span class="token punctuation">.</span>o
+<span class="token comment">// 显示二进制文件</span>
+    xdd a<span class="token punctuation">.</span>out <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="objdump"><a href="#objdump" class="headerlink" title="objdump"></a>objdump</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">``<span class="token variable"><span class="token variable">`</span>
+
+
+
+
+
+<span class="token comment">## gdb</span>
+
+<span class="token variable">`</span></span>``shell
+<span class="token comment"># 切换</span>
+layout src <span class="token comment"># 源代码</span>
+layout asm <span class="token comment"># x86汇编</span>
+
+<span class="token comment"># 从第一个程序运行</span>
+starti
+<span class="token comment"># 运行程序</span>
+start
+<span class="token comment"># 查看进程信息</span>
+info proc mappings
+<span class="token comment"># 调试</span>
+	<span class="token comment"># breakpoint </span>
+	b <span class="token punctuation">[</span>函数名，行数<span class="token punctuation">]</span>
+	<span class="token comment"># continue跳到breakpoint </span>
+	c
+	<span class="token comment"># watch poiont  每次显示old value 和 new value</span>
+	wa <span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+	<span class="token comment"># 显示变量值</span>
+	p <span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+	<span class="token comment"># step</span>
+	s
+	<span class="token comment"># next</span>
+	n
+	<span class="token comment"># single instruction 之后可以一直按回车来重复上次操作</span>
+	si
+	<span class="token comment"># 访问目标地址 </span>
+	x
+	
+<span class="token comment"># info</span>
+info frame <span class="token comment"># 栈帧</span>
+info registers <span class="token comment"># 寄存器</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="Trace"><a href="#Trace" class="headerlink" title="Trace"></a>Trace</h2><p>strace可以追踪程序的系统调用</p>
+<p>每一条对应一个syscall指令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">strace</span> ./a.out<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以通过strace来追踪gcc的调用</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">strace</span> -f gcc a.c
+<span class="token comment"># 通过管道给vim</span>
+
+
+<span class="token comment"># 参数</span>
+-c 将系统调用做一个系统分析展示出来
+-o 重定向输出
+-T 对系统调用记时
+
+<span class="token comment"># 可以在vim编辑器中使用</span>
+%<span class="token operator">!</span>grep 抓取自己想要的信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
+<h2 id="操作系统概述"><a href="#操作系统概述" class="headerlink" title="操作系统概述"></a>操作系统概述</h2><h3 id="学习根本问题"><a href="#学习根本问题" class="headerlink" title="学习根本问题"></a>学习根本问题</h3><p>操作系统服务谁？</p>
+<ul>
+<li>程序 = 状态机 = 计算 -&gt; syscall -&gt; 计算</li>
+</ul>
+<p>操作系统为程序提供的服务？</p>
+<ul>
+<li>应用视角：操作系统= 对象 + API</li>
+</ul>
+<p>如何实现操作系统提供的服务</p>
+<ul>
+<li>硬件实现：操作系统 = C程序</li>
+</ul>
+<p>程序的运行</p>
+<ul>
+<li>被操作系统加载<ul>
+<li>通过另一个进程执行execve设置初始状态</li>
+</ul>
+</li>
+<li>状态机执行<ul>
+<li>进程管理：fork，execve，exit</li>
+<li>文件/设备管理：open，close，read，write</li>
+<li>存储管理：mmap，brk</li>
+</ul>
+</li>
+<li>直到_exit(exit_group)退出</li>
+</ul>
+<h3 id="C程序的语义"><a href="#C程序的语义" class="headerlink" title="C程序的语义"></a>C程序的语义</h3><p>frame = pc + 全局变量 + 局部变量</p>
+<p>状态 = stack frame 的列表 + 全局变量</p>
+<p>初始状态 = main(argc,argc),全局变量初始化</p>
+<p>迁移 = 执行top stack fram PC 的语句；PC++</p>
+<ul>
+<li>函数调用= push frame </li>
+<li>函数返回= pop frame</li>
+</ul>
+<h3 id="编译优化"><a href="#编译优化" class="headerlink" title="编译优化"></a>编译优化</h3><p>在保证观测一致性的前提下改写代码</p>
+<p>在我们目前的有一些inline 函数</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+gcc <span class="token operator">-</span>c b<span class="token punctuation">.</span>c <span class="token operator">&amp;&amp;</span> objdump <span class="token operator">-</span>d b<span class="token punctuation">.</span>o
+
+对应的汇编代码
+<span class="token number">0000000000000000</span> <span class="token operator">&lt;</span>foo<span class="token operator">&gt;</span><span class="token operator">:</span>
+   <span class="token number">0</span><span class="token operator">:</span>   f3 <span class="token number">0f</span> <span class="token number">1</span>e fa             endbr64
+   <span class="token number">4</span><span class="token operator">:</span>   <span class="token number">55</span>                      push   <span class="token operator">%</span>rbp
+   <span class="token number">5</span><span class="token operator">:</span>   <span class="token number">48</span> <span class="token number">89</span> e5                mov    <span class="token operator">%</span>rsp<span class="token punctuation">,</span><span class="token operator">%</span>rbp
+   <span class="token number">8</span><span class="token operator">:</span>   c7 <span class="token number">45</span> fc <span class="token number">01</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>    movl   $<span class="token number">0x1</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">0x4</span><span class="token punctuation">(</span><span class="token operator">%</span>rbp<span class="token punctuation">)</span>
+   f<span class="token operator">:</span>   <span class="token number">90</span>                      nop
+  <span class="token number">10</span><span class="token operator">:</span>   <span class="token number">5</span>d                      pop    <span class="token operator">%</span>rbp
+  <span class="token number">11</span><span class="token operator">:</span>   c3                      retq
+
+gcc <span class="token operator">-</span>O2 <span class="token operator">-</span>c b<span class="token punctuation">.</span>c <span class="token operator">&amp;&amp;</span> objdump <span class="token operator">-</span>d b<span class="token punctuation">.</span>o
+经过O2优化
+<span class="token number">0000000000000000</span> <span class="token operator">&lt;</span>foo<span class="token operator">&gt;</span><span class="token operator">:</span>
+   <span class="token number">0</span><span class="token operator">:</span>   f3 <span class="token number">0f</span> <span class="token number">1</span>e fa             endbr64
+   <span class="token number">4</span><span class="token operator">:</span>   c3                      retq
+
+  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><h4 id="简易实现linux下的pstree命令"><a href="#简易实现linux下的pstree命令" class="headerlink" title="简易实现linux下的pstree命令"></a>简易实现linux下的pstree命令</h4>
                 
             </div>
             <hr/>
@@ -1067,9 +1211,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Go-Ethereum源码阅读">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Go-Ethereum阅读">
                         
-                        <span class="card-title">Go-Ethereum源码阅读</span>
+                        <span class="card-title">Go-Ethereum阅读</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

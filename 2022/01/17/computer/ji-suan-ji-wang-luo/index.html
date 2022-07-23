@@ -669,7 +669,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-08
+                    2022-07-20
                 </div>
                 
 
@@ -696,13 +696,396 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h2><p><code>协议 (protocol) </code>定义了在两个或多个通信实体之间交换的报文的格式和顺 序，以及报文发送和/或接收一条报文或其他事件所采取的动作 。</p>
-<h3 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a>网络核心</h3><h4 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h4><p>路由器在转发前需要接受，存储和处理整个分组</p>
+                <p><a target="_blank" rel="noopener" href="https://media.pearsoncmg.com/aw/ecs_kurose_compnetwork_7/cw/">配套网站</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39594939/article/details/106034929">习题答案</a></p>
+<p><a target="_blank" rel="noopener" href="https://gaia.cs.umass.edu/kurose_ross/wireshark.php">wireshark</a></p>
+<h2 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h2><p><code>协议 (protocol) </code>定义了在两个或多个通信实体之间交换的报文的格式和顺 序，以及报文发送和/或接收一条报文或其他事件所采取的动作 。</p>
+<h3 id="网络边缘"><a href="#网络边缘" class="headerlink" title="网络边缘"></a>网络边缘</h3><p><code>DSL</code> : digital subscriber line</p>
+<p><code>DSLAM</code> : digital subscriber line access mutiplexer</p>
+<p><code>HFS: </code>Http File Server</p>
+<h4 id="接入网"><a href="#接入网" class="headerlink" title="接入网"></a>接入网</h4><p>家庭接入</p>
+<ul>
+<li>DSL : digital subscrber lien</li>
+<li>电缆 </li>
+<li>FTTH : Fiber to The home </li>
+<li>拨号</li>
+<li>卫星</li>
+</ul>
+<p>企业、家庭接入</p>
+<ul>
+<li>以太网 </li>
+<li>WIFI</li>
+</ul>
+<p>以太网用户可以使用双绞铜线同以太网交换机相连</p>
+<p>WIFI在无限LAN环境中接入，覆盖范围小</p>
+<p>广域接入</p>
+<ul>
+<li>蜂窝网络</li>
+<li>LTE ？</li>
+</ul>
+<p>一般这种都是有一个基站，覆盖范围万米，类似放大版的WIFI</p>
+<h4 id="物理媒介"><a href="#物理媒介" class="headerlink" title="物理媒介"></a>物理媒介</h4><p><em>导引型</em>：</p>
+<ul>
+<li>双绞铜线</li>
+<li>同轴电缆</li>
+<li>光纤(Fiber)</li>
+</ul>
+<p><em>非导引型</em>：</p>
+<ul>
+<li>陆地无线电信道</li>
+<li>卫星无线电信道</li>
+</ul>
+<p><em>双绞铜线：</em></p>
+<p>由两条绝缘铜线组成，规则螺旋绞合</p>
+<p><em>同轴电缆：</em></p>
+<p>由两个同心圆铜导体组成</p>
+<p><em>光纤(Fiber)：</em></p>
+<ul>
+<li><p>支持较高比特速率，不受电磁干扰，长途运输信号衰弱低</p>
+</li>
+<li><p>光设备造价昂贵</p>
+</li>
+</ul>
+<p><em>陆地无线电信道</em>：</p>
+<p>无线电信道承载电磁频谱的信号</p>
+<p><em>卫星无线电信道</em>：</p>
+<p>通常采用两种卫星</p>
+<ul>
+<li>同步卫星</li>
+<li>近地卫星</li>
+</ul>
+<p>卫星连接地球上的微波发射器/接收器</p>
+<p>在一个频段接受传输</p>
+<p>在另一个频段发送信号</p>
+<h3 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a>网络核心</h3><h4 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h4><ul>
+<li>packet switch</li>
+<li>router</li>
+<li>link-layer-switch</li>
+</ul>
+<p><em>存储转发传输：</em></p>
+<p>路由器在转发前需要接受，存储和处理整个分组</p>
 <p>如果不存储，一旦比特到达就转发比特，</p>
 <p>那么为了你当前的数据可以被完整的转发到目的地，那条线路会被一直占用；</p>
 <p>如果你存储，那么在你存储的过程中，这条线路可以用做其他组到达的且已经存储完的数据转发</p>
-<p>实现共享网络</p>
-<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><h3 id="物理层的基本概念"><a href="#物理层的基本概念" class="headerlink" title="物理层的基本概念"></a>物理层的基本概念</h3><h3 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h3><h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><h3 id="编码与编制"><a href="#编码与编制" class="headerlink" title="编码与编制"></a>编码与编制</h3><h3 id="通道的极限容量"><a href="#通道的极限容量" class="headerlink" title="通道的极限容量"></a>通道的极限容量</h3><h3 id="物理层的总结"><a href="#物理层的总结" class="headerlink" title="物理层的总结"></a>物理层的总结</h3><h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><h3 id="数据链路层概述"><a href="#数据链路层概述" class="headerlink" title="数据链路层概述"></a>数据链路层概述</h3><p><code> 链路（Link）</code>就是从一个结点到相邻结点的一段物理线路，而中间没有任何其他的交换结点。</p>
+<p><em>分组丢失</em></p>
+<p>router 的处理队列是有容量限制的</p>
+<p>如果massage到达的时候队列为满的，那么该router就无法将该massage入队</p>
+<p>故而会将其丢弃</p>
+<h4 id="分组交换网络中的时延"><a href="#分组交换网络中的时延" class="headerlink" title="分组交换网络中的时延"></a>分组交换网络中的时延</h4><ul>
+<li><p>nodal processing delay : 节点处理时延</p>
+</li>
+<li><p>queuing delay : 排队时延</p>
+</li>
+<li><p>transmission delay : 传输时延</p>
+</li>
+<li><p>propagation delay : 传播时延</p>
+</li>
+<li><p>node delay : 端到端时延就是上述有所时延总和</p>
+</li>
+</ul>
+<p><em>nodal processing delay：</em></p>
+<p>检查收到的分组的首部，</p>
+<p>查询表该讲分组发向哪里</p>
+<p><em>queuing delay</em></p>
+<p>到达 router 其实就是一个处理队列</p>
+<p>取决于网络堵塞程序</p>
+<p>对于queuing delay通常用统计测量</p>
+<p>a: 分组到达队列的平均速率（pkt/s）</p>
+<p>R: 链路传输路率</p>
+<p>L: 表示分组由L bit 组成</p>
+<p>比特到达队列的平均速率就是 La bps</p>
+<p><code>La/R</code> ： 被称为流量强度</p>
+<p><em>transmission delay</em></p>
+<p>transmission delay 是路由器推出分组所需要的时间</p>
+<p>由分组长度和链路传输速率决定</p>
+<p>与两路由器之间的距离无关</p>
+<p><em>propagation delay</em></p>
+<p>propagation delay ：一个比特从一台路由器传播到另一台路由器所需要的时间</p>
+<blockquote>
+<p>propagation delay 和 transmission delay 有一些区别</p>
+<p><a target="_blank" rel="noopener" href="https://media.pearsoncmg.com/aw/ecs_kurose_compnetwork_7/cw/content/interactiveanimations/queuing-loss-applet/index.html">演示网站</a></p>
+</blockquote>
+<h4 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h4><p>与分组交换相比，电路交换的优点：</p>
+<ul>
+<li>不会出现堵塞，因为资源是预先就已经分配了的</li>
+<li>适合实时服务，例如现在的电话通信</li>
+</ul>
+<p>但是相较于分组交换还是比较浪费资源，现在也是大部分都转成了分组交换</p>
+<hr>
+<p>电路交换有以下两种方式来进行共享</p>
+<ul>
+<li>TDM（Time division Multiplexing)</li>
+<li>FDM（Frequency-division Multiplexing）</li>
+</ul>
+<p>TDM 和 FDM 的优点：</p>
+<p>TDM是通过区分不同的频段来实现共享</p>
+<p>对于每条电路只可以得到部分的带宽，是真真的共享</p>
+<p>FDM则是根据时间片来实现共享</p>
+<p>对于每条电路在他的时间片内可以得到链路的全部带宽</p>
+<h3 id="网络中的网络"><a href="#网络中的网络" class="headerlink" title="网络中的网络"></a>网络中的网络</h3><p>5个大致的网络结构</p>
+<p><em>一：</em></p>
+<p>全球ISP + 客户ISP</p>
+<p><em>二：</em></p>
+<p>全球ISP（n）+ 客户ISP</p>
+<p><em>三：</em></p>
+<p>全球ISP（n）+ 区域ISP（n） + 客户ISP </p>
+<p><em>四：</em></p>
+<p>全球ISP（n）+ 区域ISP（n）+ PoP + IXP + 多宿 + 客户ISP</p>
+<ul>
+<li>IXP : Internet Exchange Point </li>
+<li>PoP : Point of Presence</li>
+</ul>
+<p>IXP 是多个对等ISP的汇合处，之间交换数据不需要结算</p>
+<p>多宿（multi-home）：任何层次的ISP除客户ISP，可以选择多个ISP连接</p>
+<p>除客户ISP外，各层次ISP内置PoP(point of presence) 采取不同的服务</p>
+<p><em>五：</em></p>
+<p>全球ISP（n）+ 区域ISP（n）+ PoP + IXP + 多宿 + content provider network + 客户ISP </p>
+<p>content provider network : </p>
+<p>例如如今的谷歌，自己到区域去建立服务器，绕过对应层次的ISP结算，</p>
+<p>向更底层的ISP对接或者在IXP处连接</p>
+<p>减少了中间ISP，对于他们而言这样更省钱。。。</p>
+<blockquote>
+<p>看起来IXP好像不要钱的哈？但怎么可能会有人去做不要钱的</p>
+</blockquote>
+<h3 id="协议层级及其服务模型"><a href="#协议层级及其服务模型" class="headerlink" title="协议层级及其服务模型"></a>协议层级及其服务模型</h3><h4 id="五层体系结构"><a href="#五层体系结构" class="headerlink" title="五层体系结构"></a>五层体系结构</h4><ul>
+<li>应用层(application layers)</li>
+<li>运输层(tranmission layers)</li>
+<li>网络层(network layers)</li>
+<li>链路层(link layers)</li>
+<li>物理层(physical layers)</li>
+</ul>
+<hr>
+<ul>
+<li>TCP(trasmission control protocol)</li>
+<li>UDP(user datagram protocol)</li>
+<li>IP (Internet Protocol)</li>
+</ul>
+<p><em>应用层：</em> </p>
+<ul>
+<li>HTTP 协议</li>
+<li>FTP（两端系统之间的文件传送）</li>
+<li>SMTP（电子邮件报文传送）</li>
+</ul>
+<p>网络应用层序和应用层的协议存留的地方</p>
+<p>将位于应用层的信息分组称为message（报文）</p>
+<p><em>运输层：</em></p>
+<ul>
+<li>TCP</li>
+<li>UDP</li>
+</ul>
+<p>在应用程序之间传送应用层报文</p>
+<p>接受应用层报文，封装运输层报文段，传给网络层</p>
+<p>将运输层的分组称为segment（报文段）</p>
+<p><em>网络层：</em></p>
+<ul>
+<li>IP</li>
+</ul>
+<p>接受运输层报文，封装网络层数据包，传给链路层</p>
+<p>网络的称为datagram（数据报）</p>
+<p><em>链路层：</em></p>
+<ul>
+<li>交换器</li>
+</ul>
+<p>封装链路层信息，生成link-layer frame(链路层帧)</p>
+<p>将链路层分组成为frame（帧）</p>
+<p><em>物理层：</em></p>
+<p>物理媒介（双绞铜线，光纤等）</p>
+<p>传输到目的地</p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>路由器处理因特网协议中的physical layers、link layers、network layers</p>
+<p>链路层交换器处理physical layers 、link layers</p>
+<p>主机处理所有所有层次的协议</p>
+<h3 id="面对攻击的网络"><a href="#面对攻击的网络" class="headerlink" title="面对攻击的网络"></a>面对攻击的网络</h3><h4 id="计算机攻击"><a href="#计算机攻击" class="headerlink" title="计算机攻击"></a>计算机攻击</h4><ul>
+<li>virus  : 一种需要某种形式的用户交互来感染用户设备的恶意软件</li>
+<li>worm : 无需明显的用户交互就能感染用户设备的恶意软件</li>
+</ul>
+<h4 id="服务器攻击"><a href="#服务器攻击" class="headerlink" title="服务器攻击"></a>服务器攻击</h4><ul>
+<li>DOS（Denial of Server）</li>
+<li>DDOS（Distributed Denial of Service）</li>
+</ul>
+<h4 id="Packet-Sniffer"><a href="#Packet-Sniffer" class="headerlink" title="Packet Sniffer"></a>Packet Sniffer</h4><p>记录每个流经的分组副本的被动接收机叫做分组嗅探器(Packet Sniffer)</p>
+<p>我用的也是课本的软件推荐的软件，或者说就是因为他推荐这个软件我才学这本书</p>
+<p><code>Wireshark</code></p>
+<h3 id="Wireshark实验"><a href="#Wireshark实验" class="headerlink" title="Wireshark实验"></a>Wireshark实验</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>至此第一章复习题以及内容过掉了</p>
+<p>但是还有第一章的习题没有过</p>
+<p>✅时间：2022-7-17-4:00</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><h3 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h3><h4 id="网络应用程序体系结构"><a href="#网络应用程序体系结构" class="headerlink" title="网络应用程序体系结构"></a>网络应用程序体系结构</h4><ul>
+<li>客户-服务器（clients-servers）</li>
+</ul>
+<p>CS模式</p>
+<p>例如：Web应用</p>
+<p>网页就是一个服务器，有一个固定的，公开的IP地址</p>
+<p>客户可以通过IP地址访问服务器</p>
+<p>两客户之间不是直接通信，通过服务器来处理请求和返回响应</p>
+<ul>
+<li>P2P体系结构</li>
+</ul>
+<p>对于数据中心的专用服务器依赖小，应用程序在主机之间使用直接通信</p>
+<p>P2P有自扩展性，每个对等方都会因为请求文件产生负载，但每个对等方通过向其他分发文件也为系统增加服务能力。</p>
+<h4 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h4><p>在端系统里面进行通信的是进程，多个进程之间使用进程通信机制互相通信</p>
+<ul>
+<li>客户和服务器进程：</li>
+</ul>
+<p>网络应用程序由成对的进程组成，这些进程由网络相互发送报文</p>
+<ul>
+<li>进程和计算机网络之间的接口:</li>
+</ul>
+<p>进程通过 Socket 软件接口向网络发送报文和从网络接受报文</p>
+<p>Socket：应用程序和网络之间的 application programming Interface(API)</p>
+<ul>
+<li>进程寻址</li>
+</ul>
+<p>IP : Port</p>
+<h4 id="运输服务指标"><a href="#运输服务指标" class="headerlink" title="运输服务指标"></a>运输服务指标</h4><ul>
+<li>可靠数据传输：</li>
+</ul>
+<p>能够在应用层发送进程将其数据传递套接字，就能完全相信数据可以无差错的送到目的地</p>
+<ul>
+<li>吞吐量：</li>
+</ul>
+<p>可用吞吐量就是发送进程能够接收进程交付比特的速率</p>
+<p>具有吞吐量要求，应具有特定的吞吐量要求的应用称为：bandwidth-sensitive application</p>
+<p>尽可能的利用吞吐量的应用称为：elastic application</p>
+<ul>
+<li>定时：</li>
+</ul>
+<p>例如：发送方注入进套接字的每个比特到达接受方的套接字不迟于100ms</p>
+<p>这对于一些实时型的应用有很大的益处</p>
+<ul>
+<li>安全性：</li>
+</ul>
+<p>运输协议能够给应用程序提供安全加密服务</p>
+<p>如果传入套接字的数据以明文的形式，那么在传输过程中的数据可能会泄漏</p>
+<h4 id="提供的运输服务"><a href="#提供的运输服务" class="headerlink" title="提供的运输服务"></a>提供的运输服务</h4><ul>
+<li>TCP（transmission control protocol)</li>
+</ul>
+<p>面向连接的服务：会在交换数据之前，进行三次握手过程确保双方都稳定连接</p>
+<p>可靠的数据传输服务：进程能够交付给TCP并确保数据无差错送到目的地</p>
+<p>并且TCP协议有一定的堵塞控制机制，当发送方和接收方网络拥堵，堵塞控制机制会抑制客户发送进程</p>
+<ul>
+<li>关于TCP的安全性：</li>
+</ul>
+<p>目前研制了TCP的加强版Secure Sockets Layer，来完成的TCP 操作的同时，还对其提供了进程的安全性服务</p>
+<ul>
+<li>UDP（User Datagram Protocol)</li>
+</ul>
+<p>仅提供最基础的传输服务，不可靠数据传输服务，进程通信之前没有握手过程</p>
+<ul>
+<li>目前一些application的协议和对应的运输层协议</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>application</th>
+<th>application layer protocol</th>
+<th>trasmission protocol</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>远程终端访问</td>
+<td>Telnet</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>电子邮件</td>
+<td>SMTP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>Web</td>
+<td>HTTP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>文件传输</td>
+<td>FTP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>多媒体</td>
+<td>HTTP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>SIP</td>
+<td>TCP or UDP</td>
+</tr>
+</tbody></table>
+<h4 id="应用层协议定义"><a href="#应用层协议定义" class="headerlink" title="应用层协议定义"></a>应用层协议定义</h4><ul>
+<li>报文类型</li>
+<li>报文语法</li>
+<li>字段语义</li>
+<li>发送报文和响应报文的规则</li>
+</ul>
+<h3 id="Web和HTTP"><a href="#Web和HTTP" class="headerlink" title="Web和HTTP"></a>Web和HTTP</h3><h4 id="非持续连接-和-持续连接"><a href="#非持续连接-和-持续连接" class="headerlink" title="非持续连接 和 持续连接"></a>非持续连接 和 持续连接</h4><p>非持续链接：每个请求/响应都是经过一个单独的TCP连接来进行的</p>
+<p>持续连接：每个请求/响应都是通过一个TCP连接来进行的</p>
+<ul>
+<li>采用非持续连接</li>
+</ul>
+<ol>
+<li><p>那么首先每次握手的时间都会有，对于双方对象具有很大的时延</p>
+</li>
+<li><p>对于每次建立TCP连接，服务器和客户都要分配TCP的缓冲区和TCP变量，如果发送一个资源需要10个分组，那么就需要建立10个TCP连接</p>
+</li>
+</ol>
+<ul>
+<li>采用持续连接</li>
+</ul>
+<ol>
+<li><p>请求在单个持续的TCP连接上进行，采用流水线的方式发送</p>
+</li>
+<li><p>一般的，如果一个TCP连接超过一定的时间间隔就会关闭</p>
+</li>
+</ol>
+<h4 id="HTTP报文格式"><a href="#HTTP报文格式" class="headerlink" title="HTTP报文格式"></a>HTTP报文格式</h4><p>在网页上随便打开按下F12就可以查看了</p>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>HTTP是无状态的，所以简化了服务器的设计。</p>
+<ul>
+<li>背景</li>
+</ul>
+<p>一些Web应用需要去通过识别用户，跟踪用户在他服务下的一系列路径</p>
+<p>例如，淘宝把东西加入到购物车，这个购物车就是识别的是这个用户的购物车。</p>
+<p>Cookie 相当对每个用户设置了一个标识码，他不需要知道这个用户的IP，只需要记录当前这个标识码在当前服务的访问路径</p>
+<ul>
+<li>cookie的4个组件</li>
+</ul>
+<ol>
+<li>用户端会保留一个cookie</li>
+<li>HTTP请求的时候会有cookie</li>
+<li>HTTP响应的时候会有cookie</li>
+<li>Web服务器的数据库中也会有cookie</li>
+</ol>
+<p>记住密码这个行为就是通过cookie来做到。</p>
+<p>比如14天之内记住我</p>
+<p>在web服务器的数据库可以设置这个cookie保存多久</p>
+<h4 id="Web缓存"><a href="#Web缓存" class="headerlink" title="Web缓存"></a>Web缓存</h4><p>Web cache 也叫做 proxy server</p>
+<p>为最近请求过的对象存储起来，以待可以快速响应请求</p>
+<ul>
+<li>工作流程</li>
+</ul>
+<p>这里服务器命名为A</p>
+<ol>
+<li>客户对 A 发送TCP连接，实质上是在对proxy server 发起TCP连接</li>
+<li>proxy server 查看是否有A的副本<ol>
+<li>如果有，那么可以直接返回给客户该 A 的响应</li>
+<li>如果没有，proxy server 会发起TCP给A ，响应结果给客户，并且留下副本</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>好处</li>
+</ul>
+<p>可以减少对客户的响应时间</p>
+<p>通常客户和proxy server 之间通过高速连接</p>
+<p>目前的CDN(Content Distribution Network)，就是在Intenet上建立了很多地理上分散的缓存器。</p>
+<h4 id="conditional-Get方法"><a href="#conditional-Get方法" class="headerlink" title="conditional Get方法"></a>conditional Get方法</h4><p>前面说到，因为有proxy server 当你发起请求实质上是在拿去缓存，那么缓存是否是旧的呢？。</p>
+<p>HTTP提供了一个条件Get(conditional GET)方法让proxy server 来验证他的对象是最新的,</p>
+<p>当你请求数据的时候，proxy server会向对应的服务器发送一个GET方法</p>
+<p>会在请求报文中包含一个“if-Modified-Since”</p>
+<p>其中会去询问在缓存保留的数据的Date之后是否修改过</p>
+<p>如果修改过，那么会返回修改后的数据</p>
+<p>如果没有修改过，会返回304状态码，并且body为空，因为没有必要在发送一次</p>
+<p>HTTP在默认方式使用的是持续连接</p>
+<h3 id="电子邮件-email"><a href="#电子邮件-email" class="headerlink" title="电子邮件(email)"></a>电子邮件(email)</h3><h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><h3 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h3><h3 id="Socket-Programming"><a href="#Socket-Programming" class="headerlink" title="Socket Programming"></a>Socket Programming</h3><h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><h3 id="物理层的基本概念"><a href="#物理层的基本概念" class="headerlink" title="物理层的基本概念"></a>物理层的基本概念</h3><h3 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h3><h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><h3 id="编码与编制"><a href="#编码与编制" class="headerlink" title="编码与编制"></a>编码与编制</h3><h3 id="通道的极限容量"><a href="#通道的极限容量" class="headerlink" title="通道的极限容量"></a>通道的极限容量</h3><h3 id="物理层的总结"><a href="#物理层的总结" class="headerlink" title="物理层的总结"></a>物理层的总结</h3><h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><h3 id="数据链路层概述"><a href="#数据链路层概述" class="headerlink" title="数据链路层概述"></a>数据链路层概述</h3><p><code> 链路（Link）</code>就是从一个结点到相邻结点的一段物理线路，而中间没有任何其他的交换结点。</p>
 <p><code>数据链路（Data Link）</code>是指把实现通信协议的硬件和软件加到链路上，就构成了数据链路。</p>
 <p>数据链路层以<code>帧</code>为单位传输 和处理数据。</p>
 <h3 id="数据链路层的重要问题"><a href="#数据链路层的重要问题" class="headerlink" title="数据链路层的重要问题"></a>数据链路层的重要问题</h3><p>使用点对点信道的数据链路层</p>
