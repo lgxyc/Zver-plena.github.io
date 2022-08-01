@@ -669,7 +669,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-23
+                    2022-07-31
                 </div>
                 
 
@@ -743,7 +743,7 @@ whisper         提供了whisper节点的协议。
 
 
 
-<h2 id="trie（MPT）"><a href="#trie（MPT）" class="headerlink" title="trie（MPT）"></a>trie（MPT）</h2><h3 id="decode"><a href="#decode" class="headerlink" title="decode"></a>decode</h3><p><img src="/2022/07/05/blockchain/go-ethereum-yuan-ma-yue-du/image-20220706205629503.png" alt="image-20220706205629503"></p>
+<h2 id="trie（MPT）"><a href="#trie（MPT）" class="headerlink" title="trie（MPT）"></a>trie（MPT）</h2><h3 id="decode"><a href="#decode" class="headerlink" title="decode"></a>decode</h3><p><img src="/2022/07/05/blockchain/go-ethereum-yue-du/image-20220706205629503.png" alt="image-20220706205629503"></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34310276/article/details/81869574">参考博客</a></p>
 <p>MPT 引入了（hex-prefix,HP)编码来对key进行编码</p>
 <ul>
@@ -804,7 +804,7 @@ whisper         提供了whisper节点的协议。
 <p>转换为十进制后</p>
 <p>[32,63,61,74]</p>
 </blockquote>
-<p><img src="/2022/07/05/blockchain/go-ethereum-yuan-ma-yue-du/image-20220713222546774.png" alt="image-20220713222546774"></p>
+<p><img src="/2022/07/05/blockchain/go-ethereum-yue-du/image-20220713222546774.png" alt="image-20220713222546774"></p>
 <h4 id="三种编码转换"><a href="#三种编码转换" class="headerlink" title="三种编码转换"></a>三种编码转换</h4><p>Compact就是上面说的HEX-Prefix</p>
 <p>keybytes为按完整字节（8bit）存储的正常信息</p>
 <p>hex为按照半字节nibble（4bit）储存信息的格式。</p>
@@ -867,65 +867,119 @@ whisper         提供了whisper节点的协议。
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="core"><a href="#core" class="headerlink" title="core"></a>core</h2><h3 id="bloom-Filter"><a href="#bloom-Filter" class="headerlink" title="bloom Filter"></a>bloom Filter</h3><h4 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h4><p>bloom 为了消除不必要的磁盘访问。</p>
-<h3 id="误报分析"><a href="#误报分析" class="headerlink" title="误报分析"></a>误报分析</h3><p>虽然存在误报的风险，但相较于其他的数据结构，bloom filter有着空间和时间的优势</p>
+<h4 id="误报分析"><a href="#误报分析" class="headerlink" title="误报分析"></a>误报分析</h4><p>虽然存在误报的风险，但相较于其他的数据结构，bloom filter有着空间和时间的优势</p>
 <p>实际上，哈希表就是k = 1 的bloom filter</p>
 <p>最佳的k值的bloom filter </p>
-<p>可以并行查找，互不干扰</p>
-<h3 id="误报的概率"><a href="#误报的概率" class="headerlink" title="误报的概率"></a>误报的概率</h3><h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">const</span> <span class="token punctuation">(</span>
-	<span class="token comment">// BloomByteLength represents the number of bytes used in a header log bloom.</span>
-	BloomByteLength <span class="token operator">=</span> <span class="token number">256</span>
+<p>可以并行查找</p>
+<h4 id="误报的概率计算"><a href="#误报的概率计算" class="headerlink" title="误报的概率计算"></a>误报的概率计算</h4><p>参考<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bloom_filter#cite_note-7">WIki</a>里面的计算公式</p>
+<p>m = BIT_SIZE</p>
+<p>n  = ADD_SIZE</p>
+<p>k  = HASH_SIZE</p>
+<p>插入一个元素后，某位为 1 的概率为</p>
+<p>$\cfrac{1}{m}$</p>
+<p>插入一个元素后，某位为 0 的概率为</p>
+<p>$1-\cfrac{1}{m}$</p>
+<p>如果有有k个hash函数,k个hash函数 no significant correalation</p>
+<p>插入一个元素后，某位为 0 的概率为</p>
+<p>$(1-\cfrac{1}{m})^k$   </p>
+<p>for large m </p>
+<p> $\lim_{m-&gt;+\infty}(1-\cfrac{1}{m})^m = \cfrac{1}{e}$</p>
+<p>for large m 	</p>
+<p>$(1-\cfrac{1}{m})^k =((1-\cfrac{1}{m})^m)^{\cfrac{k}{m}}\approx e^{\cfrac{-k}{m}}$</p>
+<p>插入n个元素后，某位为 0 的概率为</p>
+<p>$(1-\cfrac{1}{m})^{kn} \approx e^{\cfrac{-kn}{m}} $</p>
+<p>插入n个元素后，某位为 1 的概率为</p>
+<p>$1-(1-\cfrac{1}{m})^{kn} \approx 1 -e^{\cfrac{-kn}{m}} $</p>
+<p>已经插入了n个元素之后，查询一个没有添加的元素在集合中的概率</p>
+<p>则某位为1的概率为上述的$1-(1-\cfrac{1}{m})^{kn} \approx 1 -e^{\cfrac{-kn}{m}}$</p>
+<p>那么k位都为1的概率为 $p = (1-(1-\cfrac{1}{m})^{kn})^k \approx (1 -e^{\cfrac{-kn}{m}})^k$</p>
+<p><strong>误报率：</strong></p>
+<p>$p = (1-(1-\cfrac{1}{m})^{kn})^k \approx (1 -e^{\cfrac{-kn}{m}})^k$</p>
+<p><strong>最佳数量的hash 函数</strong></p>
+<p>$k = \cfrac{m}{n}\ln2$</p>
+<p><img src="/2022/07/05/blockchain/go-ethereum-yue-du/image-20220729222117444.png" alt="image-20220729222117444"></p>
+<p><strong>对于给出的  n 和 误报率(p) 求 m，在假设最佳数量的hash函数条件下</strong></p>
+<p>将 $k = \cfrac{m}{n}\ln2$ 代入到误报率公式$p  \approx (1 -e^{\cfrac{-kn}{m}})^k$，得</p>
+<p>$\ln p = \cfrac{m}{n}(\ln 2)^2$</p>
+<p>求得m为</p>
+<p>$m = - \cfrac{n \ln p}{(\ln 2)^2}$</p>
+<p>带入 $m = - \cfrac{n \ln p}{(\ln 2)^2}$ 到 $k = \cfrac{m}{n}\ln2$，得</p>
+<p>$k = \cfrac{-\ln p}{\ln 2} = -\log_2 p$</p>
+<p>这意味着对于给定的误报率<code>p</code>，bloom filter的空间<code>m</code>和添加元素<code>n</code>成正比例，</p>
+<p>所需的hash函数数量取决于误报率<code>p</code></p>
+<p>一些公式计算</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">package main
 
-	<span class="token comment">// BloomBitLength represents the number of bits used in a header log bloom.</span>
-	BloomBitLength <span class="token operator">=</span> <span class="token number">8</span> <span class="token operator">*</span> BloomByteLength
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"math"</span>
 <span class="token punctuation">)</span>
 
-<span class="token comment">// Bloom represents a 2048 bit bloom filter.</span>
+func <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	m <span class="token operator">:</span><span class="token operator">=</span> <span class="token number">2048.0</span> <span class="token comment">// 位数</span>
+	n <span class="token operator">:</span><span class="token operator">=</span> <span class="token number">300.0</span>  <span class="token comment">// 插入的元素个数</span>
+	e <span class="token operator">:</span><span class="token operator">=</span> <span class="token number">2.72</span>   <span class="token comment">// e的近似值</span>
+	k <span class="token operator">:</span><span class="token operator">=</span> <span class="token number">3.0</span>    <span class="token comment">// hash函数个数</span>
+
+	<span class="token comment">// 对于给出的 m ， n ， k 的误报概率</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"误差 =  %v\n"</span><span class="token punctuation">,</span> math<span class="token punctuation">.</span><span class="token function">Pow</span><span class="token punctuation">(</span><span class="token number">1.</span><span class="token operator">-</span>math<span class="token punctuation">.</span><span class="token function">Pow</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> <span class="token operator">-</span>k<span class="token operator">*</span>n<span class="token operator">/</span>m<span class="token punctuation">)</span><span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token comment">// 对于给出的 m 和 n 最佳的hash个数</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"最佳的hash个数 = %v\n"</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token operator">*</span>m<span class="token operator">/</span>n<span class="token operator">*</span>math<span class="token punctuation">.</span>Ln2<span class="token punctuation">)</span>
+	<span class="token comment">// 对于给出的 n 和 误报概率 给出最佳的 m，这里的最佳的 m 在假设使用了对应的最佳的 hash 个数</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"假设误差为0.01，n = 500，并且假设使用最佳的 k，那么对于需要的最佳位数 m = %v\n"</span><span class="token punctuation">,</span> <span class="token operator">-</span>math<span class="token punctuation">.</span><span class="token function">Log2</span><span class="token punctuation">(</span><span class="token number">0.01</span><span class="token punctuation">)</span><span class="token operator">/</span>math<span class="token punctuation">.</span>Ln2<span class="token operator">*</span>n<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"对于上述的误差为0.01,对应的最佳的 k = %v\n"</span><span class="token punctuation">,</span> <span class="token operator">-</span>math<span class="token punctuation">.</span><span class="token function">Log2</span><span class="token punctuation">(</span><span class="token number">0.01</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	m <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1.44</span> <span class="token operator">*</span> math<span class="token punctuation">.</span><span class="token function">Log2</span><span class="token punctuation">(</span><span class="token number">0.01</span><span class="token punctuation">)</span> <span class="token operator">*</span> n
+	<span class="token comment">//计算出来的结果应该和上述的结果相差不大</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"对于上述计算出来的最佳 m 和给出的 n 又可以计算出最佳的 k = %v\n"</span><span class="token punctuation">,</span> m<span class="token operator">/</span>n<span class="token operator">*</span>math<span class="token punctuation">.</span>Ln2<span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>推导过程</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> bloom
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"encoding/binary"</span>
+	<span class="token string">"github.com/ethereum/go-ethereum/crypto"</span>
+	<span class="token string">"golang.org/x/crypto/sha3"</span>
+	<span class="token string">"sync"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">(</span>
+	BloomByteLength <span class="token operator">=</span> <span class="token number">256</span>
+	BloomBitLength  <span class="token operator">=</span> <span class="token number">8</span> <span class="token operator">*</span> BloomByteLength
+<span class="token punctuation">)</span>
+
 <span class="token keyword">type</span> Bloom <span class="token punctuation">[</span>BloomByteLength<span class="token punctuation">]</span><span class="token builtin">byte</span>
 
-
-<span class="token comment">// Add adds d to the filter. Future calls of Test(d) will return true.</span>
+<span class="token comment">// find</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>b <span class="token operator">*</span>Bloom<span class="token punctuation">)</span> <span class="token function">find</span><span class="token punctuation">(</span>topic <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+	i1<span class="token punctuation">,</span> v1<span class="token punctuation">,</span> i2<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> i3<span class="token punctuation">,</span> v3 <span class="token operator">:=</span> <span class="token function">bloomValues</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> v1 <span class="token operator">==</span> v1<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
+		v2 <span class="token operator">==</span> v2<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
+		v3 <span class="token operator">==</span> v3<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i3<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Add 内部实现的是add</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>b <span class="token operator">*</span>Bloom<span class="token punctuation">)</span> <span class="token function">Add</span><span class="token punctuation">(</span>d <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	b<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
-
-<span class="token comment">// add is internal version of Add, which takes a scratch buffer for reuse (needs to be at least 6 bytes)</span>
+<span class="token comment">// add</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>b <span class="token operator">*</span>Bloom<span class="token punctuation">)</span> <span class="token function">add</span><span class="token punctuation">(</span>d <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> buf <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	i1<span class="token punctuation">,</span> v1<span class="token punctuation">,</span> i2<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> i3<span class="token punctuation">,</span> v3 <span class="token operator">:=</span> <span class="token function">bloomValues</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> buf<span class="token punctuation">)</span>
 	b<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">|=</span> v1
 	b<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">|=</span> v2
 	b<span class="token punctuation">[</span>i3<span class="token punctuation">]</span> <span class="token operator">|=</span> v3
-    
 <span class="token punctuation">}</span>
 
-<span class="token comment">// Test checks if the given topic is present in the bloom filter</span>
-<span class="token keyword">func</span> <span class="token punctuation">(</span>b Bloom<span class="token punctuation">)</span> <span class="token function">Test</span><span class="token punctuation">(</span>topic <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
-	i1<span class="token punctuation">,</span> v1<span class="token punctuation">,</span> i2<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> i3<span class="token punctuation">,</span> v3 <span class="token operator">:=</span> <span class="token function">bloomValues</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"v1=%d,v2=%d,v3=%d\n"</span><span class="token punctuation">,</span> v1<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> v3<span class="token punctuation">)</span>
-	<span class="token keyword">return</span> v1 <span class="token operator">==</span> v1<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
-		   v2 <span class="token operator">==</span> v2<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
-		   v3 <span class="token operator">==</span> v3<span class="token operator">&amp;</span>b<span class="token punctuation">[</span>i3<span class="token punctuation">]</span>
+<span class="token keyword">var</span> hasherPool <span class="token operator">=</span> sync<span class="token punctuation">.</span>Pool<span class="token punctuation">{</span>
+	New<span class="token punctuation">:</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> sha3<span class="token punctuation">.</span><span class="token function">NewLegacyKeccak256</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span>
 
-
-<span class="token comment">// CreateBloom creates a bloom filter out of the give Receipts (+Logs)</span>
-<span class="token keyword">func</span> <span class="token function">CreateBloom</span><span class="token punctuation">(</span>receipts Receipts<span class="token punctuation">)</span> Bloom <span class="token punctuation">{</span>
-	buf <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span>
-	<span class="token keyword">var</span> bin Bloom
-	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> receipt <span class="token operator">:=</span> <span class="token keyword">range</span> receipts <span class="token punctuation">{</span>
-		<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> log <span class="token operator">:=</span> <span class="token keyword">range</span> receipt<span class="token punctuation">.</span>Logs <span class="token punctuation">{</span>
-			bin<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Address<span class="token punctuation">.</span><span class="token function">Bytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span>
-			<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> b <span class="token operator">:=</span> <span class="token keyword">range</span> log<span class="token punctuation">.</span>Topics <span class="token punctuation">{</span>
-				bin<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span>
-			<span class="token punctuation">}</span>
-		<span class="token punctuation">}</span>
-	<span class="token punctuation">}</span>
-	<span class="token keyword">return</span> bin
-<span class="token punctuation">}</span>
-
-<span class="token comment">// bloomValues returns the bytes (index-value pairs) to set for the given data</span>
+<span class="token comment">// return index</span>
 <span class="token keyword">func</span> <span class="token function">bloomValues</span><span class="token punctuation">(</span>data <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> hashbuf <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">uint</span><span class="token punctuation">,</span> <span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">uint</span><span class="token punctuation">,</span> <span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">uint</span><span class="token punctuation">,</span> <span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
 	sha <span class="token operator">:=</span> hasherPool<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">(</span>crypto<span class="token punctuation">.</span>KeccakState<span class="token punctuation">)</span>
+
 	<span class="token comment">//生成散列函数，初始化</span>
 	sha<span class="token punctuation">.</span><span class="token function">Reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 	<span class="token comment">//对data进行加密</span>
@@ -938,20 +992,64 @@ whisper         提供了whisper节点的协议。
 	<span class="token comment">// The actual bits to flip</span>
 	<span class="token comment">// 翻转的bit位</span>
 	<span class="token comment">// 最多左移7位</span>
-	<span class="token comment">// 0x7 = 0000 0000 0000 0111</span>
 	v1 <span class="token operator">:=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span> <span class="token number">0x7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 	v2 <span class="token operator">:=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span> <span class="token number">0x7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 	v3 <span class="token operator">:=</span> <span class="token function">byte</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span> <span class="token number">0x7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 	<span class="token comment">// The indices for the bytes to OR in</span>
-	<span class="token comment">// index</span>
-	<span class="token comment">// 0x7ff = 0000 0111 1111 1111</span>
+	<span class="token comment">// index 在bloom数组中</span>
 	i1 <span class="token operator">:=</span> BloomByteLength <span class="token operator">-</span> <span class="token function">uint</span><span class="token punctuation">(</span><span class="token punctuation">(</span>binary<span class="token punctuation">.</span>BigEndian<span class="token punctuation">.</span><span class="token function">Uint16</span><span class="token punctuation">(</span>hashbuf<span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x7ff</span><span class="token punctuation">)</span><span class="token operator">&gt;&gt;</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
 	i2 <span class="token operator">:=</span> BloomByteLength <span class="token operator">-</span> <span class="token function">uint</span><span class="token punctuation">(</span><span class="token punctuation">(</span>binary<span class="token punctuation">.</span>BigEndian<span class="token punctuation">.</span><span class="token function">Uint16</span><span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x7ff</span><span class="token punctuation">)</span><span class="token operator">&gt;&gt;</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
 	i3 <span class="token operator">:=</span> BloomByteLength <span class="token operator">-</span> <span class="token function">uint</span><span class="token punctuation">(</span><span class="token punctuation">(</span>binary<span class="token punctuation">.</span>BigEndian<span class="token punctuation">.</span><span class="token function">Uint16</span><span class="token punctuation">(</span>hashbuf<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x7ff</span><span class="token punctuation">)</span><span class="token operator">&gt;&gt;</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
 
+	<span class="token comment">//fmt.Printf("下面是对应的[k,v]-------------------------------------\n")</span>
+	<span class="token comment">//fmt.Printf("%v = %v, %v = %v, %v = %v \n", i1, v1, i2, v2, i3, v3)</span>
+
 	<span class="token keyword">return</span> i1<span class="token punctuation">,</span> v1<span class="token punctuation">,</span> i2<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> i3<span class="token punctuation">,</span> v3
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h4><p>大致上的出的数据跟公式计算出来的差不多（在我看来）。。。</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go">
+<span class="token keyword">const</span> c1 <span class="token operator">=</span> <span class="token string">"abcdefghijklmnopqrstuvwxyz"</span>
+<span class="token keyword">const</span> c2 <span class="token operator">=</span> <span class="token string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>
+
+<span class="token keyword">func</span> <span class="token function">randC1</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span> <span class="token punctuation">{</span>
+	b <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> b <span class="token punctuation">{</span>
+		b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> c1<span class="token punctuation">[</span>rand<span class="token punctuation">.</span><span class="token function">Intn</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>c1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> b
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">randC2</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span> <span class="token punctuation">{</span>
+	b <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token keyword">range</span> b <span class="token punctuation">{</span>
+		b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> c2<span class="token punctuation">[</span>rand<span class="token punctuation">.</span><span class="token function">Intn</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>c2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> b
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">TestBloom2</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	addSize <span class="token operator">:=</span> <span class="token function">int</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span>
+	findSize <span class="token operator">:=</span> <span class="token function">int</span><span class="token punctuation">(</span><span class="token number">1e5</span><span class="token punctuation">)</span>
+	<span class="token builtin">len</span> <span class="token operator">:=</span> <span class="token number">20</span>
+
+	<span class="token keyword">var</span> bloom Bloom
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> addSize<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		rand<span class="token punctuation">.</span><span class="token function">Seed</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">UnixNano</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		bloom<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token function">randC1</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	count <span class="token operator">:=</span> <span class="token number">0</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> findSize<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		rand<span class="token punctuation">.</span><span class="token function">Seed</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">UnixNano</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> bloom<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token function">randC2</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			count<span class="token operator">++</span>
+			<span class="token comment">//fmt.Printf("现在元素个数 = %d , 误差数量 = %d\n", i, count)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"添加元素 %d 个， 查询元素 %d 个\n"</span><span class="token punctuation">,</span> addSize<span class="token punctuation">,</span> findSize<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"误差率为: %f\n"</span><span class="token punctuation">,</span> <span class="token function">float64</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">float64</span><span class="token punctuation">(</span>findSize<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 

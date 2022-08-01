@@ -669,7 +669,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-07-17
+                    2022-07-24
                 </div>
                 
 
@@ -1078,10 +1078,6 @@
 <blockquote>
 <p>资料链接</p>
 </blockquote>
-<h3 id="membr如何创建的？"><a href="#membr如何创建的？" class="headerlink" title="membr如何创建的？"></a>membr如何创建的？</h3><ul>
-<li>运行<code>run.sh</code>的时候会自动根据<code>docker-compose.yml</code>来生成对应的docker容器</li>
-<li>最终会生成创世文件<code>cliqueGenesis.json</code>在<code> quorum-test-network/config/besu</code></li>
-</ul>
 <h3 id="同网络进行交流的API"><a href="#同网络进行交流的API" class="headerlink" title="同网络进行交流的API"></a>同网络进行交流的API</h3><h4 id="Web3js"><a href="#Web3js" class="headerlink" title="Web3js"></a>Web3js</h4><ul>
 <li><a target="_blank" rel="noopener" href="https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html">英文web3-eth-abi文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/web3js-0.2x/web3.eth.html">中文web3-eth-abi文档</a></li>
@@ -1142,8 +1138,10 @@ smart_contracts/ 	写和部署智能合约
 extra/ 		生成一个新节点
 dapps/ 		快速启动一个dapp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
+<h3 id="membr如何创建的？"><a href="#membr如何创建的？" class="headerlink" title="membr如何创建的？"></a>membr如何创建的？</h3><ul>
+<li>运行<code>run.sh</code>的时候会自动根据<code>docker-compose.yml</code>来生成对应的docker容器</li>
+<li>最终会生成创世文件<code>cliqueGenesis.json</code>在<code> quorum-test-network/config/besu</code></li>
+</ul>
 <h3 id="Geth"><a href="#Geth" class="headerlink" title="Geth"></a>Geth</h3><h3 id="部署合约"><a href="#部署合约" class="headerlink" title="部署合约"></a>部署合约</h3><p>test环境提供了一个简单的合约和部署的js代码来演示了如何进行合约的部署</p>
 <p><code>SimpleStorage.sol</code></p>
 <pre class="line-numbers language-solidity" data-language="solidity"><code class="language-solidity"><span class="token keyword">pragma</span> <span class="token keyword">solidity</span> <span class="token operator">^</span><span class="token version number">0.7.0</span><span class="token punctuation">;</span>
