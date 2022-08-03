@@ -669,7 +669,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-08-01
+                    2022-08-02
                 </div>
                 
 
@@ -1253,7 +1253,7 @@
 <p>说白的就是根据网速动态切换选择视频的清晰度</p>
 <h4 id="Content-Distributrion-Network"><a href="#Content-Distributrion-Network" class="headerlink" title="Content Distributrion Network"></a>Content Distributrion Network</h4><p>CDN的操作</p>
 <p>大多数CDN都是利用DNS来截获和重定向请求</p>
-<h3 id="Socket-Programming"><a href="#Socket-Programming" class="headerlink" title="Socket Programming"></a>Socket Programming</h3><h4 id="UDP编程"><a href="#UDP编程" class="headerlink" title="UDP编程"></a>UDP编程</h4><p>server.cpp</p>
+<h3 id="Socket-Programming"><a href="#Socket-Programming" class="headerlink" title="Socket Programming"></a>Socket Programming</h3><h4 id="UDP编程"><a href="#UDP编程" class="headerlink" title="UDP编程"></a>UDP编程</h4><p><strong>udpServer.cpp</strong></p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
  * @Autor: Zver
  * @Date: 2022-07-27 04:45:33
@@ -1338,7 +1338,7 @@
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>client.cpp</p>
+<p><strong>udpClient.cpp</strong></p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
  * @Autor: Zver
  * @Date: 2022-07-27 04:45:33
@@ -1416,57 +1416,146 @@
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="TCP编程"><a href="#TCP编程" class="headerlink" title="TCP编程"></a>TCP编程</h4><p>在代码上，相较于UDP就是多了一段listen,并且是按照accept来创建新的套接字</p>
-<p>tcpServer.py</p>
+<p><strong>tcpServer.py</strong></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">'''
+
 Autor: Zver
 Date: 2022-08-01 04:22:32
-LastEditTime: 2022-08-01 04:43:47
+LastEditTime: 2022-08-02 23:12:11
+
 '''</span>
 <span class="token keyword">from</span> socket <span class="token keyword">import</span> <span class="token operator">*</span>
+<span class="token keyword">import</span> threading
 serverPort <span class="token operator">=</span><span class="token number">9098</span>
-<span class="token comment"># ipv4 和 传输层协议</span>
+
+<span class="token comment"># ipv4 </span>
 serverSocket  <span class="token operator">=</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span>SOCK_STREAM<span class="token punctuation">)</span> 
 <span class="token comment"># 接受任何ip发向serverPort的tcp连接</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"bind ： ip = %s, port = %s"</span><span class="token operator">%</span><span class="token punctuation">(</span><span class="token string">"any"</span><span class="token punctuation">,</span>serverPort<span class="token punctuation">)</span><span class="token punctuation">)</span>
 serverSocket<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span>serverPort<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment"># tcp连接数量</span>
-serverSocket<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment"># tcp等待连接最大数量</span>
+serverSocket<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token comment"># 多线程接受</span>
+<span class="token keyword">def</span> <span class="token function">tcplink</span><span class="token punctuation">(</span>clientSocket<span class="token punctuation">,</span>clientaddress<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        message <span class="token operator">=</span> clientSocket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">2048</span><span class="token punctuation">)</span>
+        modifiedMessage <span class="token operator">=</span> message<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"向{0}发送信息：{1}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>clientaddress<span class="token punctuation">,</span>modifiedMessage<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># 可以直接对应的clientSocket发送</span>
+        clientSocket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>modifiedMessage<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>        
+        <span class="token keyword">if</span> <span class="token keyword">not</span> message <span class="token keyword">or</span> message<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'exit'</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"断开连接······"</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+    clientSocket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>      
+
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The server is ready to receive"</span><span class="token punctuation">)</span>
 <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
     <span class="token comment"># 创建对应client的tcp</span>
     <span class="token comment"># 握手阶段在这部分</span>
     clientSocket<span class="token punctuation">,</span>clientaddress <span class="token operator">=</span> serverSocket<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    
-    message <span class="token operator">=</span> clientSocket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
-    modifiedMessage <span class="token operator">=</span> message<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment"># 可以直接对应的clientSocket发送</span>
-    clientSocket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>modifiedMessage<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    clientSocket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"接受TCP连接，client = {0}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>clientaddress<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    t <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>tcplink<span class="token punctuation">,</span>args<span class="token operator">=</span><span class="token punctuation">(</span>clientSocket<span class="token punctuation">,</span>clientaddress<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>tcpClient.py</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">'''
-<span class="token class-name">Autor</span><span class="token operator">:</span> <span class="token class-name">Zver</span>
-<span class="token class-name">Date</span><span class="token operator">:</span> <span class="token number">2022</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">01</span> <span class="token number">04</span><span class="token operator">:</span><span class="token number">15</span><span class="token operator">:</span><span class="token number">58</span>
-<span class="token class-name">LastEditTime</span><span class="token operator">:</span> <span class="token number">2022</span><span class="token operator">-</span><span class="token number">08</span><span class="token operator">-</span><span class="token number">01</span> <span class="token number">04</span><span class="token operator">:</span><span class="token number">41</span><span class="token operator">:</span><span class="token number">08</span>
-'''
-from http <span class="token keyword">import</span> <span class="token namespace">client</span>
-from socket <span class="token keyword">import</span> <span class="token operator">*</span>
+<p><strong>tcpClient.py</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">'''
+Autor: Zver
+Date: 2022-08-01 04:15:58
+LastEditTime: 2022-08-02 22:38:10
+'''</span>
+<span class="token keyword">from</span> http <span class="token keyword">import</span> client
+<span class="token keyword">from</span> socket <span class="token keyword">import</span> <span class="token operator">*</span>
 
 
-serverIp <span class="token operator">=</span> '<span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span>'
+serverIp <span class="token operator">=</span> <span class="token string">'127.0.0.1'</span>
 serverPort <span class="token operator">=</span> <span class="token number">9098</span>
 
-clientSocket <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span>SOCK_STREAM<span class="token punctuation">)</span>
-clientSocket<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">(</span>serverIp<span class="token punctuation">,</span>serverPort<span class="token punctuation">)</span><span class="token punctuation">)</span>
-message <span class="token operator">=</span> <span class="token function">input</span><span class="token punctuation">(</span>'input lowercase sentence <span class="token operator">:</span> '<span class="token punctuation">)</span>
-clientSocket<span class="token punctuation">.</span><span class="token function">sendto</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>serverIp<span class="token punctuation">,</span>serverPort<span class="token punctuation">)</span><span class="token punctuation">)</span>
-# bytesize
-modifiedMessage<span class="token punctuation">,</span>serverAddress <span class="token operator">=</span> clientSocket<span class="token punctuation">.</span><span class="token function">recvfrom</span><span class="token punctuation">(</span><span class="token number">2048</span><span class="token punctuation">)</span>
-<span class="token function">print</span><span class="token punctuation">(</span>modifiedMessage<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-clientSocket<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+clientSocket <span class="token operator">=</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span>SOCK_STREAM<span class="token punctuation">)</span>
+clientSocket<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>serverIp<span class="token punctuation">,</span>serverPort<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        message <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'input lowercase sentence : '</span><span class="token punctuation">)</span>
+        clientSocket<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>serverIp<span class="token punctuation">,</span>serverPort<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+        <span class="token comment"># bytesize</span>
+        modifiedMessage<span class="token punctuation">,</span>serverAddress <span class="token operator">=</span> clientSocket<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">2048</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>modifiedMessage<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>message <span class="token operator">==</span> <span class="token string">'exit'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            clientSocket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>   
+            <span class="token keyword">break</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="UDPPinger"><a href="#UDPPinger" class="headerlink" title="UDPPinger"></a>UDPPinger</h4><p><strong>udpPingerClient.py</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">'''
+Autor: Zver
+Date: 2022-08-02 23:25:39
+LastEditTime: 2022-08-02 23:48:27
+'''</span>
+
+
+<span class="token keyword">from</span> http <span class="token keyword">import</span> server
+<span class="token keyword">import</span> random
+<span class="token keyword">from</span> socket <span class="token keyword">import</span> <span class="token operator">*</span>
+<span class="token keyword">import</span> time
+
+
+serverPort  <span class="token operator">=</span> <span class="token number">9898</span>
+serverIp <span class="token operator">=</span> <span class="token string">"127.0.0.1"</span>
+clientSocket <span class="token operator">=</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span>SOCK_DGRAM<span class="token punctuation">)</span>
+<span class="token comment"># 延时 1 秒</span>
+clientSocket<span class="token punctuation">.</span>settimeout<span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span>
+SIZE <span class="token operator">=</span> <span class="token number">100</span>
+LOSS <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">for</span> i  <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>SIZE<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sendTime <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    message <span class="token operator">=</span> <span class="token string">'PING '</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">"%H:%M:%S"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    clientSocket<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>serverIp<span class="token punctuation">,</span>serverPort<span class="token punctuation">)</span><span class="token punctuation">)</span>  
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        recvData<span class="token punctuation">,</span>address <span class="token operator">=</span> clientSocket<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+        recvTime  <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        rtt <span class="token operator">=</span> recvTime <span class="token operator">-</span> sendTime
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Message Received {0} from {1} "</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>recvData<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>address<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"rtt = {0}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>rtt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> timeout<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"request timed out"</span><span class="token punctuation">)</span>
+        LOSS<span class="token operator">+=</span><span class="token number">1</span>
+        
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"丢包率 = {0}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">float</span><span class="token punctuation">(</span>LOSS<span class="token punctuation">)</span><span class="token operator">/</span><span class="token builtin">float</span><span class="token punctuation">(</span>SIZE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>udpPingerServer.py</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">'''
+Autor: Zver
+Date: 2022-08-02 23:22:15
+LastEditTime: 2022-08-02 23:36:24
+'''</span>
+
+<span class="token comment"># We will need the following module to generate randomized lost packets import random</span>
+<span class="token keyword">import</span> random
+<span class="token keyword">from</span> socket <span class="token keyword">import</span> <span class="token operator">*</span>
 
 
 
+<span class="token comment"># create a udp socket server</span>
+serverSocket <span class="token operator">=</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span>SOCK_DGRAM<span class="token punctuation">)</span>
+serverSocket<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token number">9898</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Ready to server ····"</span><span class="token punctuation">)</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token comment"># 0 ~ 9</span>
+    rand <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span>
+    message<span class="token punctuation">,</span>address <span class="token operator">=</span> serverSocket<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+    message <span class="token operator">=</span> message<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> rand <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">:</span>
+        <span class="token keyword">continue</span>
+    serverSocket<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>message<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>address<span class="token punctuation">)</span>
+    
+    
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="WebServer"><a href="#WebServer" class="headerlink" title="WebServer"></a>WebServer</h4><p><strong>webServer.py</strong></p>
 <h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><h3 id="物理层的基本概念"><a href="#物理层的基本概念" class="headerlink" title="物理层的基本概念"></a>物理层的基本概念</h3><h3 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h3><h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><h3 id="编码与编制"><a href="#编码与编制" class="headerlink" title="编码与编制"></a>编码与编制</h3><h3 id="通道的极限容量"><a href="#通道的极限容量" class="headerlink" title="通道的极限容量"></a>通道的极限容量</h3><h3 id="物理层的总结"><a href="#物理层的总结" class="headerlink" title="物理层的总结"></a>物理层的总结</h3><h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><h3 id="数据链路层概述"><a href="#数据链路层概述" class="headerlink" title="数据链路层概述"></a>数据链路层概述</h3><p><code> 链路（Link）</code>就是从一个结点到相邻结点的一段物理线路，而中间没有任何其他的交换结点。</p>
 <p><code>数据链路（Data Link）</code>是指把实现通信协议的硬件和软件加到链路上，就构成了数据链路。</p>
 <p>数据链路层以<code>帧</code>为单位传输 和处理数据。</p>
